@@ -1,1 +1,1 @@
-$node.Left \<mapsto> $node.Right
+{$Isa.transMapEnum($node)}

@@ -1,1 +1,10 @@
-true or false
+module A
+
+definitions
+
+functions
+f : nat1 * nat1 -> bool
+f (a, b) == if a = b then true else false;
+
+
+end A

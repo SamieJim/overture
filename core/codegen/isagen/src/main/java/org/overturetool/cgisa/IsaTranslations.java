@@ -25,11 +25,7 @@ import java.io.StringWriter;
 import java.util.*;
 
 import org.overture.ast.definitions.AImplicitFunctionDefinition;
-import org.overture.codegen.ir.INode;
-import org.overture.codegen.ir.SDeclIR;
-import org.overture.codegen.ir.SExpIR;
-import org.overture.codegen.ir.SMultipleBindIR;
-import org.overture.codegen.ir.STypeIR;
+import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.declarations.AFieldDeclIR;
 import org.overture.codegen.ir.declarations.AFormalParamLocalParamIR;
@@ -38,11 +34,8 @@ import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
 import org.overture.codegen.ir.declarations.ARecordDeclIR;
 import org.overture.codegen.ir.declarations.AStateDeclIR;
 import org.overture.codegen.ir.declarations.ATypeDeclIR;
-import org.overture.codegen.ir.expressions.AApplyExpIR;
-import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
-import org.overture.codegen.ir.expressions.ANewExpIR;
+import org.overture.codegen.ir.expressions.*;
 import org.overture.codegen.ir.types.*;
-import org.overture.codegen.ir.SourceNode;
 import org.overture.codegen.merging.MergeVisitor;
 import org.overture.codegen.merging.TemplateCallable;
 import org.overture.codegen.merging.TemplateManager;
@@ -79,13 +72,32 @@ public class IsaTranslations {
         return writer.toString().replace("true", "True");//hack around lower cased trues;
     }
 
+    public String transMapEnum(AEnumMapExpIR node){
+        NodeList<AMapletExpIR> maplets = (NodeList<AMapletExpIR>) node.getMembers();
+        StringBuilder sb = new StringBuilder();
+        maplets.forEach( m ->
+                {
+                    try {
+                        if (sb.length() > 0) sb.append(", ");
+                        sb.append(trans(m.getLeft()));
+                        sb.append(" \\<mapsto> ");
+                        sb.append(trans(m.getRight()));
+                    } catch (AnalysisException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+        );
+        return sb.toString();
+    }
+
    
     public String transUnion(STypeIR node) throws AnalysisException {
         return trans(node).replace("<", "").replace(">", "");//hack around lower cased trues;
     }
     
     
-    
+
     public String transState(AStateDeclIR node) throws AnalysisException {
     	StringBuilder sb = new StringBuilder();
     	sb.append(" ");

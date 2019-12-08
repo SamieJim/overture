@@ -2,6 +2,11 @@
 begin
 
 abbreviation
- x \:\: \"VDMNat1 VDMSet\" where
-\" x \\<equiv> {} \\<subset> {} \"
+ x \:\: \"\\<bool>\" where
+\" x \\<equiv> ({} \\<subset> {})\"
+
+definition
+inv_x \:\: \"\\<bool>\" where
+\"inv_x \\<equiv> isa_invTrue x\"
+\n\n
 end","errors":false}
