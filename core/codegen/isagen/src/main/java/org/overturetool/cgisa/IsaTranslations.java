@@ -69,7 +69,14 @@ public class IsaTranslations {
     public String trans(INode node) throws AnalysisException {
         StringWriter writer = new StringWriter();
         node.apply(mergeVisitor, writer);
+        //if grabSetDiff else return that
         return writer.toString().replace("true", "True");//hack around lower cased trues;
+    }
+
+    private String grabSetDifference(INode node) {
+        x.parent().getChildren(true).entrySet().forEach(e -> {
+            if (e.getValue() instanceof ASetDifferenceBinaryExpIR) e.setValue(y);
+        });
     }
 
     public String transMapEnum(AEnumMapExpIR node){
