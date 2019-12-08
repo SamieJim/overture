@@ -1,0 +1,8 @@
+{"translation":"theory DEFAULT\n  imports VDMToolkit
+begin
+
+abbreviation
+ x \:\: \"VDMNat1\" where
+\" x \\<equiv> 1 + 1\"
+\n\n
+end","errors":false}

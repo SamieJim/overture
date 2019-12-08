@@ -1,0 +1,7 @@
+{"translation":"theory DEFAULT\n  imports VDMToolkit
+begin
+
+abbreviation
+ x \:\: \"VDMMap\" where
+\" x \\<equiv> {a \\<mapsto> b, d \\<mapsto> c, e \\<mapsto> f} \"
+end","errors":false}

@@ -489,6 +489,10 @@ public class IsaTranslations {
         return String.join("\\<and>", invs);
     }
 
+    public String peek(SExpIR node){
+        return ("");
+    }
+
 //    public String invTrue(ATypeDefinition node){
 //        StringBuilder sb = new StringBuilder();
 //
