@@ -144,16 +144,16 @@ public class IsaGenParamTest extends ParamStandardTest<CgIsaTestResult> {
 
     @Override
     public void compareResults(CgIsaTestResult actual, CgIsaTestResult expected) {
-    	PrintWriter writer = null;
-		try {
-			writer = new PrintWriter("/Users/jamie/git/overture/core/codegen/isagen/target/ToolOut.txt", "UTF-8");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-    	writer.println(actual.translation);
-    	writer.close();
+//    	PrintWriter writer = null;
+//		try {
+//			writer = new PrintWriter("C:\\Users\\jasim\\Documents\\overture\\core\\codegen\\isagen\\target", "UTF-8");
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (UnsupportedEncodingException e) {
+//			e.printStackTrace();
+//		}
+//    	writer.println(actual.translation);
+//    	writer.close();
 
         assertTrue("\n --- Expected: ---\n" + expected.translation
                 + "\n --- Got: ---\n" + actual.translation, expected.compare(actual));
@@ -165,9 +165,10 @@ public class IsaGenParamTest extends ParamStandardTest<CgIsaTestResult> {
     }
 
     private boolean notSkipped() {
-        List<String> oneTest = new ArrayList<>();
-        oneTest.add("SetDifferenceExp.vdmsl");
-        return oneTest.contains(testName);
-        //return !skippedTests.contains(testName);
+        //TO TEST ONE THING
+//        List<String> oneTest = new ArrayList<>();
+//        oneTest.add("SetDifferenceExp.vdmsl");
+//        return oneTest.contains(testName);
+        return !skippedTests.contains(testName);
     }
 }

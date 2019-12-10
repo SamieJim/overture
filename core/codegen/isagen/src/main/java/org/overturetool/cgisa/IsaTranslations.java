@@ -69,15 +69,9 @@ public class IsaTranslations {
     public String trans(INode node) throws AnalysisException {
         StringWriter writer = new StringWriter();
         node.apply(mergeVisitor, writer);
-        //if grabSetDiff else return that
         return writer.toString().replace("true", "True");//hack around lower cased trues;
     }
 
-    private String grabSetDifference(INode node) {
-        x.parent().getChildren(true).entrySet().forEach(e -> {
-            if (e.getValue() instanceof ASetDifferenceBinaryExpIR) e.setValue(y);
-        });
-    }
 
     public String transMapEnum(AEnumMapExpIR node){
         NodeList<AMapletExpIR> maplets = (NodeList<AMapletExpIR>) node.getMembers();
@@ -508,12 +502,9 @@ public class IsaTranslations {
         return String.join("\\<and>", invs);
     }
 
+    //A utility method for examining values as they are passed in velocity
     public String peek(SExpIR node){
         return ("");
     }
 
-//    public String invTrue(ATypeDefinition node){
-//        StringBuilder sb = new StringBuilder();
-//
-//    }
 }

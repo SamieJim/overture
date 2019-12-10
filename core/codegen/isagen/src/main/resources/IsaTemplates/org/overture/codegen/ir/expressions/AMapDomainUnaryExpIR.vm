@@ -1,1 +1,1 @@
-dom ($Isa.trans($node.Exp))
+\<AMapDomainUnaryExp> ($Isa.trans($node.Exp))
