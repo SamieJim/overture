@@ -177,14 +177,12 @@ public class IsaTranslations {
 
     public String transNodeList(List<? extends INode> params, String sep)
             throws AnalysisException {
-        StringBuilder sb = new StringBuilder();
 
+        StringBuilder sb = new StringBuilder();
         Iterator<? extends INode> it = params.iterator();
 
         while (it.hasNext()) {
-            StringWriter writer = new StringWriter();
-            it.next().apply(mergeVisitor, writer);
-            sb.append(writer.toString());
+            sb.append(trans((INode) it.next().clone()));
             if (it.hasNext()) {
                 sb.append(sep);
             }
@@ -325,7 +323,7 @@ public class IsaTranslations {
 
     public String initial(SExpIR node) throws AnalysisException {
     	if (node.getClass() != AIdentifierVarExpIR.class && 
-    			(node.getType() instanceof ASetSetTypeIR || node.getType() instanceof ASeqSeqTypeIR))
+    			(node instanceof ASetSetTypeIR || node instanceof ASeqSeqTypeIR))
     	{
     		// Translate the collection symbols of the actual value in the abbreviation field
     		String initial = shift( Arrays.asList(transInit(node.getType(), node.toString().replace("[", "").replace("]", "")).split("")) );
