@@ -82,6 +82,7 @@ public class IsaGenParamTest extends ParamStandardTest<CgIsaTestResult> {
     		"ImplicitNumericExp.vdmsl","VarExp.vdmsl",
     		"SeqNat.vdmsl",
     		//"Maplet.vdmsl",
+            "OrExp.vdmsl",
             "NotEqualsExp.vdmsl",
     		"GTExp.vdmsl",
     		"Int.vdmsl",

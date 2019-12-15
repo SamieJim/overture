@@ -1,1 +1,13 @@
-{"translation":"(1 div 1)","errors":false}
+{"translation":"theory DEFAULT\n  imports VDMToolkit
+begin
+
+abbreviation
+ x \:\: \"VDMNat1\" where
+\" x \\<equiv> ( 2 \/ 1 )\"
+
+definition
+	inv_x \:\: \"\\<bool>\"
+    where
+    \"inv_x  \\<equiv> isa_invVDMNat1  x \"
+\n\n
+end","errors":false}

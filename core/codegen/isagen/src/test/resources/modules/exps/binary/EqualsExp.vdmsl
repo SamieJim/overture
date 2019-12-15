@@ -1,1 +1,2 @@
-1=1
+values
+x : bool = 2 = 1;

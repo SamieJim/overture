@@ -8,12 +8,12 @@
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -92,12 +92,12 @@ public class IsaTranslations {
         return sb.toString();
     }
 
-   
+
     public String transUnion(STypeIR node) throws AnalysisException {
         return trans(node).replace("<", "").replace(">", "");//hack around lower cased trues;
     }
-    
-    
+
+
 
     public String transState(AStateDeclIR node) throws AnalysisException {
     	StringBuilder sb = new StringBuilder();
@@ -112,7 +112,7 @@ public class IsaTranslations {
     	}
     	return sb.toString();
     }
-    
+
 	public String transApplyParams(List<SExpIR> params)
             throws AnalysisException {
         return transNodeList(params, " ");
@@ -123,17 +123,17 @@ public class IsaTranslations {
 		List<SExpIR> args = new ArrayList<SExpIR>();
 		args = node.getArgs();
 		List<AFieldDeclIR> f = new ArrayList<AFieldDeclIR>();
-		SDeclIR rs = IsaGen.declGenHistoryMap.get(((ARecordTypeIR) 
+		SDeclIR rs = IsaGen.declGenHistoryMap.get(((ARecordTypeIR)
 					node.getType().clone()).getName().toString());
-		
-		
-		if (rs instanceof AStateDeclIR) 
+
+
+		if (rs instanceof AStateDeclIR)
 		{
 			AStateDeclIR state = (AStateDeclIR) rs.clone();
 			f = state.getFields();
 			for (int i = 0; i < f.size(); i++)
 			{
-				str = str + state.getName().toString().substring(0,1).toLowerCase() 
+				str = str + state.getName().toString().substring(0,1).toLowerCase()
 						+ state.getName().toString().substring(1) + "_"
 						+ (f.get(i).getName() + " = " + args.get(i).toString());
 				if (i < f.size()-1) str = str + (", ");
@@ -145,18 +145,18 @@ public class IsaTranslations {
 			f = rec.getFields();
 			for (int i = 0; i < f.size(); i++)
 			{
-				str = str + rec.getName().toString().substring(0,1).toLowerCase() 
+				str = str + rec.getName().toString().substring(0,1).toLowerCase()
 						+ rec.getName().toString().substring(1) + "_"
 						+ (f.get(i).getName() + " = " + args.get(i).toString());
 				if (i < f.size()-1) str = str + (", ");
 			}
 		}
-			
-		
-		
+
+
+
 		return str;
 	}
-	
+
     public String transTypeParams(List<AFormalParamLocalParamIR> params)
             throws AnalysisException {
         String result = transNodeList(params, TYPE_PARAM_SEP);
@@ -322,40 +322,40 @@ public class IsaTranslations {
     }
 
     public String initial(SExpIR node) throws AnalysisException {
-    	if (node.getClass() != AIdentifierVarExpIR.class && 
+    	if (node.getClass() != AIdentifierVarExpIR.class &&
     			(node instanceof ASetSetTypeIR || node instanceof ASeqSeqTypeIR))
     	{
     		// Translate the collection symbols of the actual value in the abbreviation field
     		String initial = shift( Arrays.asList(transInit(node.getType(), node.toString().replace("[", "").replace("]", "")).split("")) );
     		return initial;
     	}
-    	else 
+    	else
     	{
     		return trans(node);
     	}
-    	
+
     }
-    
+
     // Hack around reverse recurion making VDMNat1 VDMSeq VDMSet appear as [{1}]
 	private String shift(List<String> s) throws AnalysisException {
-		
+
 	    for (int i = 0; i < (s.size()/2)-1; i++)
 	    {
 	    	Collections.swap(s, i, i + 1);
-	    	
+
 	    }
-	    
+
 	    for (int i = s.size()-1; i > (s.size()/2)+1; i--)
 	    {
 	    	Collections.swap(s, i, i - 1);
-	    	
+
 	    }
-	    
+
 	    return s.toString().replace(", ", "").substring(1, s.size()+1);
 	}
-    
+
     private String transInit(STypeIR type, String val) throws AnalysisException {
-    	
+
     	if (type instanceof ASetSetTypeIR)
     	{
     		val = transInit( ((ASetSetTypeIR) type).getSetOf(), IsaSymbolFinder.findSymbol(type, val));
@@ -364,7 +364,7 @@ public class IsaTranslations {
     	{
     		val = transInit( ((ASeqSeqTypeIR) type).getSeqOf(), IsaSymbolFinder.findSymbol(type, val));
     	}
-    	
+
 		return val;
 	}
 
@@ -391,9 +391,9 @@ public class IsaTranslations {
     public boolean hasInvariant(ATypeDeclIR node) {
         return (node.getInv() != null);
     }
-    
+
     public String transTypeName(STypeIR node) {
-    	if (node instanceof ASetSetTypeIR) 
+    	if (node instanceof ASetSetTypeIR)
     	{
     		ASetSetTypeIR set = (ASetSetTypeIR) node;
     		return IsaGen.typeGenHistoryMap.get(set);
@@ -403,7 +403,7 @@ public class IsaTranslations {
     		ASetSetTypeIR seq = (ASetSetTypeIR) node;
     		return IsaGen.typeGenHistoryMap.get(seq);
     	}
-    	else 
+    	else
     	{
     		return "collectionName";
     	}
@@ -473,7 +473,7 @@ public class IsaTranslations {
 
     public String genInvariantsForUnaryTypeConstructor(Object node)
     {
-       
+
     	if(node instanceof ASeqSeqTypeIR){
             ASeqSeqTypeIR node_ = (ASeqSeqTypeIR) node;
             return concreteTypeInvariantForUnaryTypeConstructorInvariant(node_.getSeqOf(),"inv_SeqElems ");
