@@ -83,6 +83,9 @@ public class IsaGenParamTest extends ParamStandardTest<CgIsaTestResult> {
     		"SeqNat.vdmsl",
     		//"Maplet.vdmsl",
             "OrExp.vdmsl",
+            "BoolLiteralFalse.vdmsl",
+            "BoolLiteralTrue.vdmsl",
+            "EmptySetEnum.vdmsl",
             "NotEqualsExp.vdmsl",
     		"GTExp.vdmsl",
     		"Int.vdmsl",
@@ -145,16 +148,16 @@ public class IsaGenParamTest extends ParamStandardTest<CgIsaTestResult> {
 
     @Override
     public void compareResults(CgIsaTestResult actual, CgIsaTestResult expected) {
-    	PrintWriter writer = null;
-		try {
-			writer = new PrintWriter("../../../../../target\\FSM3.thy", "UTF-8");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-    	writer.println(actual.translation);
-    	writer.close();
+//    	PrintWriter writer = null;
+//		try {
+//			writer = new PrintWriter("C:\\Users\\jasim\\Documents\\overture\\core\\codegen\\isagen\\target", "UTF-8");
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (UnsupportedEncodingException e) {
+//			e.printStackTrace();
+//		}
+//    	writer.println(actual.translation);
+//    	writer.close();
 
         assertTrue("\n --- Expected: ---\n" + expected.translation
                 + "\n --- Got: ---\n" + actual.translation, expected.compare(actual));
