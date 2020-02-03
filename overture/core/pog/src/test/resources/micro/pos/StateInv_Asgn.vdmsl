@@ -1,0 +1,14 @@
+
+state S of 
+  n : nat
+  m : nat
+inv mk_S(a,b) == a < b 
+end 
+operations
+
+Op: nat ==> () 
+Op(a) ==
+(    n := 1;
+    m := 2
+)
+

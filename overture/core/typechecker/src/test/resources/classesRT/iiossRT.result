@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testResult type="org.overture.typechecker.tests.ClassesRtTypeCheckTest">
+<message column="5" line="65" message="Instance variable 'simtime' is not initialized" messageType="warning" number="5001" resource="iiossRT"/>
+<message column="13" line="420" message="Instance variable 'stableController' is not initialized" messageType="warning" number="5001" resource="iiossRT"/>
+<message column="13" line="566" message="Instance variable 'parent' is not initialized" messageType="warning" number="5001" resource="iiossRT"/>
+<message column="5" line="684" message="Instance variable 'world' is not initialized" messageType="warning" number="5001" resource="iiossRT"/>
+<message column="5" line="685" message="Instance variable 'stbCtr' is not initialized" messageType="warning" number="5001" resource="iiossRT"/>
+<message column="10" line="52" message="Unable to resolve type name 'IO'" messageType="error" number="3427" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3427" resource="iiossRT"/>
+<message column="16" line="52" message="Class name IO not in scope" messageType="error" number="3133" resource="iiossRT"/>
+<message column="10" line="52" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="24" line="463" message="Class name IO not in scope" messageType="error" number="3133" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="49" line="23" message="Name 'VDMUtil`val2seq_of_char(IIOSSTYPES`PigPosition)' is not in scope" messageType="error" number="3182" resource="iiossRT"/>
+<message column="10" line="52" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="20" line="314" message="Class name IO not in scope" messageType="error" number="3133" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<message column="17" line="838" message="Class name IO not in scope" messageType="error" number="3133" resource="iiossRT"/>
+<message column="18" line="463" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="iiossRT"/>
+<result/>
+</testResult>
