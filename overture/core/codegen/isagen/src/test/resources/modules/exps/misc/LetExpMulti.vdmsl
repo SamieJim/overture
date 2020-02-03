@@ -1,0 +1,9 @@
+module A
+
+definitions
+
+functions
+f : int -> int
+f (x) == let y = 1, z = 2 in y + z;
+
+end A

@@ -1,0 +1,18 @@
+{"translation":"
+theory DEFAULT
+  imports VDMToolkit
+begin
+
+record RecType =
+        recType_x \:\: \"char\"
+        recType_y \:\: \"\\<real>\"
+    
+
+
+
+definition
+	inv_RecType \:\: \"RecType \\<Rightarrow> \\<bool>\"
+    where
+    \"inv_RecType r \\<equiv> (isa_invTrue (recType_x r) \\<and> isa_invTrue (recType_y r))\"
+
+end","errors":false}

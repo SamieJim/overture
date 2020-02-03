@@ -1,0 +1,28 @@
+{"translation":"theory DEFAULT\n  imports VDMToolkit
+begin
+
+abbreviation
+ a \:\: \"VDMNat1\" where 
+\" a \\<equiv> 10 \" 
+\n
+abbreviation
+ b \:\: \"VDMNat1\" where 
+\" b \\<equiv> 20 \" 
+\n
+abbreviation
+ c \:\: \"VDMNat1\" where 
+\" c \\<equiv> 30 \" 
+\n\n
+definition
+inv_a \:\: \"\\<bool>\" where
+\"inv_a \\<equiv> isa_invVDMNat1 a\"
+\n
+definition
+inv_b \:\: \"\\<bool>\" where
+\"inv_b \\<equiv> isa_invVDMNat1 b\"
+\n
+definition
+inv_c \:\: \"\\<bool>\" where
+\"inv_c \\<equiv> isa_invVDMNat1 c\"
+\n\n
+end","errors":false}
