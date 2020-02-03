@@ -1,7 +1,0 @@
-"Before doing valid assignments"
-"After doing valid assignments"
-"Before doing illegal assignments"
-Entry.java:36: JML assertion is false
-    //@ assert Utils.is_bool(b);
-        ^
-"After doing illegal assignments"

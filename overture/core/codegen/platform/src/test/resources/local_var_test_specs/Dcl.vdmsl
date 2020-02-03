@@ -1,8 +1,0 @@
-operations
-
-op : () ==> nat
-op () ==
-(
- dcl m : nat := 1;
- return m;
-);

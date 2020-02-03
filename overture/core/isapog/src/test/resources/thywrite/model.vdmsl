@@ -1,4 +1,0 @@
-functions
-
-f : int -> int
-f(x) == x/x

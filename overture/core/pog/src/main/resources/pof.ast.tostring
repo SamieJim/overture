@@ -1,6 +1,0 @@
-To String Extensions
-// import packages used by external $$ java code
-//import org.overture.pof.util.PoStringUtil;
-
-// Proof Obligations
-%poTree->vdm=""+[predicate]

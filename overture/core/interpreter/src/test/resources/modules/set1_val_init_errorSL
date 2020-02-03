@@ -1,8 +1,0 @@
-values
-
-- : set1 of nat = if true then {0} else {1};
-
-functions
-
-f: () -> nat
-f() == 1;

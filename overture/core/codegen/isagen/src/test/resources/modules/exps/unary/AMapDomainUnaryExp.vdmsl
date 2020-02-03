@@ -1,9 +1,0 @@
-module A
-
-definitions
-
-functions
-f : () -> int
-f () == {1 |-> 2} dom {3 |-> 4};
-
-end A

@@ -1,8 +1,0 @@
-class Entry
-
-operations
-
-public static Run: () ==> ?
-Run() == return exists x in seq [1] & x = 1;
-
-end Entry

@@ -1,8 +1,0 @@
-class Entry
-
-operations
-
-public static Run: () ==> ?
-Run() == return { x | x in seq [1,3,2] };
-
-end Entry

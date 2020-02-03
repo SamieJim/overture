@@ -1,7 +1,0 @@
-"Before valid use."
-"After valid use."
-"Before invalid use."
-Entry.java:27: JML assertion is false
-    //@ assert Utils.is_rat(i);
-        ^
-"After invalid use."

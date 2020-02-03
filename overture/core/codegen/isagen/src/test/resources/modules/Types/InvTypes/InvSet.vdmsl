@@ -1,4 +1,0 @@
-types
-
-t = set of int
-inv t == t <> {}

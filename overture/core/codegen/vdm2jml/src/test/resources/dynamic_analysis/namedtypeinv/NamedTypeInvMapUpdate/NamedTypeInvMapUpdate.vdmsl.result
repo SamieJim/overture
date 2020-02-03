@@ -1,4 +1,0 @@
-"Breaking named type invariant for sequence"
-Entry.java:34: JML assertion is false
-    //@ assert ((V2J.isMap(m) && (\forall int i; 0 <= i && i < V2J.size(m); true && true)) && inv_Entry_M(m));
-        ^

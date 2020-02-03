@@ -1,7 +1,0 @@
-"Before valid use."
-"After valid use."
-"Before invalid use."
-Entry.java:28: JML assertion is false
-      //@ assert Utils.is_nat1(n1);
-          ^
-"After invalid use."

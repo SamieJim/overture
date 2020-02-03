@@ -1,4 +1,0 @@
-#set( $map = $JavaFormat.format($node.getMap()) )
-#set( $element = $JavaFormat.format($node.getElement()) )
-##
-MapUtil.mapAdd(${map},${element});

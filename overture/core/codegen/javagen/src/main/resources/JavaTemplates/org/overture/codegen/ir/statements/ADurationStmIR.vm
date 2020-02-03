@@ -1,8 +1,0 @@
-## #set( $duration = $JavaFormat.format($node.getDuration()) )
-#set( $stm = $JavaFormat.format($node.getStm()) )
-##
-/* Start of duration */
-{
-  ${stm}
-}
-/* End of duration */

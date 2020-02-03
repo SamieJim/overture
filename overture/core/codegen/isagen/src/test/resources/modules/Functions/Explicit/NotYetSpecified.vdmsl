@@ -1,4 +1,0 @@
-functions
-
-f : int -> token
-f (x) == is not yet specified

@@ -1,8 +1,0 @@
-class Entry
-
-operations
-
-public static Run : () ==> ?
-Run () == return is_("Test", seq of char);
-
-end Entry

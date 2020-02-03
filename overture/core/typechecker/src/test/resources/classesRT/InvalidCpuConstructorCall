@@ -1,7 +1,0 @@
-system S
-
-instance variables
-
-public static cpu1 : CPU := new CPU();
-
-end S

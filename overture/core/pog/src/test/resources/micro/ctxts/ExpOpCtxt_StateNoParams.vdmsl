@@ -1,8 +1,0 @@
-state S of
-y : int
-end
-
-operations
-op : () ==> real
-op () == return 10/y
-

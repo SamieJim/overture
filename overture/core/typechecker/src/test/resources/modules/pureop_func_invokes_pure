@@ -1,7 +1,0 @@
-operations
-pure foo : () ==> int
-foo () == is not yet specified
-
-functions
-bar : int -> int
-bar (i) == foo() +i;

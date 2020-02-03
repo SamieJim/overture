@@ -1,7 +1,0 @@
-"Before valid use."
-"After valid use."
-"Before invalid use."
-Entry.java:29: JML assertion is false
-      //@ assert Utils.is_char(ignorePattern_2);
-          ^
-"After invalid use."

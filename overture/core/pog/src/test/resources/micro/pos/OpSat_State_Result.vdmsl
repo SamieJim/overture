@@ -1,8 +1,0 @@
-state S of
-n : nat
-end
-
-operations
-op () r : nat
-post n = r
-

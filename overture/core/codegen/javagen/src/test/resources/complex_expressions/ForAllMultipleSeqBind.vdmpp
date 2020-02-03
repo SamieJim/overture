@@ -1,8 +1,0 @@
-class Entry
-
-operations
-
-public static Run: () ==> ?
-Run() == return forall x,y in seq [false, false] & x or y;
-
-end Entry

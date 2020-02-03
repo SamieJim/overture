@@ -1,3 +1,0 @@
-#set( $packagePrefix = $JavaFormat.getQuotePackagePrefix() )
-##
-${packagePrefix}${node.getValue()}Quote.getInstance()

@@ -1,9 +1,0 @@
-module A
-
-definitions
-
-functions
-f : int -> int
-f (x) == let y =1 in 1+y;
-
-end A

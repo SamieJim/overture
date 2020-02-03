@@ -1,4 +1,0 @@
-types
-
-RecType :: x : nat
-           y: nat

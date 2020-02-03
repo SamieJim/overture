@@ -1,4 +1,0 @@
-types
-
-A = nat
-ord a < b == a + b
