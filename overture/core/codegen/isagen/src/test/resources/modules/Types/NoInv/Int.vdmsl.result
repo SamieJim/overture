@@ -1,1 +1,15 @@
-{"translation":"theory DEFAULT\n  imports vdm_sl\nbegin\n\ndefinition \"t \u003d \\\u003cparallel\u003e@int \\\u003cparallel\u003e\"\ndeclare t_def [eval,evalp]\n\nend","errors":false}
+{"translation":"theory DEFAULT
+imports VDMToolkit
+begin
+
+type_synonym XType \= \"VDMInt\"
+
+
+
+
+definition
+    inv_XType :: \"(XType) \\<Rightarrow> \\<bool> \"
+    where
+    \"inv_XType x \\<equiv> isa_invTrue x\"
+
+end","errors":false}

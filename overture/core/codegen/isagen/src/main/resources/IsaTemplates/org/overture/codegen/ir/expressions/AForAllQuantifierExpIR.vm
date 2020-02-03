@@ -1,1 +1,1 @@
-(forall $Isa.transBinds($node.BindList) & $Isa.trans($node.Predicate))
+$Isa.peek($node) (\<forall> $Isa.transBinds($node.BindList) & $Isa.trans($node.Predicate))

@@ -1,1 +1,20 @@
-{"translation":"theory DEFAULT\n  imports vdm_sl\nbegin\n\nvdmifun f\n  inp emptyParam :: \"@bool\"\n  out r :: \"@int\"\n  pre \"true\"\n  post \"true\"\n\n\nend","errors":false}
+{"translation":"
+theory DEFAULT
+  imports VDMToolkit
+begin
+
+
+definition
+	pre_f \:\: \"\\<bool>\"
+    where
+    \"pre_f  \\<equiv> True\"
+
+
+definition
+	post_f \:\: \"VDMInt
+ \\<Rightarrow> \\<bool>\"
+    where
+    \"post_f r  \\<equiv> True\"
+
+end
+","errors":false}

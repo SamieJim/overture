@@ -1,22 +1,14 @@
-#if ($node.Implicit)
-vdmifun $Isa.norm($node.Name)
-#if ($node.FormalParams.isEmpty())
-  inp emptyParam :: "@bool"
+#macro ( transIdentifiers $node )
+#foreach($p in $node.FormalParams)
+$Isa.trans($p.pattern)##
+#end
+#end
+
+definition
+#if ("$Isa.transTypeParams($node.MethodType.Params)" == "")
+	$node.Name :: "$Isa.trans($node.MethodType.Result)"
 #else
-  inp $Isa.transTypeParams($node.FormalParams)
+	$node.Name :: "$Isa.transTypeParams($node.MethodType.Params) \<Rightarrow> $Isa.trans($node.MethodType.Result)"
 #end
-  out $Isa.hackResultName($node) :: "$Isa.trans($node.MethodType.Result)"
-#else
-vdmefun $Isa.norm($node.Name)
-  inp $Isa.transTypeParams($node.FormalParams)
-  out "$Isa.trans($node.MethodType.Result)"
-#end
-#if ($node.PreCond)
-  pre "$Isa.trans($node.PreCond.Body)"
-#end
-#if ($node.PostCond)
-  post "$Isa.trans($node.PostCond.Body)"
-#end
-#if (!$node.Implicit)
-  is "$Isa.trans($node.Body)" ##
-#end
+    where
+    "$node.Name #transIdentifiers($node) \<equiv> $Isa.trans($node.Body)"

@@ -21,8 +21,11 @@
  */
 package org.overturetool.cgisa;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
+import org.junit.Assume;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -35,7 +38,7 @@ import org.overture.core.testing.PathsProvider;
  * @author ldc
  */
 @RunWith(Parameterized.class)
-@Ignore
+
 public class IsaGenModelTest extends IsaGenParamTest
 {
 
@@ -47,6 +50,9 @@ public class IsaGenModelTest extends IsaGenParamTest
 
 	private static final String UPDATE = "tests.update.isagen.model";
 	private static final String MODELS_ROOT = "src/test/resources/models";
+	private static final List<String> skippedTests = Arrays.asList("IO.vdmsl",
+			"CustomAlarm.vdmsl","dummy.vdmsl","Alarm1.vdmsl");//, "FSM3.vdmsl");//,
+			//"Polar.vdmsl");
 
 
 	@Parameters(name = "{index} : {0}")
@@ -61,6 +67,13 @@ public class IsaGenModelTest extends IsaGenParamTest
 		return UPDATE;
 	}
 
+	protected void checkAssumptions() {
+		Assume.assumeTrue("Test in skip list.",notSkipped());
+	}
+
+	private boolean notSkipped() {
+		return !skippedTests.contains(testName);
+	}
 
 
 }

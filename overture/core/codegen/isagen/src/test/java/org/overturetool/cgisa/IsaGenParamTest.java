@@ -24,11 +24,11 @@ package org.overturetool.cgisa;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import org.junit.Assume;
 import org.junit.runner.RunWith;
@@ -61,7 +61,44 @@ public class IsaGenParamTest extends ParamStandardTest<CgIsaTestResult> {
 
     private static final String UPDATE = "tests.update.isagen";
     private static final String CGISA_ROOT = "src/test/resources/modules";
-    private static final List<String> skippedTests = Arrays.asList("EqualsInit.vdmsl","PredicateInit.vdmsl");
+    private static final List<String> skippedTests = Arrays.asList("NoParamPrePost.vdmsl",
+    		"2ParamsPrePost.vdmsl",
+    		"NoParamNoPre.vdmsl",
+    		"1ParamNoPre.vdmsl","1ParamPrePost.vdmsl",
+    		"FuncPrePost.vdmsl",
+    		"NotYetSpecified.vdmsl",
+    		"FuncPre.vdmsl",
+    		"FuncApply3Params.vdmsl",
+    		"FuncDecl2Params.vdmsl",
+    		"FuncDeclNoParam.vdmsl",
+    		"FuncDepSimple.vdmsl",
+    		"FuncApplyNoParam.vdmsl",
+    		"FuncPost.vdmsl",
+    		"FuncApply1Param.vdmsl",
+    		"FuncDecl1Param.vdmsl",
+    		"EqualsInit.vdmsl","PredicateInit.vdmsl",
+    		"IntExpVarExp.vdmsl","ExplicitInt.vdmsl","ExplicitNat.vdmsl","ExplicitNat1.vdmsl",
+    		"ExplicitReal.vdmsl","IndependentDefsOrder.vdmsl",
+    		"ImplicitNumericExp.vdmsl","VarExp.vdmsl",
+    		"SeqNat.vdmsl",
+    		//"Maplet.vdmsl",
+            "OrExp.vdmsl",
+            "BoolLiteralFalse.vdmsl",
+            "BoolLiteralTrue.vdmsl",
+            "EmptySetEnum.vdmsl",
+            "NotEqualsExp.vdmsl",
+    		"GTExp.vdmsl",
+    		"Int.vdmsl",
+    		"InvSet.vdmsl",
+    		"InvRecordDummyInv.vdmsl",
+    		"InvInt.vdmsl",
+    		"Rec2Fields.vdmsl","SeqInt.vdmsl","Real.vdmsl","CharSeqIntSetTuple.vdmsl","IntIntTuple.vdmsl",
+    		"MapIntChar.vdmsl",
+    		"Char.vdmsl",
+    		"Rec1Field.vdmsl",
+    		"IntCharTuple.vdmsl","Token.vdmsl",
+    		"CharNatTokenTuple.vdmsl","Rat.vdmsl","SetInt.vdmsl","Nat.vdmsl","Nat1.vdmsl",
+    		"Rec2FieldsDiffTypes.vdmsl", "MapIntInt.vdmsl");
 
     @Override
     public CgIsaTestResult processModel(List<INode> ast) {
@@ -111,6 +148,17 @@ public class IsaGenParamTest extends ParamStandardTest<CgIsaTestResult> {
 
     @Override
     public void compareResults(CgIsaTestResult actual, CgIsaTestResult expected) {
+//    	PrintWriter writer = null;
+//		try {
+//			writer = new PrintWriter("C:\\Users\\jasim\\Documents\\overture\\core\\codegen\\isagen\\target", "UTF-8");
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (UnsupportedEncodingException e) {
+//			e.printStackTrace();
+//		}
+//    	writer.println(actual.translation);
+//    	writer.close();
+
         assertTrue("\n --- Expected: ---\n" + expected.translation
                 + "\n --- Got: ---\n" + actual.translation, expected.compare(actual));
     }
@@ -121,6 +169,10 @@ public class IsaGenParamTest extends ParamStandardTest<CgIsaTestResult> {
     }
 
     private boolean notSkipped() {
+        //TO TEST ONE THING
+//        List<String> oneTest = new ArrayList<>();
+//        oneTest.add("SetDifferenceExp.vdmsl");
+//        return oneTest.contains(testName);
         return !skippedTests.contains(testName);
     }
 }
