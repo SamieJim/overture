@@ -1,8 +1,6 @@
 package org.overture.typechecker.utilities.type;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.overture.ast.analysis.AnalysisException;
-import org.overture.ast.analysis.AnswerAdaptor;
 import org.overture.ast.analysis.QuestionAnswerAdaptor;
 import org.overture.ast.intf.lex.ILexLocation;
 import org.overture.ast.node.INode;

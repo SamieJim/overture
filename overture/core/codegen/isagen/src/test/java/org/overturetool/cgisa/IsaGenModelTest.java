@@ -21,16 +21,16 @@
  */
 package org.overturetool.cgisa;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
 import org.junit.Assume;
-import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 import org.overture.core.testing.PathsProvider;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Main integration test class. Runs tests on complete models.
@@ -49,7 +49,7 @@ public class IsaGenModelTest extends IsaGenParamTest
 	}
 
 	private static final String UPDATE = "tests.update.isagen.model";
-	private static final String MODELS_ROOT = "src/test/resources/models";
+    private static final String MODELS_ROOT = "C:\\Users\\jasim\\Desktop\\FMI-VDM-Model-master";
 	private static final List<String> skippedTests = Arrays.asList("IO.vdmsl",
 			"CustomAlarm.vdmsl","dummy.vdmsl","Alarm1.vdmsl");//, "FSM3.vdmsl");//,
 			//"Polar.vdmsl");
@@ -58,7 +58,22 @@ public class IsaGenModelTest extends IsaGenParamTest
 	@Parameters(name = "{index} : {0}")
 	public static Collection<Object[]> testData()
 	{
-		return PathsProvider.computePaths(MODELS_ROOT);
+        // Hack through version numbers
+        Collection<Object[]> s = PathsProvider.computePaths(MODELS_ROOT);
+        s.forEach(d ->
+        {
+            for (int i = 0; i < d.length; i++) {
+                String f = (String) d[i];
+                String nvn = f.substring(0, f.lastIndexOf(".")).replace(".", "_") + ".vdmsl";
+
+                File l = new File(f);
+                File k = new File(nvn);
+                l.renameTo(k);
+
+                d[i] = nvn;
+            }
+        });
+        return s;
 	}
 
 	@Override
