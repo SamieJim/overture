@@ -21,15 +21,6 @@
  */
 package org.overture.core.testing;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Vector;
-
 import org.overture.ast.definitions.SClassDefinition;
 import org.overture.ast.expressions.PExp;
 import org.overture.ast.lex.Dialect;
@@ -44,6 +35,15 @@ import org.overture.parser.util.ParserUtil;
 import org.overture.typechecker.TypeCheckException;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Parse and Type Check VDM Sources. This class is the main interaction point with the Overture parser and type checker.
@@ -203,7 +203,7 @@ public abstract class ParseTcFacade
 	/**
 	 * Parse and type check a VDM model. This method will check the model in whatever language release is currently set.
 	 * It assumes the model sources are encoded in UTF-8.
-	 * 
+     *
 	 * @param sources
 	 *            the {@link List} of {@link File} containing the model's sources
 	 * @param testName
@@ -215,13 +215,13 @@ public abstract class ParseTcFacade
 	 * @throws ParserException
 	 */
 	public static List<INode> typedAstNoRetry(List<File> sources,
-			String testName, Dialect dialect) throws ParserException,
+                                              String testName, Dialect dialect) throws ParserException,
 			LexException {
 		return typedAst(sources, testName, dialect, false);
 	}
 
 	/**
-	 * Parse and type check a single VDM source file. It assumes the model source is encoded in UTF-8.
+     * Parse and type check a single VDM source file. It assumes the model source is encoded in UTF-8. Retry the VDM source in Classic and VDM-10.
 	 * 
 	 * @param sourcePath
 	 *            a {@link String} with the path to a single VDM model source
@@ -240,7 +240,7 @@ public abstract class ParseTcFacade
 		if (parts.length == 1)
 		{
 			ext = "vdm"
-					+ sourcePath.substring(sourcePath.length() - 2, sourcePath.length()).toLowerCase();
+                    + sourcePath.substring(sourcePath.length() - 2).toLowerCase();
 		} else
 		{
 			ext = parts[1];
@@ -280,6 +280,54 @@ public abstract class ParseTcFacade
 		// only needed to compile. will never hit because of fail()
 		return null;
 	}
+
+    /**
+     * Parse and type check a single VDM source file. It assumes the model source is encoded in UTF-8. Do not retry the model, use whichever release is currently set in settings.
+     *
+     * @param sourcePath a {@link String} with the path to a single VDM model source
+     * @param testName   the name of the test calling this method (used for failure reporting)
+     * @return the AST of the model as a {@link List} of {@link INode}.
+     * @throws IOException
+     * @throws ParserException
+     * @throws LexException
+     */
+    public static List<INode> typedAstFromStringNoRetry(String sourcePath, String testName)
+            throws IOException, ParserException, LexException {
+        String[] parts = sourcePath.split("\\.");
+        String ext;
+        if (parts.length == 1) {
+            ext = "vdm"
+                    + sourcePath.substring(sourcePath.length() - 2).toLowerCase();
+        } else {
+            ext = parts[1];
+        }
+        File f = new File(sourcePath);
+        List<File> sources = new Vector<File>();
+        sources.add(f);
+
+        if (ext.equals("vdmsl") | ext.equals("vdm")) {
+            return parseTcSlContent(sources, testName, false);
+        } else {
+            if (ext.equals("vdmpp") | ext.equals("vpp")) {
+                List<File> files = new Vector<File>();
+                files.add(f);
+                return parseTcPpContent(files, testName, false);
+
+            } else {
+                if (ext.equals("vdmrt")) {
+                    List<File> files = new Vector<File>();
+                    files.add(f);
+                    return parseTcRtContent(files, testName, false);
+                } else {
+                    fail("Unexpected extension in file " + sourcePath
+                            + ". Only .vdmpp, .vdmsl and .vdmrt allowed");
+                }
+            }
+        }
+
+        // only needed to compile. will never hit because of fail()
+        return null;
+    }
 
 	private static List<INode> typedAst(List<File> content, String testName,
 			Dialect dialect, boolean retry) throws ParserException,

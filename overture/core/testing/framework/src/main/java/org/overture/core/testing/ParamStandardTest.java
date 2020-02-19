@@ -21,15 +21,15 @@
  */
 package org.overture.core.testing;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.overture.ast.node.INode;
 import org.overture.parser.lex.LexException;
 import org.overture.parser.syntax.ParserException;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Standard test in the new Overture test framework. This class runs testing on (correct) VDM sources and compares them
@@ -95,7 +95,7 @@ public abstract class ParamStandardTest<R> extends AbsResultTest<R>
 	{
 
 		checkAssumptions();
-		List<INode> ast = ParseTcFacade.typedAst(modelPath, testName);
+		List<INode> ast = ParseTcFacade.typedAstFromStringNoRetry(modelPath, testName);
 		R actual = processModel(ast);
 		if (updateResult)
 		{
