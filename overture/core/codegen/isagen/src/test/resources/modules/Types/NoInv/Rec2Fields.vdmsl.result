@@ -1,0 +1,20 @@
+{"translation":"
+theory DEFAULT
+  imports VDMToolkit
+begin
+
+record RecType =
+        recType_x \:\: \"VDMNat\"
+
+        recType_y \:\: \"VDMNat\"
+
+    
+
+
+
+definition
+	inv_RecType \:\: \"RecType \\<Rightarrow> \\<bool>\"
+    where
+    \"inv_RecType r \\<equiv> (isa_invVDMNat (recType_x r) \\<and> isa_invVDMNat (recType_y r))\"
+
+end","errors":false}

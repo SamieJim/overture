@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testResult type="org.overture.typechecker.tests.ClassesRtTypeCheckTest">
+<message column="1" line="408" message="Instance variable 'eventid' is not initialized" messageType="warning" number="5001" resource="CMRT"/>
+<message column="6" line="75" message="Unable to resolve type name 'IO'" messageType="error" number="3427" resource="CMRT"/>
+<message column="12" line="75" message="Class name IO not in scope" messageType="error" number="3133" resource="CMRT"/>
+<message column="6" line="75" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="CMRT"/>
+<message column="13" line="40" message="Class name IO not in scope" messageType="error" number="3133" resource="CMRT"/>
+<message column="6" line="75" message="Unable to resolve type name 'IO'" messageType="error" number="3428" resource="CMRT"/>
+<message column="5" line="740" message="Impure operation 'canObserve' cannot be called from here" messageType="error" number="3300" resource="CMRT"/>
+<message column="13" line="848" message="Class name IO not in scope" messageType="error" number="3133" resource="CMRT"/>
+<result/>
+</testResult>

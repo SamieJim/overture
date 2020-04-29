@@ -1,0 +1,10 @@
+module A
+
+definitions
+
+functions
+f : () -> bool
+f () == forall x : int & true;
+//I'm unsure how this looks in isabelle
+
+end A

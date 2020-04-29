@@ -1,0 +1,11 @@
+module A
+
+definitions
+
+functions
+f : nat -> int
+f (x) == 0
+pre true
+post true
+
+end A
