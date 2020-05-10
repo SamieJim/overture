@@ -1,5 +1,5 @@
 #if ( $node.namedInvType.name.name == "isa_VDMInt" )
-VDMInt
+VDMInt##
 #elseif ($node.namedInvType)
 ($node.namedInvType.name.name)##
 #else

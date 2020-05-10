@@ -1,11 +1,8 @@
 package org.overturetool.cgisa.transformations;
 
-import com.google.common.hash.HashCode;
-import org.overture.ast.expressions.ASetDifferenceBinaryExp;
 import org.overture.cgisa.isair.analysis.DepthFirstAnalysisIsaAdaptor;
 import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.declarations.*;
-import org.overture.codegen.ir.expressions.ASetDifferenceBinaryExpIR;
 import org.overture.codegen.ir.types.AIntNumericBasicTypeIR;
 import org.overture.codegen.ir.types.ANat1NumericBasicTypeIR;
 import org.overture.codegen.ir.types.ANatNumericBasicTypeIR;

@@ -34,8 +34,6 @@ import org.overture.codegen.ir.IRSettings;
 import org.overture.codegen.ir.IrNodeInfo;
 import org.overture.codegen.printer.MsgPrinter;
 import org.overture.codegen.utils.*;
-import org.overture.codegen.vdm2java.JavaCodeGen;
-import org.overture.codegen.vdm2java.JavaSettings;
 import org.overture.config.Release;
 import org.overture.config.Settings;
 import org.overture.typechecker.util.TypeCheckerUtil;
@@ -46,10 +44,7 @@ import java.util.*;
 
 public class IsaCodeGenMain
 {
-	// Command-line args
-	public static final String OO_ARG = "-pp";
-	public static final String RT_ARG = "-rt";
-	public static final String SL_ARG = "-sl";
+
 	public static final String CLASSIC = "-classic";
 	public static final String VDM10 = "-vdm10";
 	public static final String EXP_ARG = "-exp";
@@ -58,18 +53,8 @@ public class IsaCodeGenMain
 	public static final String PACKAGE_ARG = "-package";
 	public static final String OUTPUT_ARG = "-output";
 	public static final String VDM_ENTRY_EXP = "-entry";
-	public static final String NO_CODE_FORMAT = "-nocodeformat";
-	public static final String JUNIT4 = "-junit4";
-	public static final String SEP_TEST_CODE = "-separate";
-	public static final String VDM_LOC = "-vdmloc";
-	public static final String NO_CLONING = "-nocloning";
-	public static final String NO_STRINGS = "-nostrings";
 	public static final String CONC = "-concurrency";
-	public static final String GEN_SYS_CLASS = "-gensysclass";
 	public static final String NO_WARNINGS = "-nowarnings";
-	public static final String GEN_PRE_CONDITIONS = "-pre";
-	public static final String GEN_POST_CONDITIONS = "-post";
-	public static final String GEN_INVARIANTS = "-inv";
 
 	// Folder names
 	private static final String GEN_MODEL_CODE_FOLDER = "main";
@@ -78,6 +63,7 @@ public class IsaCodeGenMain
 	public static void main(String[] args)
 	{
 		long clock = System.currentTimeMillis();
+		//Future support of RT & PP here
 		Settings.release = Release.VDM_10;
 
 		boolean printClasses = false;
@@ -94,8 +80,6 @@ public class IsaCodeGenMain
 		irSettings.setGeneratePreCondChecks(false);
 		irSettings.setGeneratePostConds(false);
 		irSettings.setGeneratePostCondChecks(false);
-
-		//@TODO fix settings for Isabelle proper rather than copied from Java 
 		IsaSettings isaSettings = new IsaSettings();
 		isaSettings.setDisableCloning(false);
 
@@ -113,11 +97,9 @@ public class IsaCodeGenMain
 		for (Iterator<String> i = listArgs.iterator(); i.hasNext();)
 		{
 			String arg = i.next();
+			Settings.dialect = Dialect.VDM_SL;
 
-			if (arg.equals(SL_ARG))
-			{
-				Settings.dialect = Dialect.VDM_SL;
-			} else if (arg.equals(CLASSIC))
+			if (arg.equals(CLASSIC))
 			{
 				Settings.release = Release.CLASSIC;
 			} else if (arg.equals(VDM10))
@@ -179,44 +161,10 @@ public class IsaCodeGenMain
 				{
 					isaSettings.setVdmEntryExp(i.next());
 				}
-			} else if (arg.equals(NO_CODE_FORMAT))
-			{
-				isaSettings.setFormatCode(false);
-			} else if (arg.equals(JUNIT4))
-			{
-				isaSettings.setGenJUnit4tests(true);
-			} else if (arg.equals(SEP_TEST_CODE))
-			{
-				separateTestCode = true;
-			} else if (arg.equals(VDM_LOC))
-			{
-				isaSettings.setPrintVdmLocations(true);
-			} else if (arg.equals(NO_CLONING))
-			{
-				isaSettings.setDisableCloning(true);
-			} else if(arg.equals(NO_STRINGS))
-			{
-				irSettings.setCharSeqAsString(false);
 			}
 			else if(arg.equals(CONC))
 			{
 				irSettings.setGenerateConc(true);
-			}
-			else if(arg.equals(GEN_SYS_CLASS))
-			{
-				isaSettings.setGenSystemClass(true);
-			}
-			else if(arg.equals(GEN_PRE_CONDITIONS))
-			{
-				irSettings.setGeneratePreConds(true);
-			}
-			else if(arg.equals(GEN_POST_CONDITIONS))
-			{
-				irSettings.setGeneratePostConds(true);
-			}
-			else if(arg.equals(GEN_INVARIANTS))
-			{
-				irSettings.setGenerateInvariants(true);
 			}
 			else
 			{
@@ -548,28 +496,14 @@ public class IsaCodeGenMain
 
 	public static void usage(String msg)
 	{
-		MsgPrinter.getPrinter().errorln("VDM-to-Java Code Generator: " + msg
+		MsgPrinter.getPrinter().errorln("VDM-to-Isabelle Code Generator: " + msg
 				+ "\n");
-		MsgPrinter.getPrinter().errorln("Usage: CodeGen < " + OO_ARG + " | "
-				+ SL_ARG + " | " + RT_ARG + " | -exp > [<options>] [<files>]");
-		MsgPrinter.getPrinter().errorln(OO_ARG
-				+ ": code generate a VDMPP specification consisting of multiple .vdmpp files");
-		MsgPrinter.getPrinter().errorln(SL_ARG
-				+ ": code generate a VDMSL specification consisting of multiple .vdmsl files");
-		MsgPrinter.getPrinter().errorln(RT_ARG
-				+ ": code generate a limited part of a VDMRT specification consisting of multiple .vdmrt files");
 		MsgPrinter.getPrinter().errorln(CLASSIC
 				+ ": code generate using the VDM classic language release");
 		MsgPrinter.getPrinter().errorln(VDM10
 				+ ": code generate using the VDM-10 language release");
 		MsgPrinter.getPrinter().errorln(EXP_ARG
 				+ " <expression>: code generate a VDMPP expression");
-		MsgPrinter.getPrinter().errorln(GEN_PRE_CONDITIONS
-				+ ": generate pre condition functions");
-		MsgPrinter.getPrinter().errorln(GEN_POST_CONDITIONS
-				+ ": generate post condition functions");
-		MsgPrinter.getPrinter().errorln(GEN_INVARIANTS
-				+ ": generate invariant functions");
 		MsgPrinter.getPrinter().errorln(FOLDER_ARG
 				+ " <folder path>: a folder containing input vdm source files");
 		MsgPrinter.getPrinter().errorln(PRINT_ARG
@@ -578,26 +512,8 @@ public class IsaCodeGenMain
 				+ " <java package>:  the output java package of the generated code (e.g. my.code)");
 		MsgPrinter.getPrinter().errorln(OUTPUT_ARG
 				+ " <folder path>: the output folder of the generated code");
-		MsgPrinter.getPrinter().errorln(VDM_ENTRY_EXP
-				+ " <vdm entry point expression>: generate a Java main method based on the specified entry point");
-		MsgPrinter.getPrinter().errorln(NO_CODE_FORMAT
-				+ ": to NOT format the generated Java code");
-		MsgPrinter.getPrinter().errorln(JUNIT4 + ": to generate VDMUnit "
-				+ IRConstants.TEST_CASE + " sub-classes to JUnit4 tests");
-		MsgPrinter.getPrinter().errorln(SEP_TEST_CODE
-				+ ": to place the code generated model and the test code into separate folders named '"
-				+ GEN_MODEL_CODE_FOLDER + "' and '" + GEN_TESTS_FOLDER
-				+ "', respectively");
-		MsgPrinter.getPrinter().errorln(VDM_LOC
-				+ ": Generate VDM location information for code generated constructs");
-		MsgPrinter.getPrinter().errorln(NO_CLONING
-				+ ": To disable deep cloning of value types");
-
 		MsgPrinter.getPrinter().errorln(CONC
 				+ ": To enable code generation of VDM++'s concurrency constructs");
-		
-		MsgPrinter.getPrinter().errorln(GEN_SYS_CLASS
-				+ ": To generate the VDM-RT system class");
 		MsgPrinter.getPrinter().errorln(NO_WARNINGS
 				+ ": To suppress printing detailed warning messages");
 

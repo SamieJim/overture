@@ -1,1 +1,1 @@
-{$Isa.transMapEnum($node)}
+[$Isa.transMapEnum($node)]
