@@ -21,7 +21,7 @@ public class IsaDeclTypeGen extends AnswerIsaAdaptor<STypeIR> {
 
     public STypeIR caseANamedTypeDeclIR(ANamedTypeDeclIR n)
     {
-    	IsaGen.typeGenHistoryMap.put(n.getType(), n.getName().toString());
+    	IsaGen.typeGenHistoryMap.put(n.getName().toString(), n.getType());
     	IsaGen.declGenHistoryMap.put(n.getName().toString(), n);
         AIntNumericBasicTypeIR a = new AIntNumericBasicTypeIR();
         a.setNamedInvType(n.clone());

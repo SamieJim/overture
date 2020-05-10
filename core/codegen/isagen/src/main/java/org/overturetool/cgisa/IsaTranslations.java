@@ -25,6 +25,7 @@ import java.io.StringWriter;
 import java.util.*;
 
 import org.overture.ast.definitions.AImplicitFunctionDefinition;
+import org.overture.ast.types.ANamedInvariantType;
 import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.declarations.AFieldDeclIR;
@@ -72,6 +73,9 @@ public class IsaTranslations {
         return writer.toString().replace("true", "True");//hack around lower cased trues;
     }
 
+    public String transNamedType(ANamedTypeDeclIR n) throws AnalysisException {
+        return n.getType().getNamedInvType() == null ? trans(n.getType()) : n.getType().getNamedInvType().getName().toString();
+    }
 
     public String transMapEnum(AEnumMapExpIR node){
         NodeList<AMapletExpIR> maplets = (NodeList<AMapletExpIR>) node.getMembers();
@@ -392,6 +396,7 @@ public class IsaTranslations {
         return (node.getInv() != null);
     }
 
+    /* TODO
     public String transTypeName(STypeIR node) {
     	if (node instanceof ASetSetTypeIR)
     	{
@@ -407,7 +412,7 @@ public class IsaTranslations {
     	{
     		return "collectionName";
     	}
-    }
+    }*/
 
     public String genUnaryTypeConstructorInv(Object node, String name)
     {

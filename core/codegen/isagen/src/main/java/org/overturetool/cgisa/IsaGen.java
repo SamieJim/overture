@@ -62,7 +62,7 @@ public class IsaGen extends CodeGenBase {
 
 
 	public static Map<String, AFuncDeclIR> funcGenHistoryMap = new HashMap<>();
-	public static Map<STypeIR, String> typeGenHistoryMap = new HashMap<>();
+	public static Map<String, STypeIR> typeGenHistoryMap = new HashMap<String, STypeIR>();
 	public static Map<String, SDeclIR> declGenHistoryMap = new HashMap<>();
 	private IsaSettings isaSettings;
 	
@@ -140,7 +140,7 @@ public class IsaGen extends CodeGenBase {
 
         // Typecheck the VDMToolkit module and generate the IR
         TypeCheckerUtil.TypeCheckResult<List<AModuleModules>> listTypeCheckResult1 =
-                TypeCheckerUtil.typeCheckSl(new File("src/test/resources/VDMToolkit.vdmsl"));
+                TypeCheckerUtil.typeCheckSl(new File("/Users/jamie/Code/overture/core/codegen/isagen/src/main/java/org/overturetool/cgisa/VDMToolkit.vdmsl"));
         AModuleModules isaToolkit = listTypeCheckResult1.result.
                 stream().
                 filter(mod -> mod.getName().getName().equals("VDMToolkit")).
@@ -210,7 +210,7 @@ public class IsaGen extends CodeGenBase {
 
     private void printIR(List<IRStatus<PIR>> statuses) {
     	
-    	new File("../isagen/target/generatedIRtext/").mkdirs();
+    	new File("./generatedIRtext/").mkdirs();
 		AModuleDeclIR decls = (AModuleDeclIR) statuses.get(0).getIrNode();
 		
 		for (int i = 0; i < decls.getDecls().size(); i++)
@@ -219,7 +219,7 @@ public class IsaGen extends CodeGenBase {
 			
 			PrintWriter writer = null;
 			try {
-				writer = new PrintWriter("../isagen/target/generatedIRtext/" + decls.getDecls().get(i).getClass().toString().substring(43)
+				writer = new PrintWriter("./generatedIRtext/" + decls.getDecls().get(i).getClass().toString().substring(43)
 						+ i + "_IR.txt", "UTF-8");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
