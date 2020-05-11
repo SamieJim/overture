@@ -25,6 +25,7 @@ import java.io.StringWriter;
 import java.util.*;
 
 import org.overture.ast.definitions.AImplicitFunctionDefinition;
+import org.overture.ast.types.AMapMapType;
 import org.overture.ast.types.ANamedInvariantType;
 import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.analysis.AnalysisException;
