@@ -1,4 +1,4 @@
-#if ( $node.namedInvType.name.name == "isa_VDMNat1" )
+#if ( $node.namedInvType.name.name == "VDMNat1" )
 VDMNat1
 #elseif ($node.namedInvType)
 ($node.namedInvType.name.name)##

@@ -24,10 +24,10 @@ public class IsaExpConv extends DepthFirstAnalysisIsaAdaptor {
     private final AModuleDeclIR vdmToolkitModuleIR;
     private final IRInfo info;
 
-    private final static String isa_VDMInt = "isa_VDMInt";
-    private final static String isa_VDMToken = "isa_VDMToken";
-    private final static String isa_VDMNat1 = "isa_VDMNat1";
-    private final static String isa_VDMNat = "isa_VDMNat";
+    private final static String VDMInt = "VDMInt";
+    private final static String VDMToken = "VDMToken";
+    private final static String VDMNat1 = "VDMNat1";
+    private final static String VDMNat = "VDMNat";
 
     public IsaExpConv(IRInfo info, TransAssistantIR t, AModuleDeclIR vdmToolkitModuleIR) {
         this.t = t;
@@ -36,7 +36,7 @@ public class IsaExpConv extends DepthFirstAnalysisIsaAdaptor {
     }
 
 
-    //Transform int to isa_VDMInt
+    //Transform int to VDMInt
     public void caseASetDifferenceBinaryExpIR(ASetDifferenceBinaryExpIR x){
         ASetDifferenceBinaryExpIR y = new ASetDifferenceBinaryExpIR();
         y.setLeft(x.getLeft());

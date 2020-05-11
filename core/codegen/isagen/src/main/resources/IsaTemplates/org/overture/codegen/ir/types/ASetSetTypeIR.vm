@@ -1,4 +1,4 @@
-#if ( $node.namedInvType.name.name == "isa_VDMSet" )
+#if ( $node.namedInvType.name.name == "VDMSet" )
 $Isa.trans($node.SetOf) VDMSet##
 #elseif ($node.namedInvType)
 ($node.namedInvType.name.name)##

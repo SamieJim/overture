@@ -77,8 +77,19 @@ public class IsaTranslations {
         return n.getType().getNamedInvType() == null ? trans(n.getType()) : n.getType().getNamedInvType().getName().toString();
     }
 
-    public String transNamedMapType(STypeIR n) throws AnalysisException {
-        return n.getNamedInvType() == null ? trans(n) : transNamedType(n.getNamedInvType());
+    public String transNamedMapType(AMapMapTypeIR n) throws AnalysisException {
+        //either a map to a map to a map or a primitive to a primitive to a primitive
+        if (n.parent() instanceof STypeIR && ((STypeIR) n.parent()).getNamedInvType() != null)
+        {
+            return ((AMapMapTypeIR) n.parent()).getNamedInvType().getName().toString();
+        }
+        else if (n.getNamedInvType() != null) {
+            return n.getNamedInvType().getName().toString();
+        }
+        else
+        {
+            return trans(n.getFrom()) + " \\<rightharpoonup> " + trans(n.getTo());
+        }
     }
 
     public String transMapEnum(AEnumMapExpIR node){
@@ -111,11 +122,11 @@ public class IsaTranslations {
     	StringBuilder sb = new StringBuilder();
     	sb.append(" ");
     	if (node != null) {
+            if (node.getInvDecl() != null) {
+                sb.append(trans(node.getInvDecl()) + "\n");
+            }
 	    	if (node.getInitDecl() != null) {
 	    		sb.append(trans(node.getInitDecl()) + "\n");
-	    	}
-	    	if (node.getInvDecl() != null) {
-	    		sb.append(trans(node.getInvDecl()) + "\n");
 	    	}
     	}
     	return sb.toString();
@@ -131,7 +142,7 @@ public class IsaTranslations {
 		List<SExpIR> args = new ArrayList<SExpIR>();
 		args = node.getArgs();
 		List<AFieldDeclIR> f = new ArrayList<AFieldDeclIR>();
-		SDeclIR rs = IsaGen.declGenHistoryMap.get(((ARecordTypeIR)
+		SDeclIR rs = IsaGen.rdeclGenHistoryMap.get(((ARecordTypeIR)
 					node.getType().clone()).getName().toString());
 
 

@@ -78,7 +78,11 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
         	
 			AIdentifierPatternIR identifierPattern = new AIdentifierPatternIR();
 			identifierPattern.setName(typeName.substring(0, 1).toLowerCase());
-			
+            AFormalParamLocalParamIR afp = new AFormalParamLocalParamIR();
+            afp.setPattern(identifierPattern.clone());
+            afp.setType(t.clone());
+
+            invFun_.getFormalParams().add(afp);
 			//set Inv pattern if one does not exist
 			if (node.getInvPattern() != null) node.setInvPattern(identifierPattern.clone());
 			

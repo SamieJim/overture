@@ -63,7 +63,7 @@ public class IsaGen extends CodeGenBase {
 
 	public static Map<String, AFuncDeclIR> funcGenHistoryMap = new HashMap<>();
 	public static Map<String, STypeIR> typeGenHistoryMap = new HashMap<String, STypeIR>();
-	public static Map<String, SDeclIR> declGenHistoryMap = new HashMap<>();
+	public static Map<String, SDeclIR> rdeclGenHistoryMap = new HashMap<>();
 	private IsaSettings isaSettings;
 	
     public IsaGen()
@@ -81,7 +81,7 @@ public class IsaGen extends CodeGenBase {
                 "    definition\n" +
                 "        inv_$node.Name :: $node.Name \\<Rightarrow> \\<bool>\n" +
                 "        where\n" +
-                "        \"inv_$node.Name \\<equiv> inv_True\"\n" +
+                "        \"inv_$node.Name \\<equiv> isa_invTrue\"\n" +
                 "#end");
         addMacro("invTrue",new StringReader(sb.toString()));
         Template template = new Template();
@@ -136,11 +136,9 @@ public class IsaGen extends CodeGenBase {
      */
     @Override
     protected GeneratedData genVdmToTargetLang(List<IRStatus<PIR>> statuses) throws AnalysisException {
-
-
         // Typecheck the VDMToolkit module and generate the IR
         TypeCheckerUtil.TypeCheckResult<List<AModuleModules>> listTypeCheckResult1 =
-                TypeCheckerUtil.typeCheckSl(new File("/Users/jamie/Code/overture/core/codegen/isagen/src/main/java/org/overturetool/cgisa/VDMToolkit.vdmsl"));
+                TypeCheckerUtil.typeCheckSl(new File("./core/codegen/isagen/src/main/java/org/overturetool/cgisa/VDMToolkit.vdmsl"));
         AModuleModules isaToolkit = listTypeCheckResult1.result.
                 stream().
                 filter(mod -> mod.getName().getName().equals("VDMToolkit")).
@@ -176,15 +174,15 @@ public class IsaGen extends CodeGenBase {
                     }
 
                     
-                    // Transform all token types to isa_VDMToken
-                    // Transform all nat types to isa_VDMNat
-                    // Transform all nat1 types to isa_VDMNat
-                    // Transform all int types to isa_VDMInt
+                    // Transform all token types to VDMToken
+                    // Transform all nat types to VDMNat
+                    // Transform all nat1 types to VDMNat
+                    // Transform all int types to VDMInt
 
                     IsaBasicTypesConv invConv = new IsaBasicTypesConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, invConv);
                     
-                    // Transform Seq and Set types into isa_VDMSeq and isa_VDMSet
+                    // Transform Seq and Set types into VDMSeq and VDMSet
                     IsaTypeTypesConv invSSConv = new IsaTypeTypesConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, invSSConv);
                     

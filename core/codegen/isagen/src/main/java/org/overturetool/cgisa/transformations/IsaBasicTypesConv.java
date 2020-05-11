@@ -22,10 +22,10 @@ public class IsaBasicTypesConv extends DepthFirstAnalysisIsaAdaptor {
     private final AModuleDeclIR vdmToolkitModuleIR;
     private final IRInfo info;
 
-    private final static String isa_VDMInt = "isa_VDMInt";
-    private final static String isa_VDMToken = "isa_VDMToken";
-    private final static String isa_VDMNat1 = "isa_VDMNat1";
-    private final static String isa_VDMNat = "isa_VDMNat";
+    private final static String VDMInt = "VDMInt";
+    private final static String VDMToken = "VDMToken";
+    private final static String VDMNat1 = "VDMNat1";
+    private final static String VDMNat = "VDMNat";
 
     public IsaBasicTypesConv(IRInfo info, TransAssistantIR t, AModuleDeclIR vdmToolkitModuleIR) {
         this.t = t;
@@ -43,12 +43,12 @@ public class IsaBasicTypesConv extends DepthFirstAnalysisIsaAdaptor {
                 .collect(Collectors.toMap(x -> ((ANamedTypeDeclIR) x.getDecl()).getName().getName(), x -> x));
     }
 
-    //Transform int to isa_VDMInt
+    //Transform int to VDMInt
     public void caseAIntNumericBasicTypeIR(AIntNumericBasicTypeIR x){
     	 if(x.getNamedInvType() == null)
          {
-             // Retrieve isa_VDMInt from VDMToolkit
-             ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaBasicTypesConv.isa_VDMInt);
+             // Retrieve VDMInt from VDMToolkit
+             ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaBasicTypesConv.VDMInt);
 
              x.setNamedInvType((ANamedTypeDeclIR)isa_td.getDecl().clone());
          }
@@ -56,33 +56,33 @@ public class IsaBasicTypesConv extends DepthFirstAnalysisIsaAdaptor {
     }
 
 
-    //transform nat1 to isa_VDMNat1
+    //transform nat1 to VDMNat1
     public void caseANat1NumericBasicTypeIR(ANat1NumericBasicTypeIR x){
         if(x.getNamedInvType() == null)
         {
-            // Retrieve isa_VDMNat1 from VDMToolkit
-            ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaBasicTypesConv.isa_VDMNat1);
+            // Retrieve VDMNat1 from VDMToolkit
+            ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaBasicTypesConv.VDMNat1);
 
             x.setNamedInvType((ANamedTypeDeclIR)isa_td.getDecl().clone());
         }
 
     }
-    //transform nat to isa_VDMNat
+    //transform nat to VDMNat
     public void caseANatNumericBasicTypeIR(ANatNumericBasicTypeIR x) {
     	if(x.getNamedInvType() == null)
         {
-            // Retrieve isa_VDMNat from VDMToolkit
-            ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaBasicTypesConv.isa_VDMNat);
+            // Retrieve VDMNat from VDMToolkit
+            ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaBasicTypesConv.VDMNat);
 
             x.setNamedInvType((ANamedTypeDeclIR)isa_td.getDecl().clone());
         }
     }
-  //transform token to isa_VDMToken
+  //transform token to VDMToken
     public void caseATokenBasicTypeIR(ATokenBasicTypeIR x) {
     	if(x.getNamedInvType() == null)
         {
-            // Retrieve isa_VDMToken from VDMToolkit
-            ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaBasicTypesConv.isa_VDMToken);
+            // Retrieve VDMToken from VDMToolkit
+            ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaBasicTypesConv.VDMToken);
 
             x.setNamedInvType((ANamedTypeDeclIR)isa_td.getDecl().clone());
         }

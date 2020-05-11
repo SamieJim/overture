@@ -22,7 +22,7 @@ public class IsaDeclTypeGen extends AnswerIsaAdaptor<STypeIR> {
     public STypeIR caseANamedTypeDeclIR(ANamedTypeDeclIR n)
     {
     	IsaGen.typeGenHistoryMap.put(n.getName().toString(), n.getType());
-    	IsaGen.declGenHistoryMap.put(n.getName().toString(), n);
+    	IsaGen.rdeclGenHistoryMap.put(n.getName().toString(), n);
         AIntNumericBasicTypeIR a = new AIntNumericBasicTypeIR();
         a.setNamedInvType(n.clone());
         return a;
@@ -30,7 +30,7 @@ public class IsaDeclTypeGen extends AnswerIsaAdaptor<STypeIR> {
 
     public STypeIR caseAStateDeclIR(AStateDeclIR n)
     {
-    	IsaGen.declGenHistoryMap.put(n.getName().toString(), n);
+    	IsaGen.rdeclGenHistoryMap.put(n.getName().toString(), n);
     	ARecordTypeIR a = new ARecordTypeIR();
     	ATypeNameIR o = new ATypeNameIR();
     	o.setName(n.getName());
@@ -41,7 +41,7 @@ public class IsaDeclTypeGen extends AnswerIsaAdaptor<STypeIR> {
     
     public STypeIR caseARecordDeclIR(ARecordDeclIR n)
     {
-    	IsaGen.declGenHistoryMap.put(n.getName().toString(), n);
+    	IsaGen.rdeclGenHistoryMap.put(n.getName().toString(), n);
     	ARecordTypeIR a = new ARecordTypeIR();
     	ATypeNameIR o = new ATypeNameIR();
     	o.setName(n.getName());

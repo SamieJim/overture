@@ -176,15 +176,15 @@ public class IsaGen extends CodeGenBase {
                     }
 
                     
-                    // Transform all token types to isa_VDMToken
-                    // Transform all nat types to isa_VDMNat
-                    // Transform all nat1 types to isa_VDMNat
-                    // Transform all int types to isa_VDMInt
+                    // Transform all token types to VDMToken
+                    // Transform all nat types to VDMNat
+                    // Transform all nat1 types to VDMNat
+                    // Transform all int types to VDMInt
 
                     IsaBasicTypesConv invConv = new IsaBasicTypesConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, invConv);
                     
-                    // Transform Seq and Set types into isa_VDMSeq and isa_VDMSet
+                    // Transform Seq and Set types into VDMSeq and VDMSet
                     IsaTypeTypesConv invSSConv = new IsaTypeTypesConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, invSSConv);
                     

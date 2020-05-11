@@ -442,14 +442,14 @@ public class IsaCodeGenMain
 
 		InvalidNamesResult invalidName = data.getInvalidNamesResult();
 
-		if (!invalidName.isEmpty())
+		if (invalidName != null && !invalidName.isEmpty())
 		{
 			MsgPrinter.getPrinter().println(GeneralCodeGenUtils.constructNameViolationsString(invalidName));
 		}
 
 		List<Renaming> allRenamings = data.getAllRenamings();
 
-		if (!allRenamings.isEmpty())
+		if (allRenamings != null && !allRenamings.isEmpty())
 		{
 			MsgPrinter.getPrinter().println("\nDue to variable shadowing or normalisation of Java identifiers the following renamings of variables have been made (" + allRenamings.size()+"): ");
 

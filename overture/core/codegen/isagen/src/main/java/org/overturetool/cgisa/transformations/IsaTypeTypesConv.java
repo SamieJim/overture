@@ -21,9 +21,9 @@ public class IsaTypeTypesConv extends DepthFirstAnalysisIsaAdaptor {
     private final AModuleDeclIR vdmToolkitModuleIR;
     private final IRInfo info;
 
-    private final static String isa_VDMSet = "isa_VDMSet";
+    private final static String VDMSet = "VDMSet";
 
-    private final static String isa_VDMSeq = "isa_VDMSeq";
+    private final static String VDMSeq = "VDMSeq";
 
     public IsaTypeTypesConv(IRInfo info, TransAssistantIR t, AModuleDeclIR vdmToolkitModuleIR) {
         this.t = t;
@@ -46,8 +46,8 @@ public class IsaTypeTypesConv extends DepthFirstAnalysisIsaAdaptor {
     	if(x.getNamedInvType() == null)
         {
             
-            // Retrieve isa_VDMSeq from VDMToolkit
-            ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaTypeTypesConv.isa_VDMSeq);
+            // Retrieve VDMSeq from VDMToolkit
+            ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaTypeTypesConv.VDMSeq);
 
             x.setNamedInvType((ANamedTypeDeclIR)isa_td.getDecl().clone());
             
@@ -58,8 +58,8 @@ public class IsaTypeTypesConv extends DepthFirstAnalysisIsaAdaptor {
     	if(x.getNamedInvType() == null)
         {
             
-            // Retrieve isa_VDMSet from VDMToolkit
-            ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaTypeTypesConv.isa_VDMSet);
+            // Retrieve VDMSet from VDMToolkit
+            ATypeDeclIR isa_td = isaTypeDeclIRMap.get(IsaTypeTypesConv.VDMSet);
 
             x.setNamedInvType((ANamedTypeDeclIR)isa_td.getDecl().clone());
         }
