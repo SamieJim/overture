@@ -77,6 +77,10 @@ public class IsaTranslations {
         return n.getType().getNamedInvType() == null ? trans(n.getType()) : n.getType().getNamedInvType().getName().toString();
     }
 
+    public String transNamedMapType(STypeIR n) throws AnalysisException {
+        return n.getNamedInvType() == null ? trans(n) : transNamedType(n.getNamedInvType());
+    }
+
     public String transMapEnum(AEnumMapExpIR node){
         NodeList<AMapletExpIR> maplets = (NodeList<AMapletExpIR>) node.getMembers();
         StringBuilder sb = new StringBuilder();
@@ -426,7 +430,7 @@ public class IsaTranslations {
                 if(node_.getSeqOf() instanceof SBasicTypeBase)
                 {
                     // In this case it is a seq of a basic type.
-                    inv= "inv_SeqElems inv_True";
+                    inv= "inv_SeqElems isa_invTrue";
                 }
             }
 
@@ -469,7 +473,7 @@ public class IsaTranslations {
         if (t instanceof SBasicTypeIR)
         {
             SBasicTypeIR t_ = (SBasicTypeIR) t;
-            return prefix+"inv_True";
+            return prefix+"isa_invTrue";
         }
         else {
             return prefix+"inv_" + t.getNamedInvType().getName();

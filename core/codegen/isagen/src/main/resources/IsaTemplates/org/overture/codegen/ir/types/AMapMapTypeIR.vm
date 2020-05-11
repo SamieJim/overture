@@ -1,1 +1,1 @@
-$Isa.trans($node.From) \<rightharpoonup> $Isa.trans($node.To)
+$Isa.transNamedMapType($node.From) \<rightharpoonup> $Isa.transNamedMapType($node)

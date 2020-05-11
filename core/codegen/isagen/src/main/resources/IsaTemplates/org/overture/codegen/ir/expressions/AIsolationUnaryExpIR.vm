@@ -1,1 +1,1 @@
-$node.left \<AIsolationUnaryExp> $node.right
+isolationUnaryExp $Isa.trans($node.exp)

@@ -4,7 +4,7 @@ definitions
 types
 
 	--@doc IR(?) needed to transform every type declaration with an invariant, even if true.
-	--		 could change isa_invTrue(p) (i.e. no need for the type parameter)?  
+	--		 could change isa_invTrue(p) (i.e. no need for the type parameter)?
   Period = token
   --@IR inv p == isa_invTrue[Period](p)
   ;
