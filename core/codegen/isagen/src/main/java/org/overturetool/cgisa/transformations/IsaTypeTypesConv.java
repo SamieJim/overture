@@ -21,9 +21,9 @@ public class IsaTypeTypesConv extends DepthFirstAnalysisIsaAdaptor {
     private final AModuleDeclIR vdmToolkitModuleIR;
     private final IRInfo info;
 
-    private final static String VDMSet = "VDMSet";
+    private final static String VDMSet = "isa_VDMSet";
 
-    private final static String VDMSeq = "VDMSeq";
+    private final static String VDMSeq = "isa_VDMSeq";
 
     public IsaTypeTypesConv(IRInfo info, TransAssistantIR t, AModuleDeclIR vdmToolkitModuleIR) {
         this.t = t;

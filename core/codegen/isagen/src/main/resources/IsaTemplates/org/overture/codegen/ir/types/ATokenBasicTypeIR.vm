@@ -1,4 +1,4 @@
-#if ( $node.namedInvType.name.name == "VDMToken" )
+#if ( $node.namedInvType.name.name == "isa_VDMToken" )
 VDMToken##
 #elseif ($node.namedInvType)
 ($node.namedInvType.name.name)##

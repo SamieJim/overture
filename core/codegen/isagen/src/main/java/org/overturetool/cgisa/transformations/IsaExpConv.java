@@ -24,10 +24,10 @@ public class IsaExpConv extends DepthFirstAnalysisIsaAdaptor {
     private final AModuleDeclIR vdmToolkitModuleIR;
     private final IRInfo info;
 
-    private final static String VDMInt = "VDMInt";
-    private final static String VDMToken = "VDMToken";
-    private final static String VDMNat1 = "VDMNat1";
-    private final static String VDMNat = "VDMNat";
+    private final static String VDMInt = "isa_VDMInt";
+    private final static String VDMToken = "isa_VDMToken";
+    private final static String VDMNat1 = "isa_VDMNat1";
+    private final static String VDMNat = "isa_VDMNat";
 
     public IsaExpConv(IRInfo info, TransAssistantIR t, AModuleDeclIR vdmToolkitModuleIR) {
         this.t = t;

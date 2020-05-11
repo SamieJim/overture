@@ -138,7 +138,7 @@ public class IsaGen extends CodeGenBase {
     protected GeneratedData genVdmToTargetLang(List<IRStatus<PIR>> statuses) throws AnalysisException {
         // Typecheck the VDMToolkit module and generate the IR
         TypeCheckerUtil.TypeCheckResult<List<AModuleModules>> listTypeCheckResult1 =
-                TypeCheckerUtil.typeCheckSl(new File("./core/codegen/isagen/src/main/java/org/overturetool/cgisa/VDMToolkit.vdmsl"));
+                TypeCheckerUtil.typeCheckSl(new File("VDMToolkit.vdmsl"));
         AModuleModules isaToolkit = listTypeCheckResult1.result.
                 stream().
                 filter(mod -> mod.getName().getName().equals("VDMToolkit")).
