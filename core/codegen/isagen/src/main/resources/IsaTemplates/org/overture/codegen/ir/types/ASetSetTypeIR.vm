@@ -1,8 +1,1 @@
-#if ( $node.namedInvType.name.name == "isa_VDMSet" )
-$Isa.trans($node.SetOf) VDMSet##
-#elseif ($node.namedInvType)
-($node.namedInvType.name.name)##
-#else
-
-Missing clause in ASetSetTypeIR
-#end
+$Isa.trans($node.SetOf) VDMSet## #if ($node.optional) optional #end

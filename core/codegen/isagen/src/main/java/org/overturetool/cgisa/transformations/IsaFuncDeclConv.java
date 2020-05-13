@@ -1,5 +1,6 @@
 package org.overturetool.cgisa.transformations;
 
+import org.overture.ast.expressions.AEqualsBinaryExp;
 import org.overture.cgisa.isair.analysis.DepthFirstAnalysisIsaAdaptor;
 import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.analysis.AnalysisException;
@@ -85,7 +86,6 @@ public class IsaFuncDeclConv extends DepthFirstAnalysisIsaAdaptor {
     
     private void transStateInit(AFuncDeclIR node) {
     	AStateDeclIR st = node.getAncestor(AStateDeclIR.class);
-    	
     	AMethodTypeIR methodType = new AMethodTypeIR();
     	
     	
@@ -125,15 +125,15 @@ public class IsaFuncDeclConv extends DepthFirstAnalysisIsaAdaptor {
 
     private void addToAST(INode node, INode parent) {
     	// Insert into AST
-        AModuleDeclIR encModule = parent.getAncestor(AModuleDeclIR.class);
+        AModuleDeclIR encModule = parent.getAncestor(AModuleDeclIR.class) != null
+		? parent.getAncestor(AModuleDeclIR.class).clone() : null;
         if(encModule != null)
         {
-            encModule.getDecls().add((SDeclIR) node);
+			parent.getAncestor(AModuleDeclIR.class).getDecls().add((SDeclIR) node.clone());
         }
 
 		
 	}
-    
 
 	private void transformPreConditions (AFuncDeclIR node) throws AnalysisException {
     	AMethodTypeIR mt = node.getMethodType().clone();

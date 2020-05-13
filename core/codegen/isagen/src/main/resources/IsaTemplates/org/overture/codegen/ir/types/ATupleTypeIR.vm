@@ -1,4 +1,4 @@
 #foreach( $t in $node.Types )
-$Isa.trans($t)##
+$Isa.trans($t) #if ($node.optional) optional #end##
 #if( $foreach.hasNext ) * #end
 #end

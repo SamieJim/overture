@@ -2,5 +2,5 @@
     definition
         inv_$node.Name :: $node.Name \<Rightarrow> \<bool>
         where
-        "inv_$node.Name \<equiv> isa_invTrue"
+        "inv_$node.Name \<equiv> inv_True"
 #end

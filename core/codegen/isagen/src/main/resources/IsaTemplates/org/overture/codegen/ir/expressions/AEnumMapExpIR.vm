@@ -1,1 +1,5 @@
-[$Isa.transMapEnum($node)]
+#if ($Isa.transMapEnum($node) != "")
+[$Isa.transMapEnum($node) ]##
+#else
+Map.empty##
+#end

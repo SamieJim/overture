@@ -1,1 +1,1 @@
-char
+char #if ($node.optional) optional #end

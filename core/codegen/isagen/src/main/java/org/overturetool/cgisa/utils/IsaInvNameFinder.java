@@ -55,7 +55,7 @@ public class IsaInvNameFinder extends AnswerIsaAdaptor<String>
     }
     @Override
     public String caseANatNumericBasicTypeIR(ANatNumericBasicTypeIR node) throws AnalysisException {
-    	return "isa_VDMNat";
+    	return "VDMNat";
     }
     
     @Override
@@ -96,7 +96,7 @@ public class IsaInvNameFinder extends AnswerIsaAdaptor<String>
     
     @Override
     public String caseANat1NumericBasicTypeIR(ANat1NumericBasicTypeIR node) throws AnalysisException {
-    	return "isa_VDMNat1";
+    	return "VDMNat1";
     }
     
     

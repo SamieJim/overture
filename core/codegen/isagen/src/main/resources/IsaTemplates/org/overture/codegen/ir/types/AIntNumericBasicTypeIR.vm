@@ -1,8 +1,1 @@
-#if ( $node.namedInvType.name.name == "isa_VDMInt" )
-VDMInt##
-#elseif ($node.namedInvType)
-($node.namedInvType.name.name)##
-#else
-
-Missing clause in AIntNumericBasicTypeIR
-#end
+VDMInt #if ($node.optional) optional #end

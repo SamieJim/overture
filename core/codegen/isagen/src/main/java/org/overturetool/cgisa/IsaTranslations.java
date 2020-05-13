@@ -71,7 +71,10 @@ public class IsaTranslations {
     public String trans(INode node) throws AnalysisException {
         StringWriter writer = new StringWriter();
         node.apply(mergeVisitor, writer);
-        return writer.toString().replace("true", "True");//hack around lower cased trues;
+        return writer.toString()
+                .replace("true", "True")
+                .replace("false", "False")
+                .replace("error_ ", "error_X ");//hack around lower cased trues and false;
     }
 
     public String transNamedType(ANamedTypeDeclIR n) throws AnalysisException {
@@ -442,7 +445,7 @@ public class IsaTranslations {
                 if(node_.getSeqOf() instanceof SBasicTypeBase)
                 {
                     // In this case it is a seq of a basic type.
-                    inv= "inv_SeqElems isa_invTrue";
+                    inv= "inv_SeqElems invTrue";
                 }
             }
 
@@ -522,7 +525,7 @@ public class IsaTranslations {
     }
 
     //A utility method for examining values as they are passed in velocity
-    public String peek(SExpIR node){
+    public String peek(ARecordDeclIR node){
         return ("");
     }
 

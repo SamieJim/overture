@@ -1,1 +1,1 @@
-$node.Name.Name
+$node.Name.Name #if ($node.optional) optional #end
