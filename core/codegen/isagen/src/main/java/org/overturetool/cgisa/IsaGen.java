@@ -28,11 +28,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.velocity.Template;
@@ -41,6 +37,7 @@ import org.apache.velocity.runtime.RuntimeSingleton;
 import org.apache.velocity.runtime.parser.ParseException;
 import org.apache.velocity.runtime.parser.node.SimpleNode;
 import org.overture.ast.analysis.AnalysisException;
+import org.overture.ast.definitions.PDefinition;
 import org.overture.ast.expressions.PExp;
 import org.overture.ast.modules.AModuleModules;
 import org.overture.codegen.ir.*;
@@ -192,10 +189,12 @@ public class IsaGen extends CodeGenBase {
                     
                     IsaFuncDeclConv funcConv = new IsaFuncDeclConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, funcConv);
-                    
-                    
-                    
                 }
+            }
+            for(IRStatus<PIR> status : statuses)
+            {
+                if(!status.getIrNodeName().equals("VDMToolkit"))
+                    quickSortByLine(((AModuleDeclIR) status.getIrNode()).getDecls(), 0, ((AModuleDeclIR) status.getIrNode()).getDecls().size() - 1);
             }
             printIR(statuses);
             r.setClasses(prettyPrint(statuses));
@@ -205,6 +204,33 @@ public class IsaGen extends CodeGenBase {
         return r;
 
     }
+
+    public void quickSortByLine(List<SDeclIR> decls, int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(decls, begin, end);
+            quickSortByLine(decls, begin, partitionIndex-1);
+            quickSortByLine(decls, partitionIndex+1, end);
+        }
+    }
+    private int partition(List<SDeclIR> decls, int begin, int end) {
+        int pivot = ((PDefinition) (decls.get(end).getSourceNode().getVdmNode())).getLocation().getStartLine();
+        int i = (begin-1);
+        for (int j = begin; j < end; j++) {
+            if (((PDefinition) (decls.get(j).getSourceNode().getVdmNode())).getLocation().getStartLine() <= pivot) {
+                i++;
+                SDeclIR swapTemp = decls.get(i);
+                decls.set(i, decls.get(j));
+                decls.add(j, swapTemp);
+            }
+        }
+        SDeclIR swapTemp = decls.get(i+1);
+        decls.set(i+1, decls.get(end));
+        decls.add(end, swapTemp);
+        return i+1;
+    }
+
+
+
 
     private void printIR(List<IRStatus<PIR>> statuses) {
     	

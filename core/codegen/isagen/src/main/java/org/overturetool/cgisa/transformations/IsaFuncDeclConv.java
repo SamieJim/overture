@@ -87,11 +87,13 @@ public class IsaFuncDeclConv extends DepthFirstAnalysisIsaAdaptor {
     private void transStateInit(AFuncDeclIR node) {
     	AStateDeclIR st = node.getAncestor(AStateDeclIR.class);
     	AMethodTypeIR methodType = new AMethodTypeIR();
-    	
-    	
+
+    	node.setBody(((AEqualsBinaryExpIR) node.getBody()).getRight());
+    	node.setFormalParams(null);
+
     	st.getFields().forEach(f -> methodType.getParams().add(f.getType().clone()));
     	methodType.setResult(new ABoolBasicTypeIR());
-    	
+
     	AFuncDeclIR postInit = new AFuncDeclIR();
     	postInit.setMethodType(methodType.clone());    	
     	postInit.setName("post_"+node.getName());
@@ -106,7 +108,7 @@ public class IsaFuncDeclConv extends DepthFirstAnalysisIsaAdaptor {
     	arg.setName(node.getName());
     	arg.setType(node.getMethodType().clone());
     	app.getArgs().add(arg.clone());
-    	
+    	postInit.setSourceNode(node.getSourceNode());
     	postInit.setBody(app.clone());
         addToAST(postInit.clone(), node.clone());
 		
@@ -195,7 +197,7 @@ public class IsaFuncDeclConv extends DepthFirstAnalysisIsaAdaptor {
 	        finalPreCondition.setMethodType(mty);
 	    	finalPreCondition.setName("unimplemented_pre_"+node.getName());
 	    }
-	 	
+		finalPreCondition.setSourceNode(node.getSourceNode());
 	    formatIdentifierPatternVars(finalPreCondition);
 	    node.setPreCond(finalPreCondition);
 	    IsaGen.funcGenHistoryMap.put(finalPreCondition.getName(), finalPreCondition.clone());
@@ -268,7 +270,7 @@ public class IsaFuncDeclConv extends DepthFirstAnalysisIsaAdaptor {
 	        finalPostCondition.setMethodType(mty.clone());
         	finalPostCondition.setName("unimplemented_post_"+node.getName());
         }
-     	
+     	finalPostCondition.setSourceNode(node.getSourceNode());
         formatIdentifierPatternVars(finalPostCondition);
         node.setPostCond(finalPostCondition.clone());
 	    IsaGen.funcGenHistoryMap.put(finalPostCondition.getName(), finalPostCondition.clone());

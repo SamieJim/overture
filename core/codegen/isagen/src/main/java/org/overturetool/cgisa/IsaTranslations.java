@@ -74,7 +74,8 @@ public class IsaTranslations {
         return writer.toString()
                 .replace("true", "True")
                 .replace("false", "False")
-                .replace("error_ ", "error_X ");//hack around lower cased trues and false;
+                .replace("error_ ", "error_X ")
+                .replace("error_,", "error_X,");//hack around lower cased trues and false;
     }
 
     public String transNamedType(ANamedTypeDeclIR n) throws AnalysisException {
@@ -522,6 +523,12 @@ public class IsaTranslations {
             }
         }
         return String.join("\\<and>", invs);
+    }
+
+    public String transEquiv(AEqualsBinaryExpIR n) throws AnalysisException {
+
+        return n.parent() instanceof SExpIR ? trans(n.getLeft()) + " = " + trans(n.getRight())
+                : trans(n.getLeft()) + " <\\equiv> " + trans(n.getRight());
     }
 
     //A utility method for examining values as they are passed in velocity

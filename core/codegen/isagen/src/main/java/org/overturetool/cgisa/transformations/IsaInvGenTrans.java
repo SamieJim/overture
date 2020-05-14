@@ -115,14 +115,8 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
         	invFun_.setBody(expr.clone());
         	node.setInvExp(expr);
         }
+        invFun_.setSourceNode(node.getSourceNode());
         node.setInvDecl(invFun_.clone());
-        AModuleDeclIR encModule = node.getAncestor(AModuleDeclIR.class);
-        if(encModule != null)
-        {
-        	
-            encModule.getDecls().add(invFun_.clone());
-        }
-        
         IsaGen.funcGenHistoryMap.put(invFun_.getName(), invFun_.clone());
         System.out.println("Invariant function " + invFun_.getName() + " has been added.");
         }
@@ -212,7 +206,7 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
         	
         	invFun_.setBody(expr);
         }
-        
+        invFun_.setSourceNode(node.getSourceNode());
         node.setInv(invFun_.clone());
         // Insert into AST and get rid of existing invariant functions forEach field in record type
         AModuleDeclIR encModule = node.getAncestor(AModuleDeclIR.class);
@@ -224,7 +218,6 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
         	
             encModule.getDecls().add(invFun_.clone());
         }
-
         IsaGen.funcGenHistoryMap.put(invFun_.getName(), invFun_.clone());
         
         System.out.println("Invariant function " + invFun_.getName() + " has been added.");
@@ -258,7 +251,7 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
 
 
             SExpIR expr = IsaInvExpGen.apply(node, identifierPattern, mt.clone(), isaFuncDeclIRMap);
-
+            invFun_.setSourceNode(node.getSourceNode());
             invFun_.setBody(expr);
             IsaGen.funcGenHistoryMap.put(invFun_.getName(), invFun_);
             // Insert into AST
