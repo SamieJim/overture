@@ -120,11 +120,7 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
         IsaGen.funcGenHistoryMap.put(invFun_.getName(), invFun_.clone());
         System.out.println("Invariant function " + invFun_.getName() + " has been added.");
         }
-        
-    
-    
-    
-    
+
   
     @Override
     public void caseATypeDeclIR(ATypeDeclIR node) throws AnalysisException {
@@ -153,9 +149,14 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
         AMethodTypeIR methodType = new AMethodTypeIR();
         
         STypeIR t = IsaDeclTypeGen.apply(decl);
-        methodType.getParams().add(t.clone());
-        
-	        
+        if(t.getNamedInvType() != null && t.getNamedInvType().getName().toString().contains("Option")) {
+            methodType.getParams().add(((ANamedTypeDeclIR)node.getDecl()).getType().clone());
+        }
+        else {
+            methodType.getParams().add(t.clone());
+        }
+
+
     	methodType.setResult(new ABoolBasicTypeIR());
         invFun_.setMethodType(methodType);
 	       
@@ -228,7 +229,7 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
     @Override
     public void caseAFieldDeclIR(AFieldDeclIR node) throws AnalysisException {
         super.caseAFieldDeclIR(node);
-        if (!(node.parent() instanceof AStateDeclIR)){
+        if (!(node.parent() instanceof AStateDeclIR) && !(node.parent() instanceof ARecordDeclIR)){
             STypeIR t = node.getType();// Invariant function
             AFuncDeclIR invFun_ = new AFuncDeclIR();
             invFun_.setName("inv_" + node.getName());

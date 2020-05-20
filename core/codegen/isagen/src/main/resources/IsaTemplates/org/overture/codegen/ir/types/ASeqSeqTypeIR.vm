@@ -1,1 +1,1 @@
-$Isa.trans($node.SeqOf) VDMSeq #if ($node.optional) optional #end
+$Isa.trans($node.SeqOf) VDMSeq

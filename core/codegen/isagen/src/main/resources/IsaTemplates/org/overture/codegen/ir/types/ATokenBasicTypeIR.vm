@@ -1,1 +1,1 @@
-VDMToken #if ($node.optional) optional #end
+VDMToken

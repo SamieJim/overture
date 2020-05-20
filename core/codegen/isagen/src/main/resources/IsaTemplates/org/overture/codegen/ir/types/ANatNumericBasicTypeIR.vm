@@ -1,1 +1,1 @@
-VDMNat #if ($node.optional) optional #end
+VDMNat

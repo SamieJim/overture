@@ -1,1 +1,1 @@
-\<real> #if ($node.optional) optional #end
+\<real>

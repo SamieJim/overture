@@ -40,6 +40,7 @@ import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.definitions.PDefinition;
 import org.overture.ast.expressions.PExp;
 import org.overture.ast.modules.AModuleModules;
+import org.overture.ast.types.AFieldField;
 import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.declarations.AFuncDeclIR;
 import org.overture.codegen.ir.declarations.AModuleDeclIR;
@@ -49,6 +50,7 @@ import org.overture.codegen.utils.GeneratedData;
 import org.overture.codegen.utils.GeneratedModule;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overturetool.cgisa.transformations.*;
+import org.overturetool.cgisa.utils.IsaAddMetaData;
 
 /**
  * Main facade class for VDM 2 Isabelle IR
@@ -78,7 +80,7 @@ public class IsaGen extends CodeGenBase {
                 "    definition\n" +
                 "        inv_$node.Name :: $node.Name \\<Rightarrow> \\<bool>\n" +
                 "        where\n" +
-                "        \"inv_$node.Name \\<equiv> isa_invTrue\"\n" +
+                "        \"inv_$node.Name \\<equiv> inv_True\"\n" +
                 "#end");
         addMacro("invTrue",new StringReader(sb.toString()));
         Template template = new Template();
@@ -164,38 +166,38 @@ public class IsaGen extends CodeGenBase {
                     generator.applyTotalTransformation(status, groupMR);
 
                     if (status.getIrNode() instanceof AModuleDeclIR) {
-                        AModuleDeclIR cClass = (AModuleDeclIR) status.getIrNode();                   
+                        AModuleDeclIR cClass = (AModuleDeclIR) status.getIrNode();
                         // then sort remaining dependencies
                         SortDependencies sortTrans = new SortDependencies(cClass.getDecls());
                         generator.applyPartialTransformation(status, sortTrans);
                     }
 
-                    
-                    // Transform all token types to VDMToken
-                    // Transform all nat types to VDMNat
-                    // Transform all nat1 types to VDMNat
-                    // Transform all int types to VDMInt
-
                     IsaBasicTypesConv invConv = new IsaBasicTypesConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, invConv);
-                    
+
+                    IsaAddMetaData meta = new IsaAddMetaData(getInfo(), this.transAssistant, vdmToolkitModuleIR);
+                    generator.applyPartialTransformation(status, meta);
+
+                    IsaOptionalConv optConv = new IsaOptionalConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
+                    generator.applyPartialTransformation(status, optConv);
+
                     // Transform Seq and Set types into VDMSeq and VDMSet
                     IsaTypeTypesConv invSSConv = new IsaTypeTypesConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, invSSConv);
-                    
-                    
-                    IsaInvGenTrans invTrans = new IsaInvGenTrans(getInfo(), vdmToolkitModuleIR);
+
+                    IsaInvGenTrans invTrans = new IsaInvGenTrans(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, invTrans);
                     
                     IsaFuncDeclConv funcConv = new IsaFuncDeclConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, funcConv);
                 }
             }
-            for(IRStatus<PIR> status : statuses)
+           /* for(IRStatus<PIR> status : statuses)
             {
+                //@TODO this can be avoided and tool made faster by inserting into AST after the parent declaration (see addToAST()).
                 if(!status.getIrNodeName().equals("VDMToolkit"))
                     quickSortByLine(((AModuleDeclIR) status.getIrNode()).getDecls(), 0, ((AModuleDeclIR) status.getIrNode()).getDecls().size() - 1);
-            }
+            }*/
             printIR(statuses);
             r.setClasses(prettyPrint(statuses));
         } catch (org.overture.codegen.ir.analysis.AnalysisException e) {
@@ -213,10 +215,11 @@ public class IsaGen extends CodeGenBase {
         }
     }
     private int partition(List<SDeclIR> decls, int begin, int end) {
-        int pivot = ((PDefinition) (decls.get(end).getSourceNode().getVdmNode())).getLocation().getStartLine();
+        int pivot = decls.get(end).getSourceNode().getVdmNode().getAncestor(PDefinition.class).getLocation().getStartLine();
         int i = (begin-1);
         for (int j = begin; j < end; j++) {
-            if (((PDefinition) (decls.get(j).getSourceNode().getVdmNode())).getLocation().getStartLine() <= pivot) {
+            if (decls.get(j).getSourceNode().getVdmNode().getAncestor(PDefinition.class).getLocation().getStartLine() <= pivot)
+            {
                 i++;
                 SDeclIR swapTemp = decls.get(i);
                 decls.set(i, decls.get(j));

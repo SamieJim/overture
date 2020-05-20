@@ -1,1 +1,1 @@
-$Isa.transNamedMapType($node) #if ($node.optional) optional #end
+$Isa.transNamedMapType($node)

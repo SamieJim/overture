@@ -1,3 +1,5 @@
+
+$Isa.transOriginalVDM($node)
 record $node.Name =
     #foreach ($fld in $node.Fields )
     $Isa.mkFirstCharLowerCase( ${node.Name} )_$fld.Name :: "$Isa.trans($fld.Type)"

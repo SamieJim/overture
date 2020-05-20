@@ -1,1 +1,1 @@
-$Isa.trans($node.SetOf) VDMSet## #if ($node.optional) optional #end
+$Isa.trans($node.SetOf) VDMSet##

@@ -1,1 +1,1 @@
-VDMInt #if ($node.optional) optional #end
+VDMInt

@@ -41,8 +41,10 @@ import org.overture.codegen.ir.types.*;
 import org.overture.codegen.merging.MergeVisitor;
 import org.overture.codegen.merging.TemplateCallable;
 import org.overture.codegen.merging.TemplateManager;
+import org.overture.config.Settings;
 import org.overturetool.cgisa.utils.IsMethodTypeVisitor;
 import org.overturetool.cgisa.utils.IsSeqOfCharTypeVisitor;
+import org.overturetool.cgisa.utils.IsaInvNameFinder;
 import org.overturetool.cgisa.utils.IsaSymbolFinder;
 
 public class IsaTranslations {
@@ -80,6 +82,10 @@ public class IsaTranslations {
 
     public String transNamedType(ANamedTypeDeclIR n) throws AnalysisException {
         return n.getType().getNamedInvType() == null ? trans(n.getType()) : n.getType().getNamedInvType().getName().toString();
+    }
+
+    public String transNamedQuoteType(AQuoteTypeIR n) throws AnalysisException {
+        return n.getNamedInvType() == null ? n.getValue() : n.getNamedInvType().getName().toString();
     }
 
     public String transNamedMapType(AMapMapTypeIR n) throws AnalysisException {
@@ -181,10 +187,24 @@ public class IsaTranslations {
 		return str;
 	}
 
-    public String transTypeParams(List<AFormalParamLocalParamIR> params)
+    public String transTypeParams(List<STypeIR> params)
             throws AnalysisException {
-        String result = transNodeList(params, TYPE_PARAM_SEP);
-        return result;
+        StringBuilder sb = new StringBuilder();
+        Iterator<STypeIR> it = params.iterator();
+
+        boolean l = params.size() >= 1 && ((AFuncDeclIR) params.get(0).parent().parent()).getName().contains("Option");
+
+        while (it.hasNext()) {
+            sb.append(trans((INode) it.next().clone()));
+            if(l) {
+                sb.append("option");
+                l = false;
+            }
+            if (it.hasNext()) {
+                sb.append(TYPE_PARAM_SEP);
+            }
+        }
+        return sb.toString();
     }
 
     public String transBinds(List<? extends SMultipleBindIR> binds)
@@ -412,27 +432,13 @@ public class IsaTranslations {
         return (node.getType() instanceof AUnionTypeIR);
     }
 
+    public boolean isDataType(ANamedTypeDeclIR node){
+        return (node.getType() instanceof AUnionTypeIR || node.getType() instanceof AQuoteTypeIR);
+    }
+
     public boolean hasInvariant(ATypeDeclIR node) {
         return (node.getInv() != null);
     }
-
-    /* TODO
-    public String transTypeName(STypeIR node) {
-    	if (node instanceof ASetSetTypeIR)
-    	{
-    		ASetSetTypeIR set = (ASetSetTypeIR) node;
-    		return IsaGen.typeGenHistoryMap.get(set);
-    	}
-    	if (node instanceof ASeqSeqTypeIR)
-    	{
-    		ASetSetTypeIR seq = (ASetSetTypeIR) node;
-    		return IsaGen.typeGenHistoryMap.get(seq);
-    	}
-    	else
-    	{
-    		return "collectionName";
-    	}
-    }*/
 
     public String genUnaryTypeConstructorInv(Object node, String name)
     {
@@ -529,6 +535,27 @@ public class IsaTranslations {
 
         return n.parent() instanceof SExpIR ? trans(n.getLeft()) + " = " + trans(n.getRight())
                 : trans(n.getLeft()) + " <\\equiv> " + trans(n.getRight());
+    }
+
+    public String transOriginalVDM(SDeclIR n)
+    {
+        if(Settings.novdm) {
+            if (n instanceof ANamedTypeDeclIR && isDataType((ANamedTypeDeclIR) n)) {
+                return "(* Below translated from VDM:\n-----------------------------------------------\n" +
+                        ((ANamedTypeDeclIR) n).getName() + " = " +
+                        ((ANamedInvariantType) n.getSourceNode().getVdmNode()).getType().toString() + "\n*)";
+            } else {
+                return "(* Below translated from VDM:\n-----------------------------------------------\n"
+                        + n.getSourceNode().getVdmNode().toString()+ "\n*)";
+            }
+        }
+        else{
+            return "";
+        }
+    }
+
+    public boolean addOption(ANamedTypeDeclIR n) throws AnalysisException {
+        return IsaInvNameFinder.findName(n).contains("Option");
     }
 
     //A utility method for examining values as they are passed in velocity

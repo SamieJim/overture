@@ -1,1 +1,1 @@
-$node.Value #if ($node.optional) optional #end
+$Isa.transNamedQuoteType($node)

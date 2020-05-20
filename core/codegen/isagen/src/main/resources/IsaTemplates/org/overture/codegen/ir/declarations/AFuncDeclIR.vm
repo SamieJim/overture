@@ -8,7 +8,7 @@ definition
 #if ("$Isa.transTypeParams($node.MethodType.Params)" == "")
 	$node.Name :: "$Isa.trans($node.MethodType.Result)"
 #else
-	$node.Name :: "$Isa.transTypeParams($node.MethodType.Params) \<Rightarrow> $Isa.trans($node.MethodType.Result)"
+	$node.Name :: "$Isa.transTypeParams($node.MethodType.Params)#if($node.MethodType.Result)\<Rightarrow> $Isa.trans($node.MethodType.Result)#end"
 #end
     where
     "$node.Name #transIdentifiers($node) \<equiv> $Isa.trans($node.Body)"

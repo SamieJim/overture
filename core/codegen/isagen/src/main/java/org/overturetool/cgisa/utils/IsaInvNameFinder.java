@@ -1,24 +1,16 @@
 package org.overturetool.cgisa.utils;
 
+import org.overture.ast.types.AUnionType;
 import org.overture.cgisa.isair.analysis.AnswerIsaAdaptor;
 import org.overture.codegen.ir.INode;
 import org.overture.codegen.ir.STypeIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
+import org.overture.codegen.ir.declarations.AFieldDeclIR;
 import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
 import org.overture.codegen.ir.declarations.ARecordDeclIR;
 import org.overture.codegen.ir.declarations.AStateDeclIR;
 import org.overture.codegen.ir.expressions.ANotImplementedExpIR;
-import org.overture.codegen.ir.types.ABoolBasicTypeIR;
-import org.overture.codegen.ir.types.ACharBasicTypeIR;
-import org.overture.codegen.ir.types.AIntNumericBasicTypeIR;
-import org.overture.codegen.ir.types.AMapMapTypeIR;
-import org.overture.codegen.ir.types.ANat1NumericBasicTypeIR;
-import org.overture.codegen.ir.types.ANatNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ARatNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ARealNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ASeqSeqTypeIR;
-import org.overture.codegen.ir.types.ASetSetTypeIR;
-import org.overture.codegen.ir.types.ATokenBasicTypeIR;
+import org.overture.codegen.ir.types.*;
 
 public class IsaInvNameFinder extends AnswerIsaAdaptor<String>
 {
@@ -93,14 +85,31 @@ public class IsaInvNameFinder extends AnswerIsaAdaptor<String>
     public String caseATokenBasicTypeIR(ATokenBasicTypeIR node) throws AnalysisException {
     	return "True";
     }
+
+    @Override
+    public String caseAQuoteTypeIR(AQuoteTypeIR node) throws AnalysisException {
+        return node.getNamedInvType().getName().toString();
+    }
+
+    @Override
+    public String caseAUnionTypeIR(AUnionTypeIR node) throws AnalysisException {
+        return node.getNamedInvType().getName().toString();
+    }
+
+    @Override
+    public String caseARecordTypeIR(ARecordTypeIR node) throws AnalysisException {
+        return node.getName().toString();
+    }
+
+    @Override
+    public String caseAFieldDeclIR(AFieldDeclIR node) throws AnalysisException {
+        return node.getName();
+    }
     
     @Override
     public String caseANat1NumericBasicTypeIR(ANat1NumericBasicTypeIR node) throws AnalysisException {
     	return "VDMNat1";
     }
-    
-    
-    
     
     @Override
     public String caseARecordDeclIR(ARecordDeclIR node) throws AnalysisException {

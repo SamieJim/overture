@@ -4,6 +4,7 @@ import org.overture.cgisa.isair.analysis.AnswerIsaAdaptor;
 import org.overture.codegen.ir.INode;
 import org.overture.codegen.ir.STypeIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
+import org.overture.codegen.ir.declarations.AFieldDeclIR;
 import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
 import org.overture.codegen.ir.declarations.ARecordDeclIR;
 import org.overture.codegen.ir.declarations.AStateDeclIR;
@@ -23,7 +24,7 @@ public class IsaDeclTypeGen extends AnswerIsaAdaptor<STypeIR> {
     {
     	IsaGen.typeGenHistoryMap.put(n.getName().toString(), n.getType());
     	IsaGen.rdeclGenHistoryMap.put(n.getName().toString(), n);
-        AIntNumericBasicTypeIR a = new AIntNumericBasicTypeIR();
+        STypeIR a = n.getType();
         a.setNamedInvType(n.clone());
         return a;
     }
@@ -37,6 +38,14 @@ public class IsaDeclTypeGen extends AnswerIsaAdaptor<STypeIR> {
     	a.setName(o);
         return a;
     	
+    }
+
+    public STypeIR caseAFieldDeclIR(AFieldDeclIR n)
+    {
+        IsaGen.rdeclGenHistoryMap.put(n.getName().toString(), n);
+        STypeIR a = n.getType();
+        return a;
+
     }
     
     public STypeIR caseARecordDeclIR(ARecordDeclIR n)

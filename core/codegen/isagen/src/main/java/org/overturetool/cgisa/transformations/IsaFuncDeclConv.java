@@ -90,6 +90,7 @@ public class IsaFuncDeclConv extends DepthFirstAnalysisIsaAdaptor {
 
     	node.setBody(((AEqualsBinaryExpIR) node.getBody()).getRight());
     	node.setFormalParams(null);
+    	node.getMethodType().setResult(null);
 
     	st.getFields().forEach(f -> methodType.getParams().add(f.getType().clone()));
     	methodType.setResult(new ABoolBasicTypeIR());

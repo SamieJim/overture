@@ -55,6 +55,7 @@ public class IsaCodeGenMain
 	public static final String VDM_ENTRY_EXP = "-entry";
 	public static final String CONC = "-concurrency";
 	public static final String NO_WARNINGS = "-nowarnings";
+	public static final String VDM_COMMENTS = "-vdmascomment";
 
 	// Folder names
 	private static final String GEN_MODEL_CODE_FOLDER = "main";
@@ -65,7 +66,7 @@ public class IsaCodeGenMain
 		long clock = System.currentTimeMillis();
 		//Future support of RT & PP here
 		Settings.release = Release.VDM_10;
-
+		Settings.novdm = args.equals(VDM_COMMENTS) ? true : false;
 		boolean printClasses = false;
 		boolean printWarnings = true;
 
@@ -76,10 +77,11 @@ public class IsaCodeGenMain
 
 		IRSettings irSettings = new IRSettings();
 		irSettings.setCharSeqAsString(true);
-		irSettings.setGeneratePreConds(false);
-		irSettings.setGeneratePreCondChecks(false);
-		irSettings.setGeneratePostConds(false);
-		irSettings.setGeneratePostCondChecks(false);
+		irSettings.setGeneratePreConds(true);
+		irSettings.setGeneratePreCondChecks(true);
+		irSettings.setGeneratePostConds(true);
+		irSettings.setGenerateInvariants(true);
+		irSettings.setGeneratePostCondChecks(true);
 		IsaSettings isaSettings = new IsaSettings();
 		isaSettings.setDisableCloning(false);
 

@@ -1,2 +1,2 @@
 #*$Isa.transTemplate($node)*#
-$node #if ($node.optional) optional #end
+$node
