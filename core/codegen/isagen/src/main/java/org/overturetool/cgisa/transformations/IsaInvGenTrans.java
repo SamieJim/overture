@@ -8,6 +8,7 @@ import org.overture.codegen.ir.expressions.AAndBoolBinaryExpIR;
 import org.overture.codegen.ir.patterns.AIdentifierPatternIR;
 import org.overture.codegen.ir.types.ABoolBasicTypeIR;
 import org.overture.codegen.ir.types.AMethodTypeIR;
+import org.overture.codegen.trans.assistants.TransAssistantIR;
 import org.overturetool.cgisa.IsaGen;
 import org.overturetool.cgisa.utils.IsaInvNameFinder;
 
@@ -17,12 +18,14 @@ import java.util.stream.Collectors;
 
 public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
 
+    private final TransAssistantIR t;
     private final AModuleDeclIR vdmToolkitModule;
+    private final IRInfo info;
     private final Map<String, ATypeDeclIR> isaTypeDeclIRMap;
-    private IRInfo info;
     private final Map<String, AFuncDeclIR> isaFuncDeclIRMap;
 
-    public IsaInvGenTrans(IRInfo info, AModuleDeclIR vdmToolkitModuleIR) {
+    public IsaInvGenTrans(IRInfo info, TransAssistantIR t, AModuleDeclIR vdmToolkitModuleIR) {
+        this.t = t;
         this.info = info;
         this.vdmToolkitModule = vdmToolkitModuleIR;
 
@@ -47,7 +50,7 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
     @Override
     public void caseAStateDeclIR(AStateDeclIR node) throws AnalysisException {
     	super.caseAStateDeclIR(node);
-    	
+
     	SDeclIR decl = node.clone();
     	String typeName = IsaInvNameFinder.findName(node.clone());
     	SExpIR invExp = node.getInvExp();
@@ -125,7 +128,7 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
     @Override
     public void caseATypeDeclIR(ATypeDeclIR node) throws AnalysisException {
         super.caseATypeDeclIR(node);
-        
+
         /*We do not want invariants built for each type declaration field
         instead we would like one invariant for the whole declaration type
         we skip subsequent record fields so that we do not get
@@ -144,8 +147,6 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
         AFuncDeclIR invFun_ = new AFuncDeclIR();
         invFun_.setName("inv_" + typeName); //inv_t
 
-        // Define the type signature
-        //TODO: Type should be XTypeInt - correct?
         AMethodTypeIR methodType = new AMethodTypeIR();
         
         STypeIR t = IsaDeclTypeGen.apply(decl);
@@ -203,20 +204,20 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
 	        afp.setType(t.clone()); 
 	        invFun_.getFormalParams().add(afp);
 	        expr = IsaInvExpGen.apply(decl.clone(), identifierPattern, methodType.clone(), isaFuncDeclIRMap);
-        	
+
         	
         	invFun_.setBody(expr);
         }
+
         invFun_.setSourceNode(node.getSourceNode());
+
         node.setInv(invFun_.clone());
         // Insert into AST and get rid of existing invariant functions forEach field in record type
         AModuleDeclIR encModule = node.getAncestor(AModuleDeclIR.class);
-        if (decl instanceof ARecordDeclIR) encModule.getDecls().removeIf(
-        		d -> d instanceof AFuncDeclIR && d.getChildren(true).get("_name").toString().contains("inv"));
-        
+//        if (decl instanceof ARecordDeclIR) encModule.getDecls().removeIf(
+//        		d -> d instanceof AFuncDeclIR && d.getChildren(true).get("_name").toString().contains("inv"));
         if(encModule != null)
         {
-        	
             encModule.getDecls().add(invFun_.clone());
         }
         IsaGen.funcGenHistoryMap.put(invFun_.getName(), invFun_.clone());

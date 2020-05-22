@@ -3,5 +3,5 @@ $Isa.transOriginalVDM($node)
 #if (($Isa.isDataType($node)) && !($Isa.addOption($node)))
 datatype $node.Name = $Isa.trans($node.Type)
 #else
-type_synonym $node.Name = "$Isa.transNamedType($node)#if($Isa.addOption($node)) option #end"
+type_synonym $node.Name = "$Isa.transNamedTypeDecl($node)#if($Isa.addOption($node)) option #end"
 #end

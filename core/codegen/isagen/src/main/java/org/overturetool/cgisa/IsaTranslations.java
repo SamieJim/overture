@@ -80,8 +80,12 @@ public class IsaTranslations {
                 .replace("error_,", "error_X,");//hack around lower cased trues and false;
     }
 
-    public String transNamedType(ANamedTypeDeclIR n) throws AnalysisException {
+    public String transNamedTypeDecl(ANamedTypeDeclIR n) throws AnalysisException {
         return n.getType().getNamedInvType() == null ? trans(n.getType()) : n.getType().getNamedInvType().getName().toString();
+    }
+
+    public String transNamedType(STypeIR n) throws AnalysisException {
+        return IsaInvNameFinder.findName(n.clone());
     }
 
     public String transNamedQuoteType(AQuoteTypeIR n) throws AnalysisException {

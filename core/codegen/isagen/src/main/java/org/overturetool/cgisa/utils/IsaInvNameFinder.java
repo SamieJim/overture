@@ -5,10 +5,7 @@ import org.overture.cgisa.isair.analysis.AnswerIsaAdaptor;
 import org.overture.codegen.ir.INode;
 import org.overture.codegen.ir.STypeIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
-import org.overture.codegen.ir.declarations.AFieldDeclIR;
-import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
-import org.overture.codegen.ir.declarations.ARecordDeclIR;
-import org.overture.codegen.ir.declarations.AStateDeclIR;
+import org.overture.codegen.ir.declarations.*;
 import org.overture.codegen.ir.expressions.ANotImplementedExpIR;
 import org.overture.codegen.ir.types.*;
 
@@ -48,6 +45,16 @@ public class IsaInvNameFinder extends AnswerIsaAdaptor<String>
     @Override
     public String caseANatNumericBasicTypeIR(ANatNumericBasicTypeIR node) throws AnalysisException {
     	return "VDMNat";
+    }
+
+    @Override
+    public String caseATypeDeclIR(ATypeDeclIR node) throws AnalysisException {
+        return findName(node.getDecl());
+    }
+
+    @Override
+    public String caseAFuncDeclIR(AFuncDeclIR node) throws AnalysisException {
+        return node.getName();
     }
     
     @Override

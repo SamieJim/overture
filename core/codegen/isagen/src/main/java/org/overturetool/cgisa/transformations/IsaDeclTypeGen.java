@@ -42,7 +42,7 @@ public class IsaDeclTypeGen extends AnswerIsaAdaptor<STypeIR> {
 
     public STypeIR caseAFieldDeclIR(AFieldDeclIR n)
     {
-        IsaGen.rdeclGenHistoryMap.put(n.getName().toString(), n);
+        IsaGen.rdeclGenHistoryMap.put(n.getName(), n);
         STypeIR a = n.getType();
         return a;
 

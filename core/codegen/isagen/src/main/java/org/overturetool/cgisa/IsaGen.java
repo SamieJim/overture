@@ -40,7 +40,6 @@ import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.definitions.PDefinition;
 import org.overture.ast.expressions.PExp;
 import org.overture.ast.modules.AModuleModules;
-import org.overture.ast.types.AFieldField;
 import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.declarations.AFuncDeclIR;
 import org.overture.codegen.ir.declarations.AModuleDeclIR;
@@ -50,7 +49,7 @@ import org.overture.codegen.utils.GeneratedData;
 import org.overture.codegen.utils.GeneratedModule;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overturetool.cgisa.transformations.*;
-import org.overturetool.cgisa.utils.IsaAddMetaData;
+import org.overturetool.cgisa.utils.IsaInvNameFinder;
 
 /**
  * Main facade class for VDM 2 Isabelle IR
@@ -175,9 +174,6 @@ public class IsaGen extends CodeGenBase {
                     IsaBasicTypesConv invConv = new IsaBasicTypesConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, invConv);
 
-                    IsaAddMetaData meta = new IsaAddMetaData(getInfo(), this.transAssistant, vdmToolkitModuleIR);
-                    generator.applyPartialTransformation(status, meta);
-
                     IsaOptionalConv optConv = new IsaOptionalConv(getInfo(), this.transAssistant, vdmToolkitModuleIR);
                     generator.applyPartialTransformation(status, optConv);
 
@@ -192,12 +188,12 @@ public class IsaGen extends CodeGenBase {
                     generator.applyPartialTransformation(status, funcConv);
                 }
             }
-           /* for(IRStatus<PIR> status : statuses)
+            for(IRStatus<PIR> status : statuses)
             {
                 //@TODO this can be avoided and tool made faster by inserting into AST after the parent declaration (see addToAST()).
                 if(!status.getIrNodeName().equals("VDMToolkit"))
                     quickSortByLine(((AModuleDeclIR) status.getIrNode()).getDecls(), 0, ((AModuleDeclIR) status.getIrNode()).getDecls().size() - 1);
-            }*/
+            }
             printIR(statuses);
             r.setClasses(prettyPrint(statuses));
         } catch (org.overture.codegen.ir.analysis.AnalysisException e) {
@@ -207,18 +203,23 @@ public class IsaGen extends CodeGenBase {
 
     }
 
-    public void quickSortByLine(List<SDeclIR> decls, int begin, int end) {
+    public void quickSortByLine(List<SDeclIR> decls, int begin, int end) throws org.overture.codegen.ir.analysis.AnalysisException {
         if (begin < end) {
             int partitionIndex = partition(decls, begin, end);
             quickSortByLine(decls, begin, partitionIndex-1);
             quickSortByLine(decls, partitionIndex+1, end);
         }
     }
-    private int partition(List<SDeclIR> decls, int begin, int end) {
+    private int partition(List<SDeclIR> decls, int begin, int end) throws org.overture.codegen.ir.analysis.AnalysisException {
         int pivot = decls.get(end).getSourceNode().getVdmNode().getAncestor(PDefinition.class).getLocation().getStartLine();
         int i = (begin-1);
         for (int j = begin; j < end; j++) {
-            if (decls.get(j).getSourceNode().getVdmNode().getAncestor(PDefinition.class).getLocation().getStartLine() <= pivot)
+            int k = decls.get(j).getSourceNode().getVdmNode().getAncestor(PDefinition.class).getLocation().getStartLine();
+            if (IsaInvNameFinder.findName(decls.get(j)).contains("inv")
+                || IsaInvNameFinder.findName(decls.get(j)).contains("pre")
+                || IsaInvNameFinder.findName(decls.get(j)).contains("post")
+                || IsaInvNameFinder.findName(decls.get(j)).contains("Option")) k++;
+            if (k <= pivot)
             {
                 i++;
                 SDeclIR swapTemp = decls.get(i);

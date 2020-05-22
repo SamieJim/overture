@@ -1,6 +1,5 @@
 package org.overturetool.cgisa.transformations;
 
-import org.overture.ast.expressions.AEqualsBinaryExp;
 import org.overture.cgisa.isair.analysis.DepthFirstAnalysisIsaAdaptor;
 import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.analysis.AnalysisException;
@@ -11,9 +10,7 @@ import org.overture.codegen.ir.types.ABoolBasicTypeIR;
 import org.overture.codegen.ir.types.AMethodTypeIR;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
 import org.overturetool.cgisa.IsaGen;
-import org.overturetool.cgisa.utils.IsaInvNameFinder;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -135,7 +132,7 @@ public class IsaFuncDeclConv extends DepthFirstAnalysisIsaAdaptor {
 			parent.getAncestor(AModuleDeclIR.class).getDecls().add((SDeclIR) node.clone());
         }
 
-		
+
 	}
 
 	private void transformPreConditions (AFuncDeclIR node) throws AnalysisException {

@@ -5,17 +5,10 @@ import org.overture.cgisa.isair.analysis.DepthFirstAnalysisIsaAdaptor;
 import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.declarations.*;
-import org.overture.codegen.ir.expressions.*;
 import org.overture.codegen.ir.name.ATypeNameIR;
-import org.overture.codegen.ir.patterns.AIdentifierPatternIR;
-import org.overture.codegen.ir.types.ABoolBasicTypeIR;
-import org.overture.codegen.ir.types.AMethodTypeIR;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
-import org.overturetool.cgisa.IsaGen;
-import org.overturetool.cgisa.utils.IsaAddMetaData;
 import org.overturetool.cgisa.utils.IsaInvNameFinder;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -53,44 +46,50 @@ public class IsaOptionalConv extends DepthFirstAnalysisIsaAdaptor {
 			ANamedTypeDeclIR opt = new ANamedTypeDeclIR();
 			opt.setSourceNode((SourceNode) node.parent().getChildren(true).get("_sourceNode"));
 			ATypeNameIR t = new ATypeNameIR();
+
 			if(IsaInvNameFinder.findName(x.getType()).contains("Option")) {
 				IrNodeInfo w = new IrNodeInfo(node, "Option is a keyword reserved for translation of optional types. Consider changing your naming to avoid translation errors.");
 				this.info.getTransformationWarnings().add(w);
 			}
+
 			t.setName(IsaInvNameFinder.findName(x.getType()) + "Option");
 			opt.setName(t);
-			opt.setType(IsaDeclTypeGen.apply(node));
+			opt.setType(IsaDeclTypeGen.apply(x.clone()).clone());
 			p.setDecl(opt.clone());
-			List<ClonableString> metaData = new LinkedList<>();
-			p.setMetaData(metaData);
-			p.setSourceNode((SourceNode) node.parent().getChildren(true).get("_sourceNode"));
 
-			if(node.getAncestor(AStateDeclIR.class) != null){
-				int ix = Integer.parseInt(node.getAncestor(AStateDeclIR.class).getMetaData().get(0).toString().substring(15));
-				addToAST(p, node, ix);
+			x.setType(IsaDeclTypeGen.apply(opt.clone()));
+			for (SDeclIR d : node.getAncestor(AModuleDeclIR.class).getDecls()) {
+				try {
+					if (IsaInvNameFinder.findName(d).equals(t.getName().replace("Option", "")))
+						p.setSourceNode(d.getSourceNode());
+				} catch (AnalysisException e) {
+					e.printStackTrace();
+				}
 			}
-			else{
-				int ix = Integer.parseInt(node.getAncestor(ATypeDeclIR.class).getMetaData().get(0).toString().substring(15));
-				addToAST(p, node, ix);
+			x.setSourceNode(node.getSourceNode());
+
+			if(node.parent() instanceof  ARecordDeclIR) {
+				((ARecordDeclIR) node.parent()).getFields().remove(node.clone());
+				((ARecordDeclIR) node.parent()).getFields().add(x.clone());
 			}
+			else if(node.parent() instanceof AStateDeclIR){
+				((AStateDeclIR) node.parent()).getFields().remove(node.clone());
+				((AStateDeclIR) node.parent()).getFields().add(x.clone());
+			}
+			node.setType(IsaDeclTypeGen.apply(opt.clone()));
 
-
-			node.setType(IsaDeclTypeGen.apply(opt));
-
+			addToAST(p, node);
 			System.out.println("Generated optional type " + node.getName() + " has been assigned to type synonym " + node.getName() + "Option.");
 		}
 	}
 
-	private void addToAST(INode node, SDeclIR parent, int ix) throws AnalysisException {
+	private void addToAST(ATypeDeclIR node, SDeclIR parent) throws AnalysisException {
 		// Insert into AST
 		AModuleDeclIR encModule = parent.getAncestor(AModuleDeclIR.class) != null
 				? parent.getAncestor(AModuleDeclIR.class).clone() : null;
-		node.parent(parent.clone());
-		IsaAddMetaData o = new IsaAddMetaData(this.info, this.t, this.vdmToolkitModuleIR);
-		o.apply(node);
 		if(encModule != null)
 		{
-			parent.getAncestor(AModuleDeclIR.class).getDecls().add(ix, (SDeclIR) node.clone());
+			parent.getAncestor(AModuleDeclIR.class).getDecls().add(0, (SDeclIR) node.clone());
 		}
 	}
     
