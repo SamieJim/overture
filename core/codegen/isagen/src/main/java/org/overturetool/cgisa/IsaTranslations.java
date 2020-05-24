@@ -25,6 +25,7 @@ import java.io.StringWriter;
 import java.util.*;
 
 import org.overture.ast.definitions.AImplicitFunctionDefinition;
+import org.overture.ast.intf.lex.ILexLocation;
 import org.overture.ast.types.AMapMapType;
 import org.overture.ast.types.ANamedInvariantType;
 import org.overture.codegen.ir.*;
@@ -73,11 +74,19 @@ public class IsaTranslations {
     public String trans(INode node) throws AnalysisException {
         StringWriter writer = new StringWriter();
         node.apply(mergeVisitor, writer);
-        return writer.toString()
+        return attachTranslationInfo((PIR) node, writer).toString()
                 .replace("true", "True")
                 .replace("false", "False")
                 .replace("error_ ", "error_X ")
-                .replace("error_,", "error_X,");//hack around lower cased trues and false;
+                .replace("error_,", "error_X,");//hack around lower cased true, false and keywords.
+    }
+
+    private String attachTranslationInfo(PIR node, StringWriter writer) {
+        return node.getSourceNode() != null ? writer.toString().replace("/*", "(*")
+                .replace("*/", "at start line: " +
+                        String.valueOf(((ILexLocation) node.getSourceNode().getVdmNode().getChildren(true)
+                                .get("_location")).getStartLine())
+                        + " in VDM source. *) \n") : writer.toString();
     }
 
     public String transNamedTypeDecl(ANamedTypeDeclIR n) throws AnalysisException {
@@ -201,7 +210,7 @@ public class IsaTranslations {
         while (it.hasNext()) {
             sb.append(trans((INode) it.next().clone()));
             if(l) {
-                sb.append("option");
+                sb.append(" option");
                 l = false;
             }
             if (it.hasNext()) {
@@ -541,20 +550,20 @@ public class IsaTranslations {
                 : trans(n.getLeft()) + " <\\equiv> " + trans(n.getRight());
     }
 
-    public String transOriginalVDM(SDeclIR n)
-    {
-        if(Settings.novdm) {
-            if (n instanceof ANamedTypeDeclIR && isDataType((ANamedTypeDeclIR) n)) {
-                return "(* Below translated from VDM:\n-----------------------------------------------\n" +
-                        ((ANamedTypeDeclIR) n).getName() + " = " +
-                        ((ANamedInvariantType) n.getSourceNode().getVdmNode()).getType().toString() + "\n*)";
+    public String transOriginalVDM(SDeclIR n) throws AnalysisException {
+        if(Settings.vdmcomments) {
+            if (n instanceof ANamedTypeDeclIR && isDataType((ANamedTypeDeclIR) n)
+            && n.getSourceNode().getVdmNode().getChildren(true).get("_type") != null) {
+                return "(* Below translated from VDM node:\n-----------------------------------------------\n" +
+                        IsaInvNameFinder.findName(n) + " = " +
+                        n.getSourceNode().getVdmNode().getChildren(true).get("_type").toString() + "\n*)";
             } else {
-                return "(* Below translated from VDM:\n-----------------------------------------------\n"
+                return "(* Below translated from VDM node:\n-----------------------------------------------\n"
                         + n.getSourceNode().getVdmNode().toString()+ "\n*)";
             }
         }
         else{
-            return "";
+            return "(* This node was generated or the original VDM node is not available. *)";
         }
     }
 

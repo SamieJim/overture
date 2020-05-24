@@ -1,1 +1,0 @@
-notUnaryExp ($Isa.trans($node.Exp))

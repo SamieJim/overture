@@ -45,15 +45,11 @@ import java.util.*;
 public class IsaCodeGenMain
 {
 
-	public static final String CLASSIC = "-classic";
-	public static final String VDM10 = "-vdm10";
 	public static final String EXP_ARG = "-exp";
 	public static final String FOLDER_ARG = "-folder";
 	public static final String PRINT_ARG = "-print";
-	public static final String PACKAGE_ARG = "-package";
 	public static final String OUTPUT_ARG = "-output";
-	public static final String VDM_ENTRY_EXP = "-entry";
-	public static final String CONC = "-concurrency";
+	public static final String GEN_IR = "-genir";
 	public static final String NO_WARNINGS = "-nowarnings";
 	public static final String VDM_COMMENTS = "-vdmascomment";
 
@@ -66,11 +62,10 @@ public class IsaCodeGenMain
 		long clock = System.currentTimeMillis();
 		//Future support of RT & PP here
 		Settings.release = Release.VDM_10;
-		Settings.novdm = args.equals(VDM_COMMENTS) ? true : false;
 		boolean printClasses = false;
 		boolean printWarnings = true;
 
-		if (args == null || args.length <= 1)
+		if (args.length < 1)
 		{
 			usage("Too few arguments provided");
 		}
@@ -90,8 +85,8 @@ public class IsaCodeGenMain
 		File outputDir = null;
 
 		List<File> files = new LinkedList<File>();
-
 		Settings.release = Release.VDM_10;
+		Settings.dialect = Dialect.VDM_SL;
 
 		boolean separateTestCode = false;
 		boolean cgExpr = false;
@@ -99,17 +94,18 @@ public class IsaCodeGenMain
 		for (Iterator<String> i = listArgs.iterator(); i.hasNext();)
 		{
 			String arg = i.next();
-			Settings.dialect = Dialect.VDM_SL;
 
-			if (arg.equals(CLASSIC))
+			if (arg.equals(GEN_IR))
 			{
-				Settings.release = Release.CLASSIC;
-			} else if (arg.equals(VDM10))
-			{
-				Settings.release = Release.VDM_10;
-			} else if (arg.equals(NO_WARNINGS))
+				Settings.genir = true;
+			}
+			else if (arg.equals(NO_WARNINGS))
 			{
 				printWarnings = false;
+			}
+			else if (arg.equals(VDM_COMMENTS))
+			{
+				Settings.vdmcomments = true;
 			}
 			 else if (arg.equals(EXP_ARG))
 			{
@@ -157,16 +153,6 @@ public class IsaCodeGenMain
 				{
 					usage(OUTPUT_ARG + " requires a directory");
 				}
-			} else if (arg.equals(VDM_ENTRY_EXP))
-			{
-				if (i.hasNext())
-				{
-					isaSettings.setVdmEntryExp(i.next());
-				}
-			}
-			else if(arg.equals(CONC))
-			{
-				irSettings.setGenerateConc(true);
 			}
 			else
 			{
@@ -184,11 +170,6 @@ public class IsaCodeGenMain
 					usage("Not a file: " + file);
 				}
 			}
-		}
-
-		if (Settings.dialect == null)
-		{
-			usage("No VDM dialect specified");
 		}
 
 		MsgPrinter.getPrinter().println("Starting code generation...\n");
@@ -344,27 +325,24 @@ public class IsaCodeGenMain
 					MsgPrinter.getPrinter().println(String.format("Class %s could not be merged. Following merge errors were found:", generatedClass.getName()));
 
 					GeneralCodeGenUtils.printMergeErrors(generatedClass.getMergeErrors());
-				} else if (!generatedClass.canBeGenerated())
-				{
-					MsgPrinter.getPrinter().println("Could not generate class: "
-							+ generatedClass.getName() + "\n");
-
-					if (generatedClass.hasUnsupportedIrNodes())
-					{
-						MsgPrinter.getPrinter().println("Following VDM constructs are not supported by the code generator:");
-						errors_ += generatedClass.getUnsupportedInIr().size();
-						GeneralCodeGenUtils.printUnsupportedIrNodes(generatedClass.getUnsupportedInIr());
-					}
-
-					if (generatedClass.hasUnsupportedTargLangNodes())
-					{
-						MsgPrinter.getPrinter().println("Following constructs are not supported by the code generator:");
-						errors_ += generatedClass.getUnsupportedInTargLang().size();
-						GeneralCodeGenUtils.printUnsupportedNodes(generatedClass.getUnsupportedInTargLang());
-					}
-
 				} else
 				{
+					if (!generatedClass.canBeGenerated()) {
+						MsgPrinter.getPrinter().println("Could not produce complete translation of class: "
+								+ generatedClass.getName() + "\n");
+
+						if (generatedClass.hasUnsupportedIrNodes()) {
+							MsgPrinter.getPrinter().println("Following VDM constructs are not supported by the code generator:");
+							errors_ += generatedClass.getUnsupportedInIr().size();
+							GeneralCodeGenUtils.printUnsupportedIrNodes(generatedClass.getUnsupportedInIr());
+						}
+
+						if (generatedClass.hasUnsupportedTargLangNodes()) {
+							MsgPrinter.getPrinter().println("Following constructs are not supported by the code generator:");
+							errors_ += generatedClass.getUnsupportedInTargLang().size();
+							GeneralCodeGenUtils.printUnsupportedNodes(generatedClass.getUnsupportedInTargLang());
+						}
+					}
 
 					if (outputDir != null)
 					{
@@ -499,23 +477,19 @@ public class IsaCodeGenMain
 	public static void usage(String msg)
 	{
 		MsgPrinter.getPrinter().errorln("VDM-to-Isabelle Code Generator: " + msg
-				+ "\n");
-		MsgPrinter.getPrinter().errorln(CLASSIC
-				+ ": code generate using the VDM classic language release");
-		MsgPrinter.getPrinter().errorln(VDM10
-				+ ": code generate using the VDM-10 language release");
+				+ "\n\nUsage: IsaGen [-options] [file to translate]\n\n");
 		MsgPrinter.getPrinter().errorln(EXP_ARG
 				+ " <expression>: code generate a VDMPP expression");
 		MsgPrinter.getPrinter().errorln(FOLDER_ARG
 				+ " <folder path>: a folder containing input vdm source files");
 		MsgPrinter.getPrinter().errorln(PRINT_ARG
 				+ ": print the generated code to the console");
-		MsgPrinter.getPrinter().errorln(PACKAGE_ARG
-				+ " <java package>:  the output java package of the generated code (e.g. my.code)");
+		MsgPrinter.getPrinter().errorln(VDM_COMMENTS
+				+ ": generate the original VDM node above its translation");
+		MsgPrinter.getPrinter().errorln(GEN_IR
+				+ ": produce a folder containing IR nodes from which Isabelle/HOL was generated");
 		MsgPrinter.getPrinter().errorln(OUTPUT_ARG
 				+ " <folder path>: the output folder of the generated code");
-		MsgPrinter.getPrinter().errorln(CONC
-				+ ": To enable code generation of VDM++'s concurrency constructs");
 		MsgPrinter.getPrinter().errorln(NO_WARNINGS
 				+ ": To suppress printing detailed warning messages");
 

@@ -214,8 +214,6 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
         node.setInv(invFun_.clone());
         // Insert into AST and get rid of existing invariant functions forEach field in record type
         AModuleDeclIR encModule = node.getAncestor(AModuleDeclIR.class);
-//        if (decl instanceof ARecordDeclIR) encModule.getDecls().removeIf(
-//        		d -> d instanceof AFuncDeclIR && d.getChildren(true).get("_name").toString().contains("inv"));
         if(encModule != null)
         {
             encModule.getDecls().add(invFun_.clone());

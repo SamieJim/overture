@@ -83,7 +83,7 @@ public class IsaInvExpGen extends AnswerIsaAdaptor<SExpIR> {
         		STypeIR type = fields.get(i).getType();
 		    	AIdentifierVarExpIR invExp = new AIdentifierVarExpIR();
 	            invExp.setName("("+node.getName().substring(0,1).toLowerCase()+
-	            		node.getName().toString().substring(1, node.getName().toString().length())+"_"+
+	            		node.getName().substring(1)+"_"+
 	            		fields.get(i).getName()+" "+this.ps.toString()+")");
 	            invExp.setType(this.methodType.clone());
 	            this.targetIP = invExp;
@@ -165,9 +165,6 @@ public class IsaInvExpGen extends AnswerIsaAdaptor<SExpIR> {
         //Recursively build curried inv function e.g.  (inv_VDMSet (inv_VDMSet inv_Nat1)) inv_x
        
 		completeExp = buildInvForType(t);
-			
-    	
-    	
 		return completeExp;
     }
     
@@ -238,12 +235,13 @@ public class IsaInvExpGen extends AnswerIsaAdaptor<SExpIR> {
 	//build curried invariant
     public AApplyExpIR buildInvForType(STypeIR seqtNode) throws AnalysisException {
     	
-    	String typeName = IsaInvNameFinder.findName(seqtNode);
+    	String typeName = IsaInvNameFinder.findName(seqtNode).equals("True") ? "isa_invTrue" :
+				IsaInvNameFinder.findName(seqtNode).replace("isa_", "isa_inv");
     	
     	AFuncDeclIR fInv;
-    	if (this.isaFuncDeclIRMap.get("isa_inv"+typeName) != null)
+    	if (this.isaFuncDeclIRMap.get(typeName) != null)
     	{
-    		fInv = this.isaFuncDeclIRMap.get("isa_inv"+typeName).clone();
+    		fInv = this.isaFuncDeclIRMap.get(typeName).clone();
     	}
     	else
     	{

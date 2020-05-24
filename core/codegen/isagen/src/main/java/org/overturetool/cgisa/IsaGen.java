@@ -47,6 +47,7 @@ import org.overture.codegen.merging.MergeVisitor;
 import org.overture.codegen.printer.MsgPrinter;
 import org.overture.codegen.utils.GeneratedData;
 import org.overture.codegen.utils.GeneratedModule;
+import org.overture.config.Settings;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overturetool.cgisa.transformations.*;
 import org.overturetool.cgisa.utils.IsaInvNameFinder;
@@ -194,7 +195,7 @@ public class IsaGen extends CodeGenBase {
                 if(!status.getIrNodeName().equals("VDMToolkit"))
                     quickSortByLine(((AModuleDeclIR) status.getIrNode()).getDecls(), 0, ((AModuleDeclIR) status.getIrNode()).getDecls().size() - 1);
             }
-            printIR(statuses);
+            if(Settings.genir) printIR(statuses);
             r.setClasses(prettyPrint(statuses));
         } catch (org.overture.codegen.ir.analysis.AnalysisException e) {
             throw new AnalysisException(e);
@@ -326,8 +327,6 @@ public class IsaGen extends CodeGenBase {
 
         if (pp.hasMergeErrors()) {
             return new GeneratedModule(status.getIrNodeName(), irClass, pp.getMergeErrors(), false);
-        } else if (pp.hasUnsupportedTargLangNodes()) {
-            return new GeneratedModule(status.getIrNodeName(), new HashSet<VdmNodeInfo>(), pp.getUnsupportedInTargLang(), false);
         } else {
             // Code can be generated. Ideally, should format it
             GeneratedModule generatedModule = new GeneratedModule(status.getIrNodeName(), irClass, sw.toString(), false);

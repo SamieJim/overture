@@ -1,4 +1,3 @@
-$Isa.peek($node)
 #foreach( $def in $node.LocalDefs )
 let $Isa.trans($def) in #end 
 $Isa.trans($node.Exp)
