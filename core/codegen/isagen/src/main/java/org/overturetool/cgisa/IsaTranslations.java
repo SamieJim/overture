@@ -74,6 +74,8 @@ public class IsaTranslations {
     public String trans(INode node) throws AnalysisException {
         StringWriter writer = new StringWriter();
         node.apply(mergeVisitor, writer);
+        if(node.getChildren(true).get("_tag") != null && node.getChildren(true).get("_tag").equals("ERR"))
+            writer.append("\n (* Unable to translate *) ");
         return attachTranslationInfo((PIR) node, writer).toString()
                 .replace("true", "True")
                 .replace("false", "False")
@@ -82,11 +84,17 @@ public class IsaTranslations {
     }
 
     private String attachTranslationInfo(PIR node, StringWriter writer) {
-        return node.getSourceNode() != null ? writer.toString().replace("/*", "(*")
-                .replace("*/", "at start line: " +
-                        String.valueOf(((ILexLocation) node.getSourceNode().getVdmNode().getChildren(true)
-                                .get("_location")).getStartLine())
-                        + " in VDM source. *) \n") : writer.toString();
+        if (node.getSourceNode() != null && node.getSourceNode().getVdmNode().getChildren(true)
+                .get("_location") != null) {
+            return writer.toString().replace("/*", "(*")
+                    .replace("*/", "at start line: " +
+                            String.valueOf(((ILexLocation) node.getSourceNode().getVdmNode().getChildren(true)
+                                    .get("_location")).getStartLine())
+                            + " in VDM source. *) \n");
+        }
+        else {
+            return writer.toString();
+        }
     }
 
     public String transNamedTypeDecl(ANamedTypeDeclIR n) throws AnalysisException {
@@ -186,7 +194,7 @@ public class IsaTranslations {
 		{
 			ARecordDeclIR rec = (ARecordDeclIR) rs.clone();
 			f = rec.getFields();
-			for (int i = 0; i < f.size(); i++)
+			for (int i = 0; i < args.size(); i++)
 			{
 				str = str + rec.getName().toString().substring(0,1).toLowerCase()
 						+ rec.getName().toString().substring(1) + "_"
@@ -563,7 +571,7 @@ public class IsaTranslations {
             }
         }
         else{
-            return "(* This node was generated or the original VDM node is not available. *)";
+            return "";
         }
     }
 

@@ -89,6 +89,7 @@ public class IsaOptionalConv extends DepthFirstAnalysisIsaAdaptor {
 				? parent.getAncestor(AModuleDeclIR.class).clone() : null;
 		if(encModule != null)
 		{
+			node.setSourceNode(parent.getSourceNode());
 			parent.getAncestor(AModuleDeclIR.class).getDecls().add(0, (SDeclIR) node.clone());
 		}
 	}

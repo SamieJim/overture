@@ -205,33 +205,36 @@ public class IsaGen extends CodeGenBase {
     }
 
     public void quickSortByLine(List<SDeclIR> decls, int begin, int end) throws org.overture.codegen.ir.analysis.AnalysisException {
-        if (begin < end) {
+        if (begin < end)
+        {
             int partitionIndex = partition(decls, begin, end);
-            quickSortByLine(decls, begin, partitionIndex-1);
-            quickSortByLine(decls, partitionIndex+1, end);
+            quickSortByLine(decls, begin, partitionIndex - 1);
+            quickSortByLine(decls, partitionIndex + 1, end);
         }
     }
-    private int partition(List<SDeclIR> decls, int begin, int end) throws org.overture.codegen.ir.analysis.AnalysisException {
-        int pivot = decls.get(end).getSourceNode().getVdmNode().getAncestor(PDefinition.class).getLocation().getStartLine();
-        int i = (begin-1);
-        for (int j = begin; j < end; j++) {
-            int k = decls.get(j).getSourceNode().getVdmNode().getAncestor(PDefinition.class).getLocation().getStartLine();
-            if (IsaInvNameFinder.findName(decls.get(j)).contains("inv")
-                || IsaInvNameFinder.findName(decls.get(j)).contains("pre")
-                || IsaInvNameFinder.findName(decls.get(j)).contains("post")
-                || IsaInvNameFinder.findName(decls.get(j)).contains("Option")) k++;
-            if (k <= pivot)
-            {
-                i++;
-                SDeclIR swapTemp = decls.get(i);
-                decls.set(i, decls.get(j));
-                decls.add(j, swapTemp);
+    private int partition(List<SDeclIR> decls, int startIndex, int endIndex) throws org.overture.codegen.ir.analysis.AnalysisException {
+        int i = startIndex;
+        int j = endIndex + 1;
+        int pivot = decls.get(endIndex).getSourceNode().getVdmNode().getAncestor(PDefinition.class).getLocation().getStartLine();
+
+        while(i < j && j > 1){
+            do i++;
+            while( i< endIndex && decls.get(i).getSourceNode().getVdmNode().getAncestor(PDefinition.class).getLocation().getStartLine()
+                    < pivot);
+            do j--;
+            while(j > startIndex && decls.get(i).getSourceNode().getVdmNode().getAncestor(PDefinition.class).getLocation().getStartLine()
+                    > pivot);
+            if(i < j){
+                SDeclIR temp = decls.get(i).clone();
+                decls.set(i, decls.get(j).clone());
+                decls.set(j, temp.clone());
+                return j;
             }
         }
-        SDeclIR swapTemp = decls.get(i+1);
-        decls.set(i+1, decls.get(end));
-        decls.add(end, swapTemp);
-        return i+1;
+        SDeclIR temp = decls.get(startIndex).clone();
+        decls.set(startIndex, decls.get(j).clone());
+        decls.set(j, temp.clone());
+        return j;
     }
 
 

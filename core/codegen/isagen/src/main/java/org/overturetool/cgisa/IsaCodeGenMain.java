@@ -39,7 +39,9 @@ import org.overture.config.Settings;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
 
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class IsaCodeGenMain
@@ -57,8 +59,7 @@ public class IsaCodeGenMain
 	private static final String GEN_MODEL_CODE_FOLDER = "main";
 	private static final String GEN_TESTS_FOLDER = "test";
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) throws IOException {
 		long clock = System.currentTimeMillis();
 		//Future support of RT & PP here
 		Settings.release = Release.VDM_10;
@@ -128,7 +129,28 @@ public class IsaCodeGenMain
 
 					if (path.isDirectory())
 					{
-						files.addAll(filterFiles(GeneralUtils.getFiles(path)));
+						FileWriter in = new FileWriter("in.vdmsl");
+						List<File> fileList = filterFiles(GeneralUtils.getFiles(path));
+						StringBuffer sb = new StringBuffer();
+
+						fileList.forEach(file -> {
+							try {
+								Files.lines(file.toPath()).forEach(l -> {
+									sb.append(l);
+									sb.append('\n');
+								});
+							} catch (FileNotFoundException e) {
+								e.printStackTrace();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						});
+
+						in.write(sb.toString());
+						in.close();
+
+						File file = new File("in.vdmsl");
+						files.add(file);
 					} else
 					{
 						usage("Could not find path: " + path);

@@ -93,7 +93,8 @@ public class SortDependencies extends DepthFirstAnalysisAdaptor
 	{
 		if (tempMarks.contains(n))
 		{
-			throw new RuntimeException("Cyclic dependency");
+			tempMarks.remove(n);
+			unmarked.remove(n);
 		}
 		if (unmarked.contains(n))
 		{

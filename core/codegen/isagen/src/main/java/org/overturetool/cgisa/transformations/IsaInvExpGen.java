@@ -4,9 +4,7 @@ import org.overture.cgisa.isair.analysis.AnswerIsaAdaptor;
 import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.declarations.*;
-import org.overture.codegen.ir.expressions.AAndBoolBinaryExpIR;
-import org.overture.codegen.ir.expressions.AApplyExpIR;
-import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
+import org.overture.codegen.ir.expressions.*;
 import org.overture.codegen.ir.patterns.AIdentifierPatternIR;
 import org.overture.codegen.ir.types.*;
 import org.overturetool.cgisa.IsaGen;
@@ -144,9 +142,14 @@ public class IsaInvExpGen extends AnswerIsaAdaptor<SExpIR> {
      // Link numerous apply expressions together in an and expression
         if (fieldInvariants.size() >= 2)
         	return genAnd(fieldInvariants);
-        else
+        else if (fieldInvariants.size() == 1)
         // Just one field return it as an apply expression
         	return fieldInvariants.get(0);
+        else {
+			AQuoteLiteralExpIR e = new AQuoteLiteralExpIR();
+			e.setValue("True");
+			return completeExp;
+		}
     }
     
     
@@ -245,8 +248,13 @@ public class IsaInvExpGen extends AnswerIsaAdaptor<SExpIR> {
     	}
     	else
     	{
-    		fInv = IsaGen.funcGenHistoryMap.get("inv_"+typeName).clone();
-    		
+    		fInv = IsaGen.funcGenHistoryMap.get("inv_"+typeName) != null ?
+					IsaGen.funcGenHistoryMap.get("inv_"+typeName).clone() :
+					null;
+    		if(fInv == null){
+    			fInv = this.isaFuncDeclIRMap.get("isa_invTrue").clone();
+    			fInv.setTag("ERR");
+			}
     	}
     	if (fInv.getMethodType().clone() == null)
     	{

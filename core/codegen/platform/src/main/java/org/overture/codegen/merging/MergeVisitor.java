@@ -170,7 +170,7 @@ public class MergeVisitor extends QuestionAdaptor<StringWriter>
 				}
 			} catch (Exception e)
 			{
-				mergeErrors.add(e);
+				question.write(String.format("/* Error in translation: %s \n Cause - " + e.getMessage() + "*/", node.getClass().getSimpleName()));
 			}
 		} catch (ParseException e)
 		{

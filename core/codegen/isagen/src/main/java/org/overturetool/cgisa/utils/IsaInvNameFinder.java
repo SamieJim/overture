@@ -34,16 +34,16 @@ public class IsaInvNameFinder extends AnswerIsaAdaptor<String>
     
     @Override
     public String caseASetSetTypeIR(ASetSetTypeIR node) throws AnalysisException {
-        return node.getNamedInvType() != null ? node.getNamedInvType().getName().toString() : "SetElems";
+        return node.getNamedInvType() != null ? node.getNamedInvType().getName().toString() : "isa_SetElems";
     }
     
     @Override
     public String caseASeqSeqTypeIR(ASeqSeqTypeIR node) throws AnalysisException {
-        return node.getNamedInvType() != null ? node.getNamedInvType().getName().toString() : "SeqElems";
+        return node.getNamedInvType() != null ? node.getNamedInvType().getName().toString() : "isa_SeqElems";
     }
     @Override
     public String caseANatNumericBasicTypeIR(ANatNumericBasicTypeIR node) throws AnalysisException {
-        return node.getNamedInvType() != null ? node.getNamedInvType().getName().toString() : "VDMNat";
+        return node.getNamedInvType() != null ? node.getNamedInvType().getName().toString() : "isa_VDMNat";
     }
 
     @Override
@@ -58,7 +58,8 @@ public class IsaInvNameFinder extends AnswerIsaAdaptor<String>
     
     @Override
     public String caseAIntNumericBasicTypeIR(AIntNumericBasicTypeIR node) throws AnalysisException {
-    	return node.getNamedInvType() != null ? node.getNamedInvType().getName().toString() : "True";
+    	return node.getNamedInvType() != null && !node.getNamedInvType().getName().toString().equals("isa_VDMInt")
+                ? node.getNamedInvType().getName().toString() : "True";
     }
     
     @Override
@@ -115,7 +116,7 @@ public class IsaInvNameFinder extends AnswerIsaAdaptor<String>
     
     @Override
     public String caseANat1NumericBasicTypeIR(ANat1NumericBasicTypeIR node) throws AnalysisException {
-        return node.getNamedInvType() != null ? node.getNamedInvType().getName().toString() : "VDMNat1";
+        return node.getNamedInvType() != null ? node.getNamedInvType().getName().toString() : "isa_VDMNat1";
     }
     
     @Override

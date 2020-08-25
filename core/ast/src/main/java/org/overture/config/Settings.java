@@ -44,6 +44,7 @@ public class Settings
 	public static boolean usingDBGP = false;
 	public static boolean usingCmdLine = false;
 	public static File baseDir = new File(".").getParentFile();
+	public static boolean concat = true;
     public static boolean vdmcomments = false;
     public static boolean genir = false;
 }
