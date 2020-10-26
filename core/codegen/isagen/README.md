@@ -12,7 +12,7 @@ A tool for automated translation of a VDM-SL specification into Isabelle/HOL.
 ## Set-up
 
 ### IntelliJ set-up
-Isagen is built using IntelliJ Idea and this wil be the easiest IDE to get started - IntelliJ it is highly recommended.
+Isagen is built using IntelliJ Idea and this wil be the easiest IDE to get started - installing IntelliJ is highly recommended.
 
 1. Clone this repository.
 2. Checkout js/isagen.
@@ -20,6 +20,8 @@ Isagen is built using IntelliJ Idea and this wil be the easiest IDE to get start
     - Open IntelliJ Idea and go to File > New > Project from Existing Sources...  
     ***OR***
     - From the welcome screen select Open or Import > Navigate to the 'overture' directory you have cloned > Select open.
+4. In the IntelliJ IDEA menu go to Preferences > Build, Execution, Deployment > Build Tools > Maven and check that 'Bundled (Maven 3)' is in the Maven home directory field.
+5. On the far-right of the IntelliJ window the 'Maven' menu allows you to run maven commands for your current project. Click the 'M' (Execute maven goal) button and run ***'mvn clean install -DskipTests'.***
 
 IntelliJ will set up the project.
 
