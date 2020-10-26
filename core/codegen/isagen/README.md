@@ -20,8 +20,13 @@ Isagen is built using IntelliJ Idea and this wil be the easiest IDE to get start
     - Open IntelliJ Idea and go to File > New > Project from Existing Sources...  
     ***OR***
     - From the welcome screen select Open or Import > Navigate to the 'overture' directory you have cloned > Select open.
-4. In the IntelliJ IDEA menu go to Preferences > Build, Execution, Deployment > Build Tools > Maven and check that 'Bundled (Maven 3)' is in the Maven home directory field.
-5. On the far-right of the IntelliJ window the 'Maven' menu allows you to run maven commands for your current project. Click the 'M' (Execute maven goal) button and run ***'mvn clean install -DskipTests'.***
+4. Right click the root folder 'overture' in the project window and click 'Add Framework Support...'. Check 'Maven' and click ok.
+5. In the IntelliJ IDEA menu:
+    - Go to Preferences > Build, Execution, Deployment > Build Tools > Maven and check that 'Bundled (Maven 3)' is in the 'Maven home directory field'.
+    - Go to Preferences > Build, Execution, Deployment > Build Tools > Maven > Runner and check that a JRE is configured.
+6. In the File menu go to Project Structure > Project and configure the project SDK to point toward your Java 1.8 installation.
+7. Restart IntelliJ.
+8. On the far-right of the IntelliJ window the 'Maven' menu allows you to run maven commands for your current project. Click the 'M' (Execute maven goal) button and run ***'mvn clean install -DskipTests'.*** This will install the Overture project with its dependencies.
 
 IntelliJ will set up the project.
 
