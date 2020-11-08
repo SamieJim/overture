@@ -1,16 +1,16 @@
 package org.overturetool.cgisa.transformations;
 
-import org.overture.ast.util.ClonableString;
 import org.overture.cgisa.isair.analysis.DepthFirstAnalysisIsaAdaptor;
-import org.overture.codegen.ir.*;
+import org.overture.codegen.ir.IRInfo;
+import org.overture.codegen.ir.IrNodeInfo;
+import org.overture.codegen.ir.SDeclIR;
+import org.overture.codegen.ir.SourceNode;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.declarations.*;
 import org.overture.codegen.ir.name.ATypeNameIR;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
 import org.overturetool.cgisa.utils.IsaInvNameFinder;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -29,10 +29,7 @@ public class IsaOptionalConv extends DepthFirstAnalysisIsaAdaptor {
 		this.isaTypeDeclIRMap = this.vdmToolkitModuleIR.getDecls()
 				.stream()
 				.filter(d -> {
-					if (d instanceof ATypeDeclIR)
-						return true;
-					else
-						return false;
+					return d instanceof ATypeDeclIR;
 				}).map(d -> (ATypeDeclIR) d)
 				.collect(Collectors.toMap(x -> ((ANamedTypeDeclIR) x.getDecl()).getName().getName(), x -> x));
 	}
@@ -90,7 +87,7 @@ public class IsaOptionalConv extends DepthFirstAnalysisIsaAdaptor {
 		if(encModule != null)
 		{
 			node.setSourceNode(parent.getSourceNode());
-			parent.getAncestor(AModuleDeclIR.class).getDecls().add(0, (SDeclIR) node.clone());
+			parent.getAncestor(AModuleDeclIR.class).getDecls().add(0, node.clone());
 		}
 	}
     

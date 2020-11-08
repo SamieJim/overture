@@ -23,11 +23,11 @@
 
 package org.overture.ast.lex;
 
-import java.util.Collection;
-import java.util.Vector;
-
 import org.overture.ast.intf.lex.ILexNameToken;
 import org.overture.ast.util.Utils;
+
+import java.util.Collection;
+import java.util.Vector;
 
 @SuppressWarnings("serial")
 public class LexNameList extends Vector<ILexNameToken>

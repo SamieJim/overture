@@ -1,11 +1,5 @@
 package org.overture.codegen.vdm2jml;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.lex.Dialect;
 import org.overture.ast.modules.AModuleModules;
@@ -19,6 +13,12 @@ import org.overture.config.Release;
 import org.overture.config.Settings;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class JmlGenMain
 {

@@ -1,9 +1,5 @@
 package org.overture.vdm2jml.tests;
 
-import java.io.File;
-import java.util.Collection;
-import java.util.List;
-
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +12,10 @@ import org.overture.codegen.utils.GeneralUtils;
 import org.overture.codegen.vdm2java.JavaCodeGenUtil;
 import org.overture.vdm2jml.tests.util.IOpenJmlConsts;
 import org.overture.vdm2jml.tests.util.TestUtil;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.List;
 
 @RunWith(Parameterized.class)
 public class JmlPassTypeCheckTests extends OpenJmlValidationBase

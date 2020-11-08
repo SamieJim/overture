@@ -1,9 +1,9 @@
 package org.overture.codegen.vdm2jml.util;
 
-import java.util.Comparator;
-
 import org.overture.ast.util.ClonableString;
 import org.overture.codegen.vdm2jml.JmlGenerator;
+
+import java.util.Comparator;
 
 public class JmlAnnotationComparator implements Comparator<ClonableString>
 {

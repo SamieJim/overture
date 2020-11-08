@@ -21,28 +21,24 @@
  */
 package org.overturetool.cgisa.transformations;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
-
 import org.apache.commons.collections4.map.HashedMap;
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;
+import org.overture.codegen.ir.SDeclIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.analysis.DepthFirstAnalysisAdaptor;
 import org.overture.codegen.ir.declarations.AFieldDeclIR;
 import org.overture.codegen.ir.declarations.AFuncDeclIR;
 import org.overture.codegen.ir.expressions.SVarExpIR;
 import org.overturetool.cgisa.IsaChecks;
-import org.overture.codegen.ir.SDeclIR;
+
+import java.util.*;
 
 public class Dependencies
 {
 
-	private IsaChecks isaUtils = new IsaChecks();
+	private final IsaChecks isaUtils = new IsaChecks();
 
 	public DirectedGraph<AFuncDeclIR, DefaultEdge> calDepsAsGraph(
 			List<AFuncDeclIR> decls) throws AnalysisException

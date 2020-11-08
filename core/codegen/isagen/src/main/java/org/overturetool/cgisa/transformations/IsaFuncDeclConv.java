@@ -27,19 +27,13 @@ public class IsaFuncDeclConv extends DepthFirstAnalysisIsaAdaptor {
         this.vdmToolkitModuleIR.getDecls()
                 .stream()
                 .filter(d -> {
-                    if (d instanceof ATypeDeclIR)
-                        return true;
-                    else
-                        return false;
+					return d instanceof ATypeDeclIR;
                 }).map(d -> (ATypeDeclIR) d)
                 .collect(Collectors.toMap(x -> ((ANamedTypeDeclIR) x.getDecl()).getName().getName(), x -> x));
         
         this.isaFuncDeclIRMap = this.vdmToolkitModuleIR.getDecls().stream().filter(d ->
         {
-            if (d instanceof AFuncDeclIR)
-                return true;
-            else
-                return false;
+			return d instanceof AFuncDeclIR;
         }).map(d -> (AFuncDeclIR) d).collect(Collectors.toMap(x -> x.getName(), x -> x));
 
         

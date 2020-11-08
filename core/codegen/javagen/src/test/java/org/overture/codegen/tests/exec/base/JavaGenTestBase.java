@@ -1,10 +1,5 @@
 package org.overture.codegen.tests.exec.base;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.definitions.SClassDefinition;
@@ -26,6 +21,11 @@ import org.overture.parser.lex.LexException;
 import org.overture.parser.syntax.ParserException;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 public abstract class JavaGenTestBase extends CheckerTestBase
 {

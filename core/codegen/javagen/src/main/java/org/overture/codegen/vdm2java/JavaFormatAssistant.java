@@ -21,8 +21,6 @@
  */
 package org.overture.codegen.vdm2java;
 
-import java.util.LinkedList;
-
 import org.overture.codegen.ir.IRInfo;
 import org.overture.codegen.ir.SExpIR;
 import org.overture.codegen.ir.STypeIR;
@@ -31,14 +29,7 @@ import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
 import org.overture.codegen.ir.declarations.AFieldDeclIR;
 import org.overture.codegen.ir.declarations.ARecordDeclIR;
 import org.overture.codegen.ir.declarations.AVarDeclIR;
-import org.overture.codegen.ir.expressions.AAddrNotEqualsBinaryExpIR;
-import org.overture.codegen.ir.expressions.AAndBoolBinaryExpIR;
-import org.overture.codegen.ir.expressions.AApplyExpIR;
-import org.overture.codegen.ir.expressions.ACastUnaryExpIR;
-import org.overture.codegen.ir.expressions.AEqualsBinaryExpIR;
-import org.overture.codegen.ir.expressions.AFieldExpIR;
-import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
-import org.overture.codegen.ir.expressions.AIsOfClassExpIR;
+import org.overture.codegen.ir.expressions.*;
 import org.overture.codegen.ir.name.ATypeNameIR;
 import org.overture.codegen.ir.patterns.AIdentifierPatternIR;
 import org.overture.codegen.ir.statements.ABlockStmIR;
@@ -47,6 +38,8 @@ import org.overture.codegen.ir.types.ABoolBasicTypeIR;
 import org.overture.codegen.ir.types.AExternalTypeIR;
 import org.overture.codegen.ir.types.AObjectTypeIR;
 import org.overture.codegen.ir.types.ARecordTypeIR;
+
+import java.util.LinkedList;
 
 public class JavaFormatAssistant extends JavaClassCreatorBase
 {

@@ -1,8 +1,5 @@
 package org.overture.codegen.vdm2jml.predgen;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.log4j.Logger;
 import org.overture.ast.util.ClonableString;
@@ -13,29 +10,15 @@ import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
 import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
 import org.overture.codegen.ir.expressions.SVarExpIR;
 import org.overture.codegen.ir.statements.AMetaStmIR;
-import org.overture.codegen.ir.types.AClassTypeIR;
-import org.overture.codegen.ir.types.AExternalTypeIR;
-import org.overture.codegen.ir.types.AMapMapTypeIR;
-import org.overture.codegen.ir.types.ARecordTypeIR;
-import org.overture.codegen.ir.types.ASeqSeqTypeIR;
-import org.overture.codegen.ir.types.ASetSetTypeIR;
-import org.overture.codegen.ir.types.ATupleTypeIR;
-import org.overture.codegen.ir.types.AUnionTypeIR;
-import org.overture.codegen.ir.types.AUnknownTypeIR;
+import org.overture.codegen.ir.types.*;
 import org.overture.codegen.vdm2jml.JmlGenUtil;
 import org.overture.codegen.vdm2jml.JmlGenerator;
 import org.overture.codegen.vdm2jml.data.RecClassInfo;
-import org.overture.codegen.vdm2jml.predgen.info.AbstractTypeInfo;
-import org.overture.codegen.vdm2jml.predgen.info.LeafTypeInfo;
-import org.overture.codegen.vdm2jml.predgen.info.MapInfo;
-import org.overture.codegen.vdm2jml.predgen.info.NamedTypeInfo;
-import org.overture.codegen.vdm2jml.predgen.info.NamedTypeInvDepCalculator;
-import org.overture.codegen.vdm2jml.predgen.info.SeqInfo;
-import org.overture.codegen.vdm2jml.predgen.info.SetInfo;
-import org.overture.codegen.vdm2jml.predgen.info.TupleInfo;
-import org.overture.codegen.vdm2jml.predgen.info.UnionInfo;
-import org.overture.codegen.vdm2jml.predgen.info.UnknownLeaf;
+import org.overture.codegen.vdm2jml.predgen.info.*;
 import org.overture.codegen.vdm2jml.util.NameGen;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class TypePredUtil
 {

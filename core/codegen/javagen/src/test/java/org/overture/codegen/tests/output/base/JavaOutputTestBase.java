@@ -1,7 +1,5 @@
 package org.overture.codegen.tests.output.base;
 
-import java.util.List;
-
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.definitions.SClassDefinition;
 import org.overture.ast.lex.Dialect;
@@ -13,6 +11,8 @@ import org.overture.codegen.utils.GeneratedData;
 import org.overture.codegen.vdm2java.JavaCodeGen;
 import org.overture.codegen.vdm2java.JavaSettings;
 import org.overture.config.Settings;
+
+import java.util.List;
 
 public abstract class JavaOutputTestBase extends OutputTestBase
 {

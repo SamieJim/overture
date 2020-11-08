@@ -1,8 +1,8 @@
 package org.overture.codegen.vdm2java;
 
-import java.util.List;
-
 import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
+
+import java.util.List;
 
 public interface IJavaQuoteEventObserver
 {

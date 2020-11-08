@@ -1,17 +1,12 @@
 package org.overture.ast.lex;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
-import java.util.function.BinaryOperator;
-import java.util.stream.Collectors;
-
 import org.overture.ast.intf.lex.ILexLocation;
 import org.overture.ast.intf.lex.ILexNameToken;
+
+import java.io.File;
+import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 
 public class CoverageUtil {

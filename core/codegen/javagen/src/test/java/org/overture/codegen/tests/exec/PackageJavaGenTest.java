@@ -1,8 +1,5 @@
 package org.overture.codegen.tests.exec;
 
-import java.io.File;
-import java.util.Collection;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
@@ -13,6 +10,9 @@ import org.overture.codegen.tests.exec.util.testhandlers.TestHandler;
 import org.overture.codegen.tests.output.PackageOutputTest;
 import org.overture.codegen.vdm2java.JavaSettings;
 import org.overture.config.Release;
+
+import java.io.File;
+import java.util.Collection;
 
 @RunWith(value = Parameterized.class)
 public class PackageJavaGenTest extends JavaGenTestBase

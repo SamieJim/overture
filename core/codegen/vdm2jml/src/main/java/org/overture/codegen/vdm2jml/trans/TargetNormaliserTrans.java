@@ -1,8 +1,5 @@
 package org.overture.codegen.vdm2jml.trans;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.overture.codegen.assistant.DeclAssistantIR;
 import org.overture.codegen.assistant.ExpAssistantIR;
@@ -25,6 +22,9 @@ import org.overture.codegen.ir.statements.AMapSeqUpdateStmIR;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
 import org.overture.codegen.vdm2jml.JmlGenerator;
 import org.overture.codegen.vdm2jml.data.StateDesInfo;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class TargetNormaliserTrans extends DepthFirstAnalysisAdaptor
 {

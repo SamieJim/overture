@@ -1,26 +1,9 @@
 package org.overture.codegen.vdm2jml;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.overture.ast.util.ClonableString;
-import org.overture.codegen.ir.INode;
-import org.overture.codegen.ir.IRConstants;
-import org.overture.codegen.ir.IRStatus;
-import org.overture.codegen.ir.PIR;
-import org.overture.codegen.ir.SPatternIR;
-import org.overture.codegen.ir.STypeIR;
-import org.overture.codegen.ir.VdmNodeInfo;
-import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
-import org.overture.codegen.ir.declarations.AFieldDeclIR;
-import org.overture.codegen.ir.declarations.AFormalParamLocalParamIR;
-import org.overture.codegen.ir.declarations.AInterfaceDeclIR;
-import org.overture.codegen.ir.declarations.AMethodDeclIR;
-import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
-import org.overture.codegen.ir.declarations.ARecordDeclIR;
-import org.overture.codegen.ir.declarations.ATypeDeclIR;
+import org.overture.codegen.ir.*;
+import org.overture.codegen.ir.declarations.*;
 import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
 import org.overture.codegen.ir.patterns.AIdentifierPatternIR;
 import org.overture.codegen.ir.statements.AReturnStmIR;
@@ -32,6 +15,10 @@ import org.overture.codegen.vdm2java.JavaCodeGenUtil;
 import org.overture.codegen.vdm2java.JavaFormat;
 import org.overture.codegen.vdm2jml.data.RecClassInfo;
 import org.overture.codegen.vdm2jml.util.NameGen;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 public class JmlGenUtil
 {

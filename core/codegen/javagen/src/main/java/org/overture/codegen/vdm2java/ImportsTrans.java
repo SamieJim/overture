@@ -1,8 +1,5 @@
 package org.overture.codegen.vdm2java;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.overture.ast.util.ClonableString;
 import org.overture.codegen.ir.IRInfo;
 import org.overture.codegen.ir.analysis.AnalysisException;
@@ -10,6 +7,9 @@ import org.overture.codegen.ir.analysis.DepthFirstAnalysisAdaptor;
 import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
 import org.overture.codegen.ir.declarations.ASystemClassDeclIR;
 import org.overture.codegen.ir.declarations.SClassDeclIR;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class ImportsTrans extends DepthFirstAnalysisAdaptor
 {

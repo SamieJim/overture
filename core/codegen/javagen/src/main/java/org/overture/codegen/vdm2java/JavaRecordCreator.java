@@ -21,26 +21,13 @@
  */
 package org.overture.codegen.vdm2java;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.overture.codegen.ir.SExpIR;
 import org.overture.codegen.ir.SStmIR;
 import org.overture.codegen.ir.STypeIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
-import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
-import org.overture.codegen.ir.declarations.AFieldDeclIR;
-import org.overture.codegen.ir.declarations.AFormalParamLocalParamIR;
-import org.overture.codegen.ir.declarations.AMethodDeclIR;
-import org.overture.codegen.ir.declarations.ARecordDeclIR;
-import org.overture.codegen.ir.expressions.AExternalExpIR;
-import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
-import org.overture.codegen.ir.expressions.ANewExpIR;
-import org.overture.codegen.ir.expressions.ANotUnaryExpIR;
-import org.overture.codegen.ir.expressions.ASeqConcatBinaryExpIR;
-import org.overture.codegen.ir.expressions.AStringLiteralExpIR;
-import org.overture.codegen.ir.expressions.ATernaryIfExpIR;
+import org.overture.codegen.ir.declarations.*;
+import org.overture.codegen.ir.expressions.*;
 import org.overture.codegen.ir.name.ATypeNameIR;
 import org.overture.codegen.ir.patterns.AIdentifierPatternIR;
 import org.overture.codegen.ir.statements.AAssignToExpStmIR;
@@ -50,6 +37,9 @@ import org.overture.codegen.ir.statements.AReturnStmIR;
 import org.overture.codegen.ir.types.ABoolBasicTypeIR;
 import org.overture.codegen.ir.types.AMethodTypeIR;
 import org.overture.codegen.ir.types.ARecordTypeIR;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class JavaRecordCreator extends JavaClassCreatorBase
 {

@@ -9,11 +9,7 @@ import org.overture.codegen.ir.declarations.AMethodDeclIR;
 import org.overture.codegen.ir.expressions.AApplyExpIR;
 import org.overture.codegen.ir.expressions.AExplicitVarExpIR;
 import org.overture.codegen.ir.patterns.AIdentifierPatternIR;
-import org.overture.codegen.ir.types.AExternalTypeIR;
-import org.overture.codegen.ir.types.AMethodTypeIR;
-import org.overture.codegen.ir.types.AObjectTypeIR;
-import org.overture.codegen.ir.types.AStringTypeIR;
-import org.overture.codegen.ir.types.ATemplateTypeIR;
+import org.overture.codegen.ir.types.*;
 
 abstract public class JavaClassCreatorBase
 {

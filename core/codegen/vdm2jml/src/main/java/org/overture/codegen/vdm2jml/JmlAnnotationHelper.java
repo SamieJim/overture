@@ -1,8 +1,5 @@
 package org.overture.codegen.vdm2jml;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.overture.ast.util.ClonableString;
 import org.overture.codegen.ir.IRConstants;
@@ -14,6 +11,9 @@ import org.overture.codegen.ir.declarations.AFieldDeclIR;
 import org.overture.codegen.ir.declarations.AMethodDeclIR;
 import org.overture.codegen.ir.declarations.ARecordDeclIR;
 import org.overture.codegen.vdm2java.JavaCodeGenUtil;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class JmlAnnotationHelper
 {

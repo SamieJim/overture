@@ -1,7 +1,5 @@
 package org.overture.codegen.vdm2jml.trans;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.overture.codegen.ir.INode;
 import org.overture.codegen.ir.STypeIR;
@@ -16,6 +14,8 @@ import org.overture.codegen.trans.assistants.TransAssistantIR;
 import org.overture.codegen.trans.uniontypes.UnionTypeTrans;
 import org.overture.codegen.trans.uniontypes.UnionTypeVarPrefixes;
 import org.overture.codegen.vdm2jml.data.StateDesInfo;
+
+import java.util.List;
 
 public class JmlUnionTypeTrans extends UnionTypeTrans
 {

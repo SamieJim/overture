@@ -1,28 +1,18 @@
 package org.overture.codegen.vdm2jml.predgen.info;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.overture.codegen.ir.STypeIR;
-import org.overture.codegen.ir.types.ABoolBasicTypeIR;
-import org.overture.codegen.ir.types.ACharBasicTypeIR;
-import org.overture.codegen.ir.types.AIntNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ANat1NumericBasicTypeIR;
-import org.overture.codegen.ir.types.ANatNumericBasicTypeIR;
-import org.overture.codegen.ir.types.AQuoteTypeIR;
-import org.overture.codegen.ir.types.ARatNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ARealNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ARecordTypeIR;
-import org.overture.codegen.ir.types.AStringTypeIR;
-import org.overture.codegen.ir.types.ATokenBasicTypeIR;
+import org.overture.codegen.ir.types.*;
 import org.overture.codegen.runtime.Utils;
 import org.overture.codegen.vdm2java.JavaQuoteValueCreator;
 import org.overture.codegen.vdm2jml.JmlGenUtil;
 import org.overture.codegen.vdm2jml.JmlGenerator;
 import org.overture.codegen.vdm2jml.util.NameGen;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class LeafTypeInfo extends AbstractTypeInfo
 {

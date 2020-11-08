@@ -1,17 +1,5 @@
 package org.overture.vdm2jml.tests.exec;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Assume;
@@ -26,6 +14,12 @@ import org.overture.test.framework.Properties;
 import org.overture.vdm2jml.tests.AnnotationTestsBase;
 import org.overture.vdm2jml.tests.OpenJmlValidationBase;
 import org.overture.vdm2jml.tests.util.IOpenJmlConsts;
+
+import java.io.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class JmlExecTestBase extends OpenJmlValidationBase
 {

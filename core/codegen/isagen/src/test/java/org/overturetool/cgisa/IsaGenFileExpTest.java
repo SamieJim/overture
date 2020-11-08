@@ -21,16 +21,7 @@
  */
 package org.overturetool.cgisa;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
+import com.google.gson.reflect.TypeToken;
 import org.apache.commons.io.FileUtils;
 import org.junit.Assume;
 import org.junit.runner.RunWith;
@@ -43,7 +34,15 @@ import org.overture.core.testing.ParamFineGrainTest;
 import org.overture.core.testing.ParseTcFacade;
 import org.overture.core.testing.PathsProvider;
 
-import com.google.gson.reflect.TypeToken;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Main parameterized test class. Runs tests on modules with minimal definitions to exercise the translation with a

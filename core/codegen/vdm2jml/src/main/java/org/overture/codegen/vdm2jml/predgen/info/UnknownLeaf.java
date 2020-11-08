@@ -1,9 +1,9 @@
 package org.overture.codegen.vdm2jml.predgen.info;
 
+import org.overture.codegen.vdm2jml.util.NameGen;
+
 import java.util.LinkedList;
 import java.util.List;
-
-import org.overture.codegen.vdm2jml.util.NameGen;
 
 public class UnknownLeaf extends AbstractTypeInfo
 {

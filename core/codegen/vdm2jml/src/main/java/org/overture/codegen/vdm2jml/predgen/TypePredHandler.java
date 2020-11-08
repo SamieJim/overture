@@ -1,38 +1,23 @@
 package org.overture.codegen.vdm2jml.predgen;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
-import org.overture.codegen.ir.INode;
-import org.overture.codegen.ir.IRGeneratedTag;
-import org.overture.codegen.ir.IRInfo;
-import org.overture.codegen.ir.SExpIR;
-import org.overture.codegen.ir.SStmIR;
-import org.overture.codegen.ir.STypeIR;
+import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.analysis.AnalysisException;
-import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
-import org.overture.codegen.ir.declarations.AFieldDeclIR;
-import org.overture.codegen.ir.declarations.AFormalParamLocalParamIR;
-import org.overture.codegen.ir.declarations.AMethodDeclIR;
-import org.overture.codegen.ir.declarations.AVarDeclIR;
+import org.overture.codegen.ir.declarations.*;
 import org.overture.codegen.ir.expressions.ACastUnaryExpIR;
 import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
 import org.overture.codegen.ir.expressions.SVarExpIR;
 import org.overture.codegen.ir.patterns.AIdentifierPatternIR;
-import org.overture.codegen.ir.statements.AAssignToExpStmIR;
-import org.overture.codegen.ir.statements.ABlockStmIR;
-import org.overture.codegen.ir.statements.ACallObjectExpStmIR;
-import org.overture.codegen.ir.statements.AForLoopStmIR;
-import org.overture.codegen.ir.statements.AMapSeqUpdateStmIR;
-import org.overture.codegen.ir.statements.AMetaStmIR;
-import org.overture.codegen.ir.statements.AReturnStmIR;
+import org.overture.codegen.ir.statements.*;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
 import org.overture.codegen.vdm2jml.JmlAnnotationHelper;
 import org.overture.codegen.vdm2jml.JmlGenerator;
 import org.overture.codegen.vdm2jml.predgen.info.AbstractTypeInfo;
 import org.overture.codegen.vdm2jml.predgen.info.UnknownLeaf;
 import org.overture.codegen.vdm2jml.util.IsValChecker;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class TypePredHandler
 {

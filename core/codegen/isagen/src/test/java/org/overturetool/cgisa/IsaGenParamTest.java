@@ -21,15 +21,7 @@
  */
 package org.overturetool.cgisa;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
-import java.util.*;
-
+import com.google.gson.reflect.TypeToken;
 import org.junit.Assume;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -42,7 +34,14 @@ import org.overture.codegen.utils.GeneratedModule;
 import org.overture.core.testing.ParamStandardTest;
 import org.overture.core.testing.PathsProvider;
 
-import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 /**
  * Main parameterized test class. Runs tests on modules with minimal

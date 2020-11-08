@@ -1,8 +1,6 @@
 package project;
 
-import java.util.*;
 import org.overture.codegen.runtime.*;
-import org.overture.codegen.vdm2jml.runtime.*;
 
 @SuppressWarnings("all")
 //@ nullable_by_default

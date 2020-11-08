@@ -1,13 +1,13 @@
 package org.overture.vdm2jml.tests;
 
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
 import org.overture.codegen.ir.declarations.AMethodDeclIR;
+
+import java.util.List;
 
 public class RecInvTests extends AnnotationTestsBase
 {

@@ -1,37 +1,13 @@
 package org.overture.codegen.vdm2jml;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-
 import org.apache.log4j.Logger;
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.definitions.SFunctionDefinition;
 import org.overture.ast.modules.AModuleModules;
 import org.overture.ast.util.ClonableString;
-import org.overture.codegen.ir.CodeGenBase;
-import org.overture.codegen.ir.INode;
-import org.overture.codegen.ir.IRConstants;
-import org.overture.codegen.ir.IREventObserver;
-import org.overture.codegen.ir.IRInfo;
-import org.overture.codegen.ir.IRSettings;
-import org.overture.codegen.ir.IRStatus;
-import org.overture.codegen.ir.IrNodeInfo;
-import org.overture.codegen.ir.PIR;
-import org.overture.codegen.ir.SDeclIR;
-import org.overture.codegen.ir.SStmIR;
+import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.analysis.DepthFirstAnalysisAdaptor;
-import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
-import org.overture.codegen.ir.declarations.AFieldDeclIR;
-import org.overture.codegen.ir.declarations.AFormalParamLocalParamIR;
-import org.overture.codegen.ir.declarations.AMethodDeclIR;
-import org.overture.codegen.ir.declarations.AModuleDeclIR;
-import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
-import org.overture.codegen.ir.declarations.ARecordDeclIR;
-import org.overture.codegen.ir.declarations.ATypeDeclIR;
-import org.overture.codegen.ir.declarations.AVarDeclIR;
-import org.overture.codegen.ir.declarations.SClassDeclIR;
+import org.overture.codegen.ir.declarations.*;
 import org.overture.codegen.ir.expressions.ACastUnaryExpIR;
 import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
 import org.overture.codegen.ir.statements.ABlockStmIR;
@@ -52,15 +28,15 @@ import org.overture.codegen.vdm2jml.predgen.TypePredDecorator;
 import org.overture.codegen.vdm2jml.predgen.info.AbstractTypeInfo;
 import org.overture.codegen.vdm2jml.predgen.info.NamedTypeInfo;
 import org.overture.codegen.vdm2jml.predgen.info.NamedTypeInvDepCalculator;
-import org.overture.codegen.vdm2jml.trans.JmlTraceTrans;
-import org.overture.codegen.vdm2jml.trans.JmlUnionTypeTrans;
-import org.overture.codegen.vdm2jml.trans.RecAccessorTrans;
-import org.overture.codegen.vdm2jml.trans.RecInvTransformation;
-import org.overture.codegen.vdm2jml.trans.TargetNormaliserTrans;
-import org.overture.codegen.vdm2jml.trans.TcExpInfo;
+import org.overture.codegen.vdm2jml.trans.*;
 import org.overture.codegen.vdm2jml.util.AnnotationSorter;
 import org.overture.codegen.vdm2jml.util.IsValChecker;
 import org.overture.codegen.vdm2jml.util.NameGen;
+
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 public class JmlGenerator implements IREventObserver, IJavaQuoteEventObserver
 {

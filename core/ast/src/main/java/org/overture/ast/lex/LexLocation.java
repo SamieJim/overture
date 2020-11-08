@@ -23,21 +23,12 @@
 
 package org.overture.ast.lex;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.ObjectStreamException;
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Vector;
-
 import org.overture.ast.intf.lex.ILexLocation;
 import org.overture.ast.node.ExternalNode;
+
+import java.io.*;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * A class to hold the location of a token.

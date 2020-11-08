@@ -1,12 +1,5 @@
 package org.overture.codegen.tests.other;
 
-import java.io.File;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,6 +24,9 @@ import org.overture.parser.messages.VDMWarning;
 import org.overture.typechecker.assistant.TypeCheckerAssistantFactory;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
+
+import java.io.File;
+import java.util.*;
 
 @RunWith(Parameterized.class)
 public class VarShadowingTest

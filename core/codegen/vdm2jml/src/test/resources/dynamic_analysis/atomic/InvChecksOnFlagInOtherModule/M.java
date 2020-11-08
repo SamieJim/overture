@@ -1,8 +1,7 @@
 package project.Modtypes;
 
-import java.util.*;
-import org.overture.codegen.runtime.*;
-import org.overture.codegen.vdm2jml.runtime.*;
+import org.overture.codegen.runtime.Record;
+import org.overture.codegen.runtime.Utils;
 
 @SuppressWarnings("all")
 //@ nullable_by_default

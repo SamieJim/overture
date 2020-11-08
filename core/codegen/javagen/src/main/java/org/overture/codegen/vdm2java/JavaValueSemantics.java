@@ -21,9 +21,6 @@
  */
 package org.overture.codegen.vdm2java;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.overture.codegen.assistant.AssistantManager;
 import org.overture.codegen.ir.INode;
 import org.overture.codegen.ir.SExpIR;
@@ -33,22 +30,11 @@ import org.overture.codegen.ir.declarations.AFieldDeclIR;
 import org.overture.codegen.ir.declarations.AMethodDeclIR;
 import org.overture.codegen.ir.declarations.SClassDeclIR;
 import org.overture.codegen.ir.expressions.*;
-import org.overture.codegen.ir.expressions.AIsOfClassExpIR;
-import org.overture.codegen.ir.statements.AAssignToExpStmIR;
-import org.overture.codegen.ir.statements.ACallObjectExpStmIR;
-import org.overture.codegen.ir.statements.AForAllStmIR;
-import org.overture.codegen.ir.statements.AMapCompAddStmIR;
-import org.overture.codegen.ir.statements.AMapSeqUpdateStmIR;
-import org.overture.codegen.ir.statements.ASeqCompAddStmIR;
-import org.overture.codegen.ir.statements.ASetCompAddStmIR;
-import org.overture.codegen.ir.types.AExternalTypeIR;
-import org.overture.codegen.ir.types.AMethodTypeIR;
-import org.overture.codegen.ir.types.ARecordTypeIR;
-import org.overture.codegen.ir.types.ATupleTypeIR;
-import org.overture.codegen.ir.types.AUnionTypeIR;
-import org.overture.codegen.ir.types.SMapTypeIR;
-import org.overture.codegen.ir.types.SSeqTypeIR;
-import org.overture.codegen.ir.types.SSetTypeIR;
+import org.overture.codegen.ir.statements.*;
+import org.overture.codegen.ir.types.*;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class JavaValueSemantics
 {

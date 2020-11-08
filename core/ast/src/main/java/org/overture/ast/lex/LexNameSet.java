@@ -23,9 +23,9 @@
 
 package org.overture.ast.lex;
 
-import java.util.HashSet;
-
 import org.overture.ast.intf.lex.ILexNameToken;
+
+import java.util.HashSet;
 
 public class LexNameSet extends HashSet<ILexNameToken>
 {

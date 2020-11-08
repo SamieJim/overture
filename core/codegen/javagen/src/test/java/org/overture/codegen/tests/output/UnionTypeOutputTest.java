@@ -1,14 +1,14 @@
 package org.overture.codegen.tests.output;
 
-import java.io.File;
-import java.util.Collection;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 import org.overture.codegen.tests.output.base.JavaOutputTestBase;
 import org.overture.codegen.tests.output.util.OutputTestUtil;
 import org.overture.core.testing.PathsProvider;
+
+import java.io.File;
+import java.util.Collection;
 
 @RunWith(Parameterized.class)
 public class UnionTypeOutputTest extends JavaOutputTestBase

@@ -22,10 +22,6 @@
  ******************************************************************************/
 package org.overture.ast.lex;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.analysis.intf.IAnalysis;
 import org.overture.ast.analysis.intf.IAnswer;
@@ -35,6 +31,10 @@ import org.overture.ast.intf.lex.ILexLocation;
 import org.overture.ast.intf.lex.ILexToken;
 import org.overture.ast.node.INode;
 import org.overture.ast.node.Node;
+
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The parent class for all lexical token types.

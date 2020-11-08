@@ -1,12 +1,13 @@
 package org.overturetool.cgisa.transformations;
 
 import org.overture.cgisa.isair.analysis.DepthFirstAnalysisIsaAdaptor;
-import org.overture.codegen.ir.*;
-import org.overture.codegen.ir.declarations.*;
+import org.overture.codegen.ir.IRInfo;
+import org.overture.codegen.ir.declarations.AModuleDeclIR;
+import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
+import org.overture.codegen.ir.declarations.ATypeDeclIR;
 import org.overture.codegen.ir.types.ASeqSeqTypeIR;
 import org.overture.codegen.ir.types.ASetSetTypeIR;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
-import org.overturetool.cgisa.IsaGen;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,10 +34,7 @@ public class IsaTypeTypesConv extends DepthFirstAnalysisIsaAdaptor {
         this.isaTypeDeclIRMap = this.vdmToolkitModuleIR.getDecls()
                 .stream()
                 .filter(d -> {
-                    if (d instanceof ATypeDeclIR)
-                        return true;
-                    else
-                        return false;
+                    return d instanceof ATypeDeclIR;
                 }).map(d -> (ATypeDeclIR) d)
                 .collect(Collectors.toMap(x -> ((ANamedTypeDeclIR) x.getDecl()).getName().getName(), x -> x));
     }

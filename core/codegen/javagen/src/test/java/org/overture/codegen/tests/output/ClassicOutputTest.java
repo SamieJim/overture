@@ -1,8 +1,5 @@
 package org.overture.codegen.tests.output;
 
-import java.io.File;
-import java.util.Collection;
-
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -12,6 +9,9 @@ import org.overture.codegen.tests.output.util.OutputTestUtil;
 import org.overture.config.Release;
 import org.overture.config.Settings;
 import org.overture.core.testing.PathsProvider;
+
+import java.io.File;
+import java.util.Collection;
 
 @RunWith(Parameterized.class)
 public class ClassicOutputTest extends JavaOutputTestBase

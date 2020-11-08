@@ -11,7 +11,7 @@ import org.overture.codegen.ir.statements.AReturnStmIR;
 
 public class StateInit extends DepthFirstAnalysisAdaptor
 {
-	private IRInfo info;
+	private final IRInfo info;
 
 	public StateInit(IRInfo info)
 	{

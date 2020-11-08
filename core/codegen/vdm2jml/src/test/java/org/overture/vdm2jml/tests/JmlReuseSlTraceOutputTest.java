@@ -1,12 +1,12 @@
 package org.overture.vdm2jml.tests;
 
-import java.io.File;
-import java.util.Collection;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 import org.overture.core.testing.PathsProvider;
+
+import java.io.File;
+import java.util.Collection;
 
 @RunWith(Parameterized.class)
 public class JmlReuseSlTraceOutputTest extends JmlSlOutputTestBase

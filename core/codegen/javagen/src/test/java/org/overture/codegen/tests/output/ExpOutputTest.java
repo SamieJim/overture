@@ -1,11 +1,6 @@
 package org.overture.codegen.tests.output;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.Collection;
-
+import com.google.gson.reflect.TypeToken;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -24,7 +19,11 @@ import org.overture.core.testing.PathsProvider;
 import org.overture.parser.lex.LexException;
 import org.overture.parser.syntax.ParserException;
 
-import com.google.gson.reflect.TypeToken;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.Collection;
 
 @RunWith(Parameterized.class)
 public class ExpOutputTest extends ParamFineGrainTest<String>

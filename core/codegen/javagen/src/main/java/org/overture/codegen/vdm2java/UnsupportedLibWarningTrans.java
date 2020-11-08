@@ -2,11 +2,9 @@ package org.overture.codegen.vdm2java;
 
 import org.overture.codegen.ir.INode;
 import org.overture.codegen.ir.IRConstants;
-import org.overture.codegen.ir.SExpIR;
 import org.overture.codegen.ir.STypeIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.analysis.DepthFirstAnalysisAdaptor;
-import org.overture.codegen.ir.expressions.AApplyExpIR;
 import org.overture.codegen.ir.expressions.AExplicitVarExpIR;
 import org.overture.codegen.ir.expressions.AFieldExpIR;
 import org.overture.codegen.ir.statements.APlainCallStmIR;

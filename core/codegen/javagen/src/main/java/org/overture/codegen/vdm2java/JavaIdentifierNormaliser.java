@@ -1,11 +1,5 @@
 package org.overture.codegen.vdm2java;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.analysis.DepthFirstAnalysisAdaptor;
 import org.overture.ast.intf.lex.ILexIdentifierToken;
@@ -14,6 +8,8 @@ import org.overture.ast.intf.lex.ILexNameToken;
 import org.overture.codegen.analysis.vdm.Renaming;
 import org.overture.codegen.ir.ITempVarGen;
 import org.overture.typechecker.utilities.type.ClassTypeFinder;
+
+import java.util.*;
 
 public class JavaIdentifierNormaliser extends DepthFirstAnalysisAdaptor
 {

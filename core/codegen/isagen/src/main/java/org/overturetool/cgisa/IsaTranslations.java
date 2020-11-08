@@ -21,22 +21,11 @@
  */
 package org.overturetool.cgisa;
 
-import java.io.StringWriter;
-import java.util.*;
-
 import org.overture.ast.definitions.AImplicitFunctionDefinition;
 import org.overture.ast.intf.lex.ILexLocation;
-import org.overture.ast.types.AMapMapType;
-import org.overture.ast.types.ANamedInvariantType;
 import org.overture.codegen.ir.*;
 import org.overture.codegen.ir.analysis.AnalysisException;
-import org.overture.codegen.ir.declarations.AFieldDeclIR;
-import org.overture.codegen.ir.declarations.AFormalParamLocalParamIR;
-import org.overture.codegen.ir.declarations.AFuncDeclIR;
-import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
-import org.overture.codegen.ir.declarations.ARecordDeclIR;
-import org.overture.codegen.ir.declarations.AStateDeclIR;
-import org.overture.codegen.ir.declarations.ATypeDeclIR;
+import org.overture.codegen.ir.declarations.*;
 import org.overture.codegen.ir.expressions.*;
 import org.overture.codegen.ir.types.*;
 import org.overture.codegen.merging.MergeVisitor;
@@ -48,6 +37,9 @@ import org.overturetool.cgisa.utils.IsSeqOfCharTypeVisitor;
 import org.overturetool.cgisa.utils.IsaInvNameFinder;
 import org.overturetool.cgisa.utils.IsaSymbolFinder;
 
+import java.io.StringWriter;
+import java.util.*;
+
 public class IsaTranslations {
 
     private static final String TEMPLATE_CALLABLE_NAME = "Isa";
@@ -55,7 +47,7 @@ public class IsaTranslations {
     private static final String LIST_SEP = ",";
     private static final String TUPLE_TYPE_SEPARATOR = "*";
     private static final String ISA_TEMPLATE_ROOT = "IsaTemplates";
-    private MergeVisitor mergeVisitor;
+    private final MergeVisitor mergeVisitor;
 
     protected IsaChecks isaUtils;
 
@@ -76,7 +68,7 @@ public class IsaTranslations {
         node.apply(mergeVisitor, writer);
         if(node.getChildren(true).get("_tag") != null && node.getChildren(true).get("_tag").equals("ERR"))
             writer.append("\n (* Unable to translate *) ");
-        return attachTranslationInfo((PIR) node, writer).toString()
+        return attachTranslationInfo((PIR) node, writer)
                 .replace("true", "True")
                 .replace("false", "False")
                 .replace("error_ ", "error_X ")
@@ -88,8 +80,8 @@ public class IsaTranslations {
                 .get("_location") != null) {
             return writer.toString().replace("/*", "(*")
                     .replace("*/", "at start line: " +
-                            String.valueOf(((ILexLocation) node.getSourceNode().getVdmNode().getChildren(true)
-                                    .get("_location")).getStartLine())
+                            ((ILexLocation) node.getSourceNode().getVdmNode().getChildren(true)
+                                    .get("_location")).getStartLine()
                             + " in VDM source. *) \n");
         }
         else {
@@ -170,7 +162,7 @@ public class IsaTranslations {
     }
 
 	public String transMkArgs(ANewExpIR node) {
-		String str = new String();
+		String str = "";
 		List<SExpIR> args = new ArrayList<SExpIR>();
 		args = node.getArgs();
 		List<AFieldDeclIR> f = new ArrayList<AFieldDeclIR>();
@@ -184,8 +176,8 @@ public class IsaTranslations {
 			f = state.getFields();
 			for (int i = 0; i < f.size(); i++)
 			{
-				str = str + state.getName().toString().substring(0,1).toLowerCase()
-						+ state.getName().toString().substring(1) + "_"
+				str = str + state.getName().substring(0,1).toLowerCase()
+						+ state.getName().substring(1) + "_"
 						+ (f.get(i).getName() + " = " + args.get(i).toString());
 				if (i < f.size()-1) str = str + (", ");
 			}
@@ -196,8 +188,8 @@ public class IsaTranslations {
 			f = rec.getFields();
 			for (int i = 0; i < args.size(); i++)
 			{
-				str = str + rec.getName().toString().substring(0,1).toLowerCase()
-						+ rec.getName().toString().substring(1) + "_"
+				str = str + rec.getName().substring(0,1).toLowerCase()
+						+ rec.getName().substring(1) + "_"
 						+ (f.get(i).getName() + " = " + args.get(i).toString());
 				if (i < f.size()-1) str = str + (", ");
 			}
@@ -216,7 +208,7 @@ public class IsaTranslations {
         boolean l = params.size() >= 1 && ((AFuncDeclIR) params.get(0).parent().parent()).getName().contains("Option");
 
         while (it.hasNext()) {
-            sb.append(trans((INode) it.next().clone()));
+            sb.append(trans(it.next().clone()));
             if(l) {
                 sb.append(" option");
                 l = false;
@@ -235,7 +227,7 @@ public class IsaTranslations {
 
     public String mkFirstCharLowerCase(String x)
     {
-        char c[] = x.toCharArray();
+        char[] c = x.toCharArray();
         c[0] = Character.toLowerCase(c[0]);
         return new String(c);
     }

@@ -1,16 +1,16 @@
 package org.overture.vdm2jml.tests;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Assume;
 import org.overture.codegen.tests.exec.util.ProcessResult;
 import org.overture.codegen.utils.GeneralUtils;
 import org.overture.codegen.vdm2jml.JmlGenMain;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 abstract public class OpenJmlValidationBase extends JmlGenTestBase
 {

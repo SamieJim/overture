@@ -1,6 +1,5 @@
 package org.overturetool.cgisa.utils;
 
-import org.overture.ast.types.AUnionType;
 import org.overture.cgisa.isair.analysis.AnswerIsaAdaptor;
 import org.overture.codegen.ir.INode;
 import org.overture.codegen.ir.STypeIR;

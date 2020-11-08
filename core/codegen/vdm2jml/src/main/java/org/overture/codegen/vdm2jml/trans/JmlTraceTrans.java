@@ -1,17 +1,13 @@
 package org.overture.codegen.vdm2jml.trans;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.overture.codegen.ir.INode;
-import org.overture.codegen.traces.ICallStmToStringMethodBuilder;
-import org.overture.codegen.traces.StoreAssistant;
-import org.overture.codegen.traces.TraceNames;
-import org.overture.codegen.traces.TraceStmBuilder;
-import org.overture.codegen.traces.TracesTrans;
+import org.overture.codegen.traces.*;
 import org.overture.codegen.trans.IterationVarPrefixes;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
 import org.overture.codegen.trans.iterator.ILanguageIterator;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class JmlTraceTrans extends TracesTrans
 {

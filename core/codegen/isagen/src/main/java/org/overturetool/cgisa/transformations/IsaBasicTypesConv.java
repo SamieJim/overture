@@ -1,8 +1,10 @@
 package org.overturetool.cgisa.transformations;
 
 import org.overture.cgisa.isair.analysis.DepthFirstAnalysisIsaAdaptor;
-import org.overture.codegen.ir.*;
-import org.overture.codegen.ir.declarations.*;
+import org.overture.codegen.ir.IRInfo;
+import org.overture.codegen.ir.declarations.AModuleDeclIR;
+import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
+import org.overture.codegen.ir.declarations.ATypeDeclIR;
 import org.overture.codegen.ir.types.AIntNumericBasicTypeIR;
 import org.overture.codegen.ir.types.ANat1NumericBasicTypeIR;
 import org.overture.codegen.ir.types.ANatNumericBasicTypeIR;
@@ -18,9 +20,7 @@ import java.util.stream.Collectors;
 public class IsaBasicTypesConv extends DepthFirstAnalysisIsaAdaptor {
 
     private final Map<String, ATypeDeclIR> isaTypeDeclIRMap;
-    private final TransAssistantIR t;
     private final AModuleDeclIR vdmToolkitModuleIR;
-    private final IRInfo info;
 
     private final static String VDMInt = "isa_VDMInt";
     private final static String VDMToken = "isa_VDMToken";
@@ -28,17 +28,12 @@ public class IsaBasicTypesConv extends DepthFirstAnalysisIsaAdaptor {
     private final static String VDMNat = "isa_VDMNat";
 
     public IsaBasicTypesConv(IRInfo info, TransAssistantIR t, AModuleDeclIR vdmToolkitModuleIR) {
-        this.t = t;
-        this.info = info;
         this.vdmToolkitModuleIR = vdmToolkitModuleIR;
 
         this.isaTypeDeclIRMap = this.vdmToolkitModuleIR.getDecls()
                 .stream()
                 .filter(d -> {
-                    if (d instanceof ATypeDeclIR)
-                        return true;
-                    else
-                        return false;
+                    return d instanceof ATypeDeclIR;
                 }).map(d -> (ATypeDeclIR) d)
                 .collect(Collectors.toMap(x -> ((ANamedTypeDeclIR) x.getDecl()).getName().getName(), x -> x));
     }

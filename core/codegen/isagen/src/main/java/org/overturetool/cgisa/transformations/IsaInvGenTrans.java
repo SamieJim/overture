@@ -1,7 +1,10 @@
 package org.overturetool.cgisa.transformations;
 
 import org.overture.cgisa.isair.analysis.DepthFirstAnalysisIsaAdaptor;
-import org.overture.codegen.ir.*;
+import org.overture.codegen.ir.IRInfo;
+import org.overture.codegen.ir.SDeclIR;
+import org.overture.codegen.ir.SExpIR;
+import org.overture.codegen.ir.STypeIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.declarations.*;
 import org.overture.codegen.ir.expressions.AAndBoolBinaryExpIR;
@@ -31,17 +34,11 @@ public class IsaInvGenTrans extends DepthFirstAnalysisIsaAdaptor {
 
         this.isaFuncDeclIRMap = this.vdmToolkitModule.getDecls().stream().filter(d ->
         {
-            if (d instanceof AFuncDeclIR)
-                return true;
-            else
-                return false;
+            return d instanceof AFuncDeclIR;
         }).map(d -> (AFuncDeclIR) d).collect(Collectors.toMap(x -> x.getName(), x -> x));
 
         this.isaTypeDeclIRMap = this.vdmToolkitModule.getDecls().stream().filter(d -> {
-            if (d instanceof ATypeDeclIR)
-                return true;
-            else
-                return false;
+            return d instanceof ATypeDeclIR;
         }).map(d -> (ATypeDeclIR) d).collect(Collectors.toMap(x -> ((ANamedTypeDeclIR) x.getDecl()).getName().getName(), x -> x));
 
 

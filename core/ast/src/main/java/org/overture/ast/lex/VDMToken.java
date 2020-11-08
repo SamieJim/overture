@@ -23,15 +23,13 @@ package org.overture.ast.lex;
  *
  ******************************************************************************/
 
-import static org.overture.ast.lex.Dialect.VDM_PP;
-import static org.overture.ast.lex.Dialect.VDM_RT;
-import static org.overture.ast.lex.Dialect.VDM_SL;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.overture.ast.lex.Dialect.*;
 
 /**
  * An enumeration for the basic token types recognised by the lexical analyser.

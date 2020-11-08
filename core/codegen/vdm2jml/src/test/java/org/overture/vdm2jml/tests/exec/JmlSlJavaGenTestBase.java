@@ -1,10 +1,5 @@
 package org.overture.vdm2jml.tests.exec;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.modules.AModuleModules;
@@ -22,6 +17,11 @@ import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
 import org.overture.vdm2jml.tests.OpenJmlValidationBase;
 import org.overture.vdm2jml.tests.util.IOpenJmlConsts;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 public abstract class JmlSlJavaGenTestBase extends CheckerTestBase
 {

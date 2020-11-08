@@ -1,10 +1,5 @@
 package org.overture.vdm2jml.tests.exec;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
 import org.junit.Assume;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -13,6 +8,11 @@ import org.overture.ast.lex.Dialect;
 import org.overture.codegen.tests.exec.util.testhandlers.TestHandler;
 import org.overture.config.Release;
 import org.overture.vdm2jml.tests.JmlReuseSlTraceOutputTest;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 @RunWith(value = Parameterized.class)
 public class JmlReuseSlTraceJavaGenTest extends JmlSlJavaGenTestBase

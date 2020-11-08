@@ -1,27 +1,16 @@
 package org.overture.codegen.vdm2jml.predgen.info;
 
+import org.apache.log4j.Logger;
+import org.overture.ast.analysis.AnalysisException;
+import org.overture.ast.analysis.DepthFirstAnalysisAdaptor;
+import org.overture.ast.types.*;
+import org.overture.codegen.ir.IRInfo;
+import org.overture.codegen.ir.STypeIR;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
-import org.apache.log4j.Logger;
-import org.overture.ast.analysis.AnalysisException;
-import org.overture.ast.analysis.DepthFirstAnalysisAdaptor;
-import org.overture.ast.types.ABracketType;
-import org.overture.ast.types.AInMapMapType;
-import org.overture.ast.types.ANamedInvariantType;
-import org.overture.ast.types.AOptionalType;
-import org.overture.ast.types.AProductType;
-import org.overture.ast.types.ASeq1SeqType;
-import org.overture.ast.types.AUnionType;
-import org.overture.ast.types.AUnknownType;
-import org.overture.ast.types.PType;
-import org.overture.ast.types.SMapTypeBase;
-import org.overture.ast.types.SSeqTypeBase;
-import org.overture.ast.types.SSetType;
-import org.overture.codegen.ir.IRInfo;
-import org.overture.codegen.ir.STypeIR;
 
 public class NamedTypeInvDepCalculator extends DepthFirstAnalysisAdaptor
 {

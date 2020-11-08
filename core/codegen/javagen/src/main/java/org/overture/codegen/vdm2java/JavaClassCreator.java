@@ -1,7 +1,5 @@
 package org.overture.codegen.vdm2java;
 
-import java.util.LinkedList;
-
 import org.overture.codegen.ir.IRInfo;
 import org.overture.codegen.ir.SExpIR;
 import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
@@ -13,6 +11,8 @@ import org.overture.codegen.ir.expressions.ASeqConcatBinaryExpIR;
 import org.overture.codegen.ir.expressions.AStringLiteralExpIR;
 import org.overture.codegen.ir.statements.AReturnStmIR;
 import org.overture.codegen.ir.types.AStringTypeIR;
+
+import java.util.LinkedList;
 
 public class JavaClassCreator extends JavaClassCreatorBase
 {

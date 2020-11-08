@@ -1,10 +1,5 @@
 package org.overture.codegen.vdm2java;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.commons.lang.BooleanUtils;
 import org.overture.ast.definitions.AClassClassDefinition;
 import org.overture.ast.definitions.SClassDefinition;
@@ -14,16 +9,15 @@ import org.overture.codegen.ir.IRGeneratedTag;
 import org.overture.codegen.ir.PIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.analysis.DepthFirstAnalysisAdaptor;
-import org.overture.codegen.ir.declarations.ACpuClassDeclIR;
-import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
-import org.overture.codegen.ir.declarations.AFieldDeclIR;
-import org.overture.codegen.ir.declarations.AInterfaceDeclIR;
-import org.overture.codegen.ir.declarations.AMethodDeclIR;
-import org.overture.codegen.ir.declarations.ASystemClassDeclIR;
-import org.overture.codegen.ir.declarations.SClassDeclIR;
+import org.overture.codegen.ir.declarations.*;
 import org.overture.codegen.ir.name.ATokenNameIR;
 import org.overture.codegen.trans.ITotalTransformation;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class ClassToInterfaceTrans extends DepthFirstAnalysisAdaptor implements ITotalTransformation {
 

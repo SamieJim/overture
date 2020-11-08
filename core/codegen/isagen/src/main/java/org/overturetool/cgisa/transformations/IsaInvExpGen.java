@@ -1,10 +1,17 @@
 package org.overturetool.cgisa.transformations;
+
 import org.overture.ast.expressions.AApplyExp;
 import org.overture.cgisa.isair.analysis.AnswerIsaAdaptor;
-import org.overture.codegen.ir.*;
+import org.overture.codegen.ir.INode;
+import org.overture.codegen.ir.SDeclIR;
+import org.overture.codegen.ir.SExpIR;
+import org.overture.codegen.ir.STypeIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.declarations.*;
-import org.overture.codegen.ir.expressions.*;
+import org.overture.codegen.ir.expressions.AAndBoolBinaryExpIR;
+import org.overture.codegen.ir.expressions.AApplyExpIR;
+import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
+import org.overture.codegen.ir.expressions.AQuoteLiteralExpIR;
 import org.overture.codegen.ir.patterns.AIdentifierPatternIR;
 import org.overture.codegen.ir.types.*;
 import org.overturetool.cgisa.IsaGen;
@@ -123,7 +130,7 @@ public class IsaInvExpGen extends AnswerIsaAdaptor<SExpIR> {
         		STypeIR type = fields.get(i).getType();
 		    	AIdentifierVarExpIR invExp = new AIdentifierVarExpIR();
 		    	invExp.setName("("+node.getName().substring(0,1).toLowerCase()+
-							node.getName().toString().substring(1) + "_" +
+							node.getName().substring(1) + "_" +
 							fields.get(i).getName()+" "+this.ps.toString()+")");
 	            invExp.setType(this.methodType.clone());
 	            this.targetIP = invExp;

@@ -21,9 +21,6 @@
  */
 package org.overturetool.cgisa;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -31,6 +28,9 @@ import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.expressions.PExp;
 import org.overture.codegen.utils.GeneratedModule;
 import org.overture.core.testing.ParseTcFacade;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 @RunWith(Parameterized.class)
 public abstract class AbsExpTest

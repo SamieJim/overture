@@ -1,15 +1,15 @@
 package org.overture.codegen.vdm2jml.data;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.overture.codegen.ir.SStmIR;
 import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
 import org.overture.codegen.ir.declarations.AVarDeclIR;
 import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
 import org.overture.codegen.runtime.traces.Pair;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class StateDesInfo
 {

@@ -1,8 +1,8 @@
 package project;
 
-import java.util.*;
-import org.overture.codegen.runtime.*;
-import org.overture.codegen.vdm2jml.runtime.*;
+import org.overture.codegen.runtime.IO;
+import org.overture.codegen.runtime.SeqUtil;
+import org.overture.codegen.runtime.VDMSeq;
 
 @SuppressWarnings("all")
 //@ nullable_by_default

@@ -1,9 +1,5 @@
 package org.overture.vdm2jml.tests;
 
-import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.overture.ast.modules.AModuleModules;
@@ -16,6 +12,10 @@ import org.overture.codegen.vdm2jml.predgen.info.NamedTypeInfo;
 import org.overture.codegen.vdm2jml.predgen.info.NamedTypeInvDepCalculator;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
+
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TypeDependencyTests extends AnnotationTestsBase
 {

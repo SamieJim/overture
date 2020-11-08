@@ -1,9 +1,5 @@
 package org.overture.codegen.vdm2jml.predgen;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.overture.codegen.ir.SStmIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
@@ -14,18 +10,17 @@ import org.overture.codegen.ir.declarations.AVarDeclIR;
 import org.overture.codegen.ir.expressions.ACastUnaryExpIR;
 import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
 import org.overture.codegen.ir.expressions.SVarExpIR;
-import org.overture.codegen.ir.statements.AAssignToExpStmIR;
-import org.overture.codegen.ir.statements.ABlockStmIR;
-import org.overture.codegen.ir.statements.ACallObjectExpStmIR;
-import org.overture.codegen.ir.statements.AMapSeqUpdateStmIR;
-import org.overture.codegen.ir.statements.AMetaStmIR;
-import org.overture.codegen.ir.statements.AReturnStmIR;
+import org.overture.codegen.ir.statements.*;
 import org.overture.codegen.traces.TraceMethodTag;
 import org.overture.codegen.vdm2jml.JmlGenerator;
 import org.overture.codegen.vdm2jml.data.RecClassInfo;
 import org.overture.codegen.vdm2jml.data.StateDesInfo;
 import org.overture.codegen.vdm2jml.trans.RecAccessorTrans;
 import org.overture.codegen.vdm2jml.trans.TargetNormaliserTrans;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This class is responsible for adding additional checks, like assertions, to the IR to preserve the semantics of the

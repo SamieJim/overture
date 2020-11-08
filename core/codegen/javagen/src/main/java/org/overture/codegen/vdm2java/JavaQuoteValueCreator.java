@@ -1,8 +1,5 @@
 package org.overture.codegen.vdm2java;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.overture.ast.util.ClonableString;
 import org.overture.codegen.ir.IRInfo;
 import org.overture.codegen.ir.SExpIR;
@@ -10,24 +7,17 @@ import org.overture.codegen.ir.STypeIR;
 import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
 import org.overture.codegen.ir.declarations.AFieldDeclIR;
 import org.overture.codegen.ir.declarations.AMethodDeclIR;
-import org.overture.codegen.ir.expressions.AApplyExpIR;
-import org.overture.codegen.ir.expressions.AEqualsBinaryExpIR;
-import org.overture.codegen.ir.expressions.AExternalExpIR;
-import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
-import org.overture.codegen.ir.expressions.AIsOfClassExpIR;
-import org.overture.codegen.ir.expressions.ANewExpIR;
-import org.overture.codegen.ir.expressions.ASuperVarExpIR;
+import org.overture.codegen.ir.expressions.*;
 import org.overture.codegen.ir.name.ATypeNameIR;
 import org.overture.codegen.ir.statements.AAssignToExpStmIR;
 import org.overture.codegen.ir.statements.ABlockStmIR;
 import org.overture.codegen.ir.statements.AIfStmIR;
 import org.overture.codegen.ir.statements.AReturnStmIR;
-import org.overture.codegen.ir.types.ABoolBasicTypeIR;
-import org.overture.codegen.ir.types.AClassTypeIR;
-import org.overture.codegen.ir.types.AExternalTypeIR;
-import org.overture.codegen.ir.types.AMethodTypeIR;
-import org.overture.codegen.ir.types.AObjectTypeIR;
+import org.overture.codegen.ir.types.*;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class JavaQuoteValueCreator extends JavaClassCreatorBase
 {

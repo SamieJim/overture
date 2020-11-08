@@ -4,18 +4,7 @@ import org.overture.codegen.ir.INode;
 import org.overture.codegen.ir.SExpIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.analysis.AnswerAdaptor;
-import org.overture.codegen.ir.expressions.AEnumMapExpIR;
-import org.overture.codegen.ir.expressions.AEnumSeqExpIR;
-import org.overture.codegen.ir.expressions.AEnumSetExpIR;
-import org.overture.codegen.ir.expressions.AIdentifierVarExpIR;
-import org.overture.codegen.ir.expressions.AMapletExpIR;
-import org.overture.codegen.ir.expressions.AMinusUnaryExpIR;
-import org.overture.codegen.ir.expressions.AMkBasicExpIR;
-import org.overture.codegen.ir.expressions.ANewExpIR;
-import org.overture.codegen.ir.expressions.ANullExpIR;
-import org.overture.codegen.ir.expressions.APlusUnaryExpIR;
-import org.overture.codegen.ir.expressions.SLiteralExpIR;
-import org.overture.codegen.ir.expressions.SNumericBinaryExpIR;
+import org.overture.codegen.ir.expressions.*;
 
 public class IsValChecker extends AnswerAdaptor<Boolean>
 {

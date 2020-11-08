@@ -1,17 +1,10 @@
 package org.overture.codegen.vdm2jml.trans;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.overture.codegen.ir.IRConstants;
 import org.overture.codegen.ir.SExpIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.analysis.DepthFirstAnalysisAdaptor;
-import org.overture.codegen.ir.declarations.AFieldDeclIR;
-import org.overture.codegen.ir.declarations.AFormalParamLocalParamIR;
-import org.overture.codegen.ir.declarations.AMethodDeclIR;
-import org.overture.codegen.ir.declarations.ARecordDeclIR;
-import org.overture.codegen.ir.declarations.AVarDeclIR;
+import org.overture.codegen.ir.declarations.*;
 import org.overture.codegen.ir.expressions.AApplyExpIR;
 import org.overture.codegen.ir.expressions.AFieldExpIR;
 import org.overture.codegen.ir.expressions.AMapSeqGetExpIR;
@@ -26,6 +19,9 @@ import org.overture.codegen.ir.types.AVoidTypeIR;
 import org.overture.codegen.vdm2java.JavaValueSemantics;
 import org.overture.codegen.vdm2jml.JmlGenerator;
 import org.overture.codegen.vdm2jml.data.RecClassInfo;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class RecAccessorTrans extends DepthFirstAnalysisAdaptor
 {

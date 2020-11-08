@@ -1,9 +1,5 @@
 package org.overture.vdm2jml.tests;
 
-import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.overture.ast.lex.Dialect;
 import org.overture.ast.lex.LexLocation;
@@ -13,6 +9,10 @@ import org.overture.config.Release;
 import org.overture.config.Settings;
 import org.overture.test.framework.Properties;
 import org.overture.typechecker.util.TypeCheckerUtil;
+
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 
 abstract public class JmlGenTestBase
 {

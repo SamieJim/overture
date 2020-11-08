@@ -1,8 +1,5 @@
 package org.overture.codegen.vdm2java;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.overture.codegen.ir.INode;
 import org.overture.codegen.ir.IRInfo;
 import org.overture.codegen.ir.analysis.DepthFirstAnalysisAdaptor;
@@ -29,6 +26,9 @@ import org.overture.codegen.trans.quantifier.CounterData;
 import org.overture.codegen.trans.uniontypes.NonDetStmTrans;
 import org.overture.codegen.trans.uniontypes.UnionTypeTrans;
 import org.overture.codegen.trans.uniontypes.UnionTypeVarPrefixes;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class JavaTransSeries
 {

@@ -1,8 +1,5 @@
 package org.overture.codegen.vdm2jml.predgen;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.overture.ast.util.ClonableString;
 import org.overture.codegen.ir.SStmIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
@@ -11,6 +8,9 @@ import org.overture.codegen.ir.declarations.ADefaultClassDeclIR;
 import org.overture.codegen.ir.statements.AAtomicStmIR;
 import org.overture.codegen.ir.statements.AMetaStmIR;
 import org.overture.codegen.vdm2jml.JmlGenerator;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public abstract class AtomicAssertTrans extends DepthFirstAnalysisAdaptor
 {

@@ -1,9 +1,5 @@
 package org.overture.codegen.tests.other;
 
-import java.io.StringWriter;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.overture.ast.util.ClonableString;
@@ -20,16 +16,15 @@ import org.overture.codegen.ir.statements.AMetaStmIR;
 import org.overture.codegen.ir.statements.AReturnStmIR;
 import org.overture.codegen.ir.statements.ASkipStmIR;
 import org.overture.codegen.ir.statements.ATryStmIR;
-import org.overture.codegen.ir.types.ABoolBasicTypeIR;
-import org.overture.codegen.ir.types.AClassTypeIR;
-import org.overture.codegen.ir.types.AExternalTypeIR;
-import org.overture.codegen.ir.types.AMethodTypeIR;
-import org.overture.codegen.ir.types.ARealNumericBasicTypeIR;
-import org.overture.codegen.ir.types.AVoidTypeIR;
+import org.overture.codegen.ir.types.*;
 import org.overture.codegen.merging.MergeVisitor;
 import org.overture.codegen.utils.GeneralUtils;
 import org.overture.codegen.vdm2java.JavaCodeGen;
 import org.overture.codegen.vdm2java.JavaFormat;
+
+import java.io.StringWriter;
+import java.util.LinkedList;
+import java.util.List;
 
 public class IRTest
 {

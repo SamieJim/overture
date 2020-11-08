@@ -1,7 +1,5 @@
 package org.overture.vdm2jml.tests.exec;
 
-import java.io.File;
-
 import org.junit.Assume;
 import org.overture.ast.lex.Dialect;
 import org.overture.codegen.tests.exec.util.ExecutionResult;
@@ -9,6 +7,8 @@ import org.overture.codegen.tests.exec.util.testhandlers.TraceHandler;
 import org.overture.codegen.tests.util.JavaToolsUtils;
 import org.overture.codegen.vdm2jml.JmlGenerator;
 import org.overture.config.Release;
+
+import java.io.File;
 
 public class JmlTraceTestHandler extends TraceHandler
 {

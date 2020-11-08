@@ -23,9 +23,9 @@ package org.overturetool.cgisa;
 
 public interface IIsaConstants
 {
-	public static final String THROWS = "throws";
+	String THROWS = "throws";
 
-	public static final String[] RESERVED_WORDS = {
+	String[] RESERVED_WORDS = {
 			// Java Keywords
 			"abstract", "continue", "for", "new", "switch", "assert", "default",
 			"goto", "package", "synchronized", "boolean", "do", "if", "private",
@@ -36,16 +36,16 @@ public interface IIsaConstants
 			"class", "finally", "long", "strictfp", "volatile", "const",
 			"float", "native", "super", "while" };
 
-	public static final String PACKAGE_JAVA_KEYWORD = "package";
+	String PACKAGE_JAVA_KEYWORD = "package";
 
-	public static final String THY_FILE_EXTENSION = ".thy";
+	String THY_FILE_EXTENSION = ".thy";
 
-	public static final String PUBLIC = "public";
-	public static final String PRIVATE = "private";
+	String PUBLIC = "public";
+	String PRIVATE = "private";
 
-	public static final String INT = "int";
-	public static final String EQUALS = "equals";
-	public static final String BOOLEAN = "boolean";
-	public static final String HASH_CODE = "hashCode";
-	public static final String TO_STRING = "toString";
+	String INT = "int";
+	String EQUALS = "equals";
+	String BOOLEAN = "boolean";
+	String HASH_CODE = "hashCode";
+	String TO_STRING = "toString";
 }

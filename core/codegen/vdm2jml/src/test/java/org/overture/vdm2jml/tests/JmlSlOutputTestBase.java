@@ -1,7 +1,5 @@
 package org.overture.vdm2jml.tests;
 
-import java.util.List;
-
 import org.junit.Before;
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.lex.Dialect;
@@ -15,6 +13,8 @@ import org.overture.codegen.vdm2java.JavaSettings;
 import org.overture.codegen.vdm2jml.JmlGenerator;
 import org.overture.config.Release;
 import org.overture.config.Settings;
+
+import java.util.List;
 
 public abstract class JmlSlOutputTestBase extends OutputTestBase
 {

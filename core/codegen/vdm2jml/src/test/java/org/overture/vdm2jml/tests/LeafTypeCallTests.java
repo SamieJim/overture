@@ -1,24 +1,14 @@
 package org.overture.vdm2jml.tests;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.overture.codegen.ir.STypeIR;
-import org.overture.codegen.ir.types.ABoolBasicTypeIR;
-import org.overture.codegen.ir.types.ACharBasicTypeIR;
-import org.overture.codegen.ir.types.AIntNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ANat1NumericBasicTypeIR;
-import org.overture.codegen.ir.types.ANatNumericBasicTypeIR;
-import org.overture.codegen.ir.types.AQuoteTypeIR;
-import org.overture.codegen.ir.types.ARatNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ARealNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ARecordTypeIR;
-import org.overture.codegen.ir.types.AStringTypeIR;
-import org.overture.codegen.ir.types.ATokenBasicTypeIR;
+import org.overture.codegen.ir.types.*;
 import org.overture.codegen.runtime.Utils;
 import org.overture.codegen.vdm2jml.predgen.info.LeafTypeInfo;
+
+import java.lang.reflect.Method;
+import java.util.Arrays;
 
 public class LeafTypeCallTests
 {

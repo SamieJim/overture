@@ -1,15 +1,15 @@
 package org.overture.vdm2jml.tests.util;
 
-import java.io.File;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.overture.codegen.utils.GeneralUtils;
 import org.overture.codegen.vdm2java.IJavaConstants;
 import org.overture.codegen.vdm2java.JavaCodeGen;
 import org.overture.vdm2jml.tests.OpenJmlValidationBase;
 import org.overture.vdm2jml.tests.exec.JmlExecTestBase;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TestUtil
 {

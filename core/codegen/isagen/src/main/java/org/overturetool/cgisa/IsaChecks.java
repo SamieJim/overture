@@ -33,10 +33,7 @@ public class IsaChecks
 		if (node.parent() instanceof AApplyExpIR)
 		{
 			AApplyExpIR par = (AApplyExpIR) node.parent();
-			if (par.getRoot() == node)
-			{
-				return true;
-			}
+			return par.getRoot() == node;
 		}
 		return false;
 	}

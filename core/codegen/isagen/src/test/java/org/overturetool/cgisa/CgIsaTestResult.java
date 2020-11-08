@@ -21,9 +21,9 @@
  */
 package org.overturetool.cgisa;
 
-import java.util.List;
-
 import org.overture.codegen.utils.GeneratedModule;
+
+import java.util.List;
 
 public class CgIsaTestResult
 {
@@ -73,11 +73,8 @@ public class CgIsaTestResult
 			return false;
 		if (translation == null)
 		{
-			if (other.translation != null)
-				return false;
-		} else if (!translation.equals(other.translation))
-			return false;
-		return true;
+			return other.translation == null;
+		} else return translation.equals(other.translation);
 	}
 
 	public boolean compare(CgIsaTestResult other)
@@ -86,12 +83,7 @@ public class CgIsaTestResult
 		{
 			return false;
 		}
-		if (!translation.replaceAll("\\s", "").equals(other.translation.replaceAll("\\s", "")))
-		{
-			return false;
-		}
-
-		return true;
+		return translation.replaceAll("\\s", "").equals(other.translation.replaceAll("\\s", ""));
 	}
 
 	public static CgIsaTestResult convert(GeneratedModule result)

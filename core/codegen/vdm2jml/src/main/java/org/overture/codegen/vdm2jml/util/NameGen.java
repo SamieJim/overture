@@ -1,14 +1,14 @@
 package org.overture.codegen.vdm2jml.util;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.apache.log4j.Logger;
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.node.INode;
 import org.overture.codegen.analysis.vdm.NameCollector;
 import org.overture.codegen.assistant.AssistantBase;
 import org.overture.codegen.ir.declarations.SClassDeclIR;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Convenience class for generating parameter names that do not collide with other names used in a given class.

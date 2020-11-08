@@ -21,11 +21,6 @@
  */
 package org.overturetool.cgisa;
 
-import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.overture.ast.analysis.AnalysisException;
@@ -36,6 +31,11 @@ import org.overture.codegen.printer.MsgPrinter;
 import org.overture.codegen.utils.GeneralCodeGenUtils;
 import org.overture.codegen.utils.GeneratedModule;
 import org.overture.core.testing.ParseTcFacade;
+
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 public class AdHoc
 {

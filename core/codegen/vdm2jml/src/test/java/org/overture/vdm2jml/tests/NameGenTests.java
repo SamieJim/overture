@@ -1,8 +1,5 @@
 package org.overture.vdm2jml.tests;
 
-import java.io.File;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +9,9 @@ import org.overture.codegen.vdm2jml.util.NameGen;
 import org.overture.config.Settings;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
+
+import java.io.File;
+import java.util.List;
 
 public class NameGenTests
 {

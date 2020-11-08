@@ -1,9 +1,5 @@
 package org.overture.codegen.vdm2java;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.overture.ast.lex.Dialect;
 import org.overture.codegen.ir.IRInfo;
@@ -23,6 +19,10 @@ import org.overture.codegen.traces.ICallStmToStringMethodBuilder;
 import org.overture.codegen.traces.StoreAssistant;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
 import org.overture.config.Settings;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class JavaCallStmToStringBuilder extends JavaClassCreatorBase
 		implements ICallStmToStringMethodBuilder

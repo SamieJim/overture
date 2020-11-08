@@ -9,7 +9,6 @@ import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
 import org.overture.codegen.ir.declarations.ARecordDeclIR;
 import org.overture.codegen.ir.declarations.AStateDeclIR;
 import org.overture.codegen.ir.name.ATypeNameIR;
-import org.overture.codegen.ir.types.AIntNumericBasicTypeIR;
 import org.overture.codegen.ir.types.ARecordTypeIR;
 import org.overturetool.cgisa.IsaGen;
 
@@ -31,7 +30,7 @@ public class IsaDeclTypeGen extends AnswerIsaAdaptor<STypeIR> {
 
     public STypeIR caseAStateDeclIR(AStateDeclIR n)
     {
-    	IsaGen.rdeclGenHistoryMap.put(n.getName().toString(), n);
+    	IsaGen.rdeclGenHistoryMap.put(n.getName(), n);
     	ARecordTypeIR a = new ARecordTypeIR();
     	ATypeNameIR o = new ATypeNameIR();
     	o.setName(n.getName());
@@ -50,7 +49,7 @@ public class IsaDeclTypeGen extends AnswerIsaAdaptor<STypeIR> {
     
     public STypeIR caseARecordDeclIR(ARecordDeclIR n)
     {
-    	IsaGen.rdeclGenHistoryMap.put(n.getName().toString(), n);
+    	IsaGen.rdeclGenHistoryMap.put(n.getName(), n);
     	ARecordTypeIR a = new ARecordTypeIR();
     	ATypeNameIR o = new ATypeNameIR();
     	o.setName(n.getName());

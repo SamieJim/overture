@@ -3,18 +3,8 @@ package org.overturetool.cgisa.transformations;
 import org.overture.cgisa.isair.analysis.DepthFirstAnalysisIsaAdaptor;
 import org.overture.codegen.ir.IRInfo;
 import org.overture.codegen.ir.declarations.AModuleDeclIR;
-import org.overture.codegen.ir.declarations.ANamedTypeDeclIR;
-import org.overture.codegen.ir.declarations.ATypeDeclIR;
-import org.overture.codegen.ir.expressions.AAndBoolBinaryExpIR;
 import org.overture.codegen.ir.expressions.ASetDifferenceBinaryExpIR;
-import org.overture.codegen.ir.types.AIntNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ANat1NumericBasicTypeIR;
-import org.overture.codegen.ir.types.ANatNumericBasicTypeIR;
-import org.overture.codegen.ir.types.ATokenBasicTypeIR;
 import org.overture.codegen.trans.assistants.TransAssistantIR;
-
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /***
  * Visitor to convert basic VDM types to VDMToolkit types

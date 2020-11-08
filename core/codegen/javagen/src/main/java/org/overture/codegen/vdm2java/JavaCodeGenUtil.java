@@ -21,11 +21,8 @@
  */
 package org.overture.codegen.vdm2java;
 
-import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.regex.Pattern;
-
+import com.google.googlejavaformat.java.Formatter;
+import com.google.googlejavaformat.java.FormatterException;
 import org.apache.log4j.Logger;
 import org.overture.ast.analysis.AnalysisException;
 import org.overture.ast.expressions.PExp;
@@ -41,8 +38,10 @@ import org.overture.codegen.utils.GeneratedModule;
 import org.overture.config.Settings;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
 
-import com.google.googlejavaformat.java.Formatter;
-import com.google.googlejavaformat.java.FormatterException;
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class JavaCodeGenUtil
 {

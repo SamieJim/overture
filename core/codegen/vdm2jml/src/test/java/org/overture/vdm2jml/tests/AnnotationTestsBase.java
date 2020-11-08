@@ -1,9 +1,5 @@
 package org.overture.vdm2jml.tests;
 
-import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -27,6 +23,10 @@ import org.overture.config.Release;
 import org.overture.config.Settings;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overture.typechecker.util.TypeCheckerUtil.TypeCheckResult;
+
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
 
 abstract public class AnnotationTestsBase
 {

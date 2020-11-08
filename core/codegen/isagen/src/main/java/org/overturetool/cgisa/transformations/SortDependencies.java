@@ -21,24 +21,18 @@
  */
 package org.overturetool.cgisa.transformations;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
-
 import org.overture.codegen.ir.SDeclIR;
 import org.overture.codegen.ir.analysis.AnalysisException;
 import org.overture.codegen.ir.analysis.DepthFirstAnalysisAdaptor;
 import org.overture.codegen.ir.declarations.AModuleDeclIR;
 
+import java.util.*;
+
 public class SortDependencies extends DepthFirstAnalysisAdaptor
 {
 	List<SDeclIR> decls;
 	Map<SDeclIR, List<SDeclIR>> depGraph;
-	private List<SDeclIR> sorted;
+	private final List<SDeclIR> sorted;
 
 	protected Dependencies depUtils;
 

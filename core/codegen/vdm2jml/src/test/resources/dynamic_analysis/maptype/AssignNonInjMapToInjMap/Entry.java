@@ -1,8 +1,9 @@
 package project;
 
-import java.util.*;
-import org.overture.codegen.runtime.*;
-import org.overture.codegen.vdm2jml.runtime.*;
+import org.overture.codegen.runtime.IO;
+import org.overture.codegen.runtime.MapUtil;
+import org.overture.codegen.runtime.Maplet;
+import org.overture.codegen.runtime.VDMMap;
 
 @SuppressWarnings("all")
 //@ nullable_by_default

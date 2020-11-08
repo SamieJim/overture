@@ -1,8 +1,5 @@
 package org.overture.codegen.vdm2jml.trans;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.overture.ast.definitions.PDefinition;
 import org.overture.ast.statements.ACallStm;
 import org.overture.ast.types.AFunctionType;
@@ -15,15 +12,14 @@ import org.overture.codegen.ir.SourceNode;
 import org.overture.codegen.ir.declarations.ACatchClauseDeclIR;
 import org.overture.codegen.ir.declarations.AMethodDeclIR;
 import org.overture.codegen.ir.expressions.SVarExpIR;
-import org.overture.codegen.ir.statements.ABlockStmIR;
-import org.overture.codegen.ir.statements.AMetaStmIR;
-import org.overture.codegen.ir.statements.APlainCallStmIR;
-import org.overture.codegen.ir.statements.AReturnStmIR;
-import org.overture.codegen.ir.statements.ATryStmIR;
+import org.overture.codegen.ir.statements.*;
 import org.overture.codegen.ir.types.AExternalTypeIR;
 import org.overture.codegen.traces.StoreAssistant;
 import org.overture.codegen.traces.TraceStmBuilder;
 import org.overture.codegen.traces.TracesTrans;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class JmlTraceStmBuilder extends TraceStmBuilder
 {

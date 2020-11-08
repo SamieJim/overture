@@ -1,8 +1,10 @@
 package project;
 
-import java.util.*;
-import org.overture.codegen.runtime.*;
-import org.overture.codegen.vdm2jml.runtime.*;
+import org.overture.codegen.runtime.IO;
+import org.overture.codegen.runtime.SetUtil;
+import org.overture.codegen.runtime.VDMSet;
+
+import java.util.Iterator;
 
 @SuppressWarnings("all")
 //@ nullable_by_default

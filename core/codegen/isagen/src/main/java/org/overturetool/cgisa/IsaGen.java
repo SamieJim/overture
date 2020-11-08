@@ -22,15 +22,6 @@
 
 package org.overturetool.cgisa;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import org.apache.velocity.Template;
 import org.apache.velocity.runtime.RuntimeServices;
 import org.apache.velocity.runtime.RuntimeSingleton;
@@ -50,7 +41,13 @@ import org.overture.codegen.utils.GeneratedModule;
 import org.overture.config.Settings;
 import org.overture.typechecker.util.TypeCheckerUtil;
 import org.overturetool.cgisa.transformations.*;
-import org.overturetool.cgisa.utils.IsaInvNameFinder;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Main facade class for VDM 2 Isabelle IR
@@ -67,7 +64,7 @@ public class IsaGen extends CodeGenBase {
 	
     public IsaGen()
     {
-        this.addInvTrueMacro();
+        addInvTrueMacro();
 
         this.getSettings().setAddStateInvToModule(false);
         this.getSettings().setGenerateInvariants(true);

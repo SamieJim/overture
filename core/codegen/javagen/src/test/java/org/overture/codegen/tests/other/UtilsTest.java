@@ -1,10 +1,10 @@
 package org.overture.codegen.tests.other;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 import org.overture.codegen.vdm2java.JavaCodeGenUtil;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class UtilsTest
 {
